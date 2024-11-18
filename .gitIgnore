@@ -1,0 +1,62 @@
+# Node.js dependencies
+node_modules/
+
+# Logs
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+*.log
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Build output directories
+/dist
+/build
+
+# Dependency directories (e.g., for specific frameworks)
+/bower_components
+/.pnp
+.pnp.js
+
+# Next.js build output
+.next/
+
+# Vite, Webpack, Rollup build output
+/.vite
+/webpack
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Temporary files from operating system
+*.swp
+*.swo
+
+# TypeScript files (if using TypeScript)
+/*.tsbuildinfo
+
+# Yarn lock file (optional, but can be ignored if using npm instead of yarn)
+/yarn.lock
+
+# Test output directories
+/coverage
+
+# NPM or Yarn logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build and Deployment directories (If applicable)
+deploy/
+build/
+dist/
