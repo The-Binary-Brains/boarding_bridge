@@ -1,0 +1,178 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+body {
+    height: 500vh;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    padding-inline: 20px;
+}
+
+.header {
+    .logo_container {
+        display: flex;
+        align-items: center;
+    }
+
+    .logo {
+        width: 40px;
+        height: 40px;
+        margin-right: 15px;
+    }
+
+    .logo_title {
+        font-weight: 700;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 1.2rem;
+        color: white;
+        width: 150px;
+        height: 50px;
+        background-color: #7f0000;
+        border: none;
+    }
+}
+
+.hero {
+    height: 80vh;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)),
+        url("../images/hero.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .hero_title {
+        position: relative;
+        top: 50%;
+        left: 100px;
+        font-size: 64px;
+        color: white;
+        font-family: "Philosopher", sans-serif;
+        font-weight: 700;
+        font-style: normal;
+    }
+}
+
+.section_one {
+    display: flex;
+    flex-direction: column;
+    margin: -50px auto;
+    width: 80vw;
+    height: 90vh;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+
+    .title_container {
+        height: 150px;
+        display: flex;
+        align-items: center;
+
+        padding: 20px 50px;
+
+        .title_content {
+            font-family: "Poppins", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+            font-size: 36px;
+            color: #163269;
+            margin-right: 20px;
+        }
+
+        .line {
+            height: 2px;
+            flex: 1;
+            background-color: #1632696a;
+        }
+    }
+
+    .content {
+        background-image: url("../images/sec_one.png");
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: buttom;
+        height: 100%;
+        width: 100%;
+        position: relative;
+        display: flex;
+        justify-content: flex-end;
+
+        .container {
+            background-color: #7f0000c8;
+            width: 40%;
+            height: 50%;
+            padding: 80px;
+
+            .info {
+                font-family: "Poppins", sans-serif;
+                font-weight: 400;
+                font-style: normal;
+                font-size: 24px;
+                color: #ffc954;
+            }
+        }
+    }
+}
+
+.section_two {
+
+    height: 45vh;
+    margin-top: 180px;
+    background-color: #7f0000;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    .title {
+        font-size: 36px;
+        font-weight: 800;
+        color: #ffc954;
+        margin-inline: auto;
+    }
+
+    .content {
+        width: 80%;
+        display: flex;
+        justify-content: space-evenly;
+
+        .card {
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 300px;
+
+            .icon {
+                width: 90px;
+            }
+            .title {
+                color: white;
+                font-size: 24;
+                font-weight: 700;
+            }
+            .desc {
+                color: white;
+                font-family: "Poppins", sans-serif;
+                font-weight: 400;
+                font-style: normal;
+            }
+        }
+    }
+}
