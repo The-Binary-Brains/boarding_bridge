@@ -77,7 +77,7 @@
                             name="password"
                             required
                         />
-                        <label for="password"
+                        <label for="password" id="password_label"
                             >Please provide a strong password</label
                         >
                     </div>
@@ -88,7 +88,7 @@
                             type="password"
                             required
                         />
-                        <label for="confirmPassword"
+                        <label for="confirmPassword" id="confirm_password_label"
                             >confirm entered password above</label
                         >
                     </div>
@@ -100,7 +100,6 @@
                                 type="file"
                                 accept=".pdf, .jpg, .jpeg, .png"
                                 name="profilePhoto"
-                                required
                                 hidden
                             />
                             <input
@@ -203,7 +202,6 @@
                                 type="file"
                                 accept=".pdf, .jpg, .jpeg, .png"
                                 name="legDocument"
-                                required
                                 hidden
                             />
                             <input
@@ -244,91 +242,23 @@
                 </form>
             </div>
         </div>
+        <footer>
+            <div class="Center">
+                <div class="logo">
+                    <div class="title">Boarding Bridge</div>
+                    <div class="sub_title">
+                        "Connecting Students with Quality Accommodations"
+                    </div>
+                    <P>Phone : +94 01 457 8546 <br>
+                        Email : support@boardingbridge.lk <br>
+                        Address: 123 Campus Dr., City</P>
+                </div>
+            </div>
+            <div class="bottom">
+                <div class="bottom_line"></div>
+                <span class="rights">© 2024 BoardingBridge. All rights reserved.</span>
+            </div>
+        </footer>
     </body>
-    <script>
-        const imagePreview = document.getElementById("imagePreview");
-        const profilePhotoInput = document.getElementById("profilePhoto");
-        const customFileNameInput = document.getElementById("customFileName");
-        const profileSelectBtn = document.getElementById("profileSelectBtn");
-        const registrationForm = document.getElementById("registrationForm")
-
-        const legalDocInput = document.getElementById("legal_doc");
-        const customDocFileNameInput =
-            document.getElementById("customDocFileName");
-        const docSelectBtn = document.getElementById("docSelectBtn");
-
-        profilePhotoInput.addEventListener("change", function () {
-            const file = profilePhotoInput.files[0];
-
-            if (file) {
-                customFileNameInput.value = file.name;
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    imagePreview.src = e.target.result;
-                    imagePreview.style.display = "block";
-                };
-                reader.readAsDataURL(file);
-            } else {
-                customFileNameInput.value = "Profile photo";
-                imagePreview.style.display = "none";
-            }
-        });
-
-        legalDocInput.addEventListener("change", function () {
-            const file = legalDocInput.files[0];
-
-            if (file) {
-                customDocFileNameInput.value = file.name;
-            } else {
-                customDocFileNameInput.value =
-                    "NIC/Driving License/Passport Document";
-            }
-        });
-
-        document
-            .getElementById("registrationForm")
-            .addEventListener("submit", function (event) {
-                event.preventDefault();
-
-                const password = document.getElementById("password").value;
-                const confirmPassword =
-                    document.getElementById("confirmPassword").value;
-
-                if (password !== confirmPassword) {
-                    alert(
-                        "Passwords do not match. Please confirm your password."
-                    );
-                    return;
-                }
-
-                const termsCheckbox = document.getElementById("terms");
-
-                if (!termsCheckbox.checked) {
-                    alert("You must agree to the Terms and Conditions.");
-                    return;
-                }
-
-                const formData = new FormData(
-                    document.getElementById("registrationForm")
-                );
-
-                formData.forEach((value, key) => {
-                    console.log(key + ": " + value);
-                });
-                alert("Form submitted successfully!");
-            });
-
-        customFileName.addEventListener("click", function () {
-            profilePhotoInput.click();
-        });
-        profileSelectBtn.addEventListener("click", function () {
-            profilePhotoInput.click();
-        });
-        customDocFileNameInput.addEventListener("click", function () {
-            legalDocInput.click();
-        });
-        docSelectBtn.addEventListener("click", function () {
-            legalDocInput.click();
-        });
-    </script>
+    <script src="./js/owner_reg.js"></script>
 </html>
