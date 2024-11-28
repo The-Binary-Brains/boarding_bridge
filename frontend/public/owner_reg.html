@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./css/owner_reg.css" />
+        <link rel="icon" href="./images/favicon.png" type="image/icon type" />
+        <title>Owner Registration</title>
+    </head>
+    <body>
+        <div class="header">
+            <span class="title">Boarding Bridge Owner Portal</span>
+        </div>
+        <div class="form_section">
+            <div class="form_title">Registration</div>
+            <div class="form_line"></div>
+            <div class="form_header form_padding">
+                <div class="form_sub_title">Welcome to Boarding Bridge</div>
+                <div class="form_info">
+                    Please ensure all information provided is accurate and
+                    up-to-date. Each registration will undergo a thorough review
+                    by our team to verify property details and ensure they meet
+                    the standards required for listing on Boarding Bridge.
+                    Inaccurate or incomplete submissions may result in delays or
+                    rejection of your application.<br /><br />
+                    <b>*Note:</b> A non-refundable registration fee of X will be
+                    charged upon submission. This fee covers the verification
+                    process to ensure quality and trust for our users on
+                    Boarding Bridge.
+                </div>
+            </div>
+            <div class="form_container form_padding">
+                <form id="registrationForm">
+                    <div class="form_line"></div>
+                    <div class="form_sub_title">Account Details</div>
+                    <div class="input">
+                        <input
+                            id="firstName"
+                            placeholder="First Name"
+                            type="text"
+                            name="firstName"
+                            required
+                        />
+                        <label for="firstName"
+                            >First name will be displayed to users</label
+                        >
+                    </div>
+                    <div class="input">
+                        <input
+                            id="lastName"
+                            placeholder="Last Name"
+                            type="text"
+                            name="lastName"
+                            required
+                        />
+                        <label for="lastName"
+                            >Last name will be displayed to users</label
+                        >
+                    </div>
+                    <div class="input">
+                        <input
+                            id="userName"
+                            placeholder="User Name"
+                            type="text"
+                            name="userName"
+                            required
+                        />
+                        <label for="userName"
+                            >User name is used for login process</label
+                        >
+                    </div>
+                    <div class="input">
+                        <input
+                            id="password"
+                            placeholder="Password"
+                            type="password"
+                            name="password"
+                            required
+                        />
+                        <label for="password"
+                            >Please provide a strong password</label
+                        >
+                    </div>
+                    <div class="input">
+                        <input
+                            id="confirmPassword"
+                            placeholder="Confirm Password"
+                            type="password"
+                            required
+                        />
+                        <label for="confirmPassword"
+                            >confirm entered password above</label
+                        >
+                    </div>
+                    <div class="input">
+                        <div class="file_input">
+                            <input
+                                id="profilePhoto"
+                                placeholder="Profile photo"
+                                type="file"
+                                accept=".pdf, .jpg, .jpeg, .png"
+                                name="profilePhoto"
+                                required
+                                hidden
+                            />
+                            <input
+                                id="customFileName"
+                                type="text"
+                                placeholder="Profile photo"
+                                readonly
+                                class="file_readonly"
+                            />
+                            <button
+                                type="button"
+                                class="file_button"
+                                id="profileSelectBtn"
+                            >
+                                Select File
+                            </button>
+                        </div>
+                        <label for="profilePhoto"
+                            >Accepted file types: jpeg, png</label
+                        >
+                        <img
+                            id="imagePreview"
+                            src="#"
+                            alt="Image Preview"
+                            style="display: none"
+                        />
+                    </div>
+                    <div class="input">
+                        <textarea
+                            id="about"
+                            placeholder="Tell Us About You"
+                            required
+                            name="about"
+                            maxlength="500"
+                        ></textarea>
+                        <label for="about"
+                            >Brief Description about your self (max: 500
+                            charactors)
+                        </label>
+                    </div>
+                    <div class="form_line"></div>
+                    <div class="form_sub_title">Contact Details</div>
+                    <div class="input">
+                        <input
+                            id="email"
+                            placeholder="Email"
+                            type="email"
+                            name="email"
+                            required
+                        />
+                        <label for="email"
+                            >Email that is used by the Boarding Bridge to
+                            contact you</label
+                        >
+                    </div>
+                    <div class="input">
+                        <input
+                            id="phone"
+                            placeholder="Phone (Ex: +94 123 456 7890)"
+                            pattern="^\+?[1-9]\d{1,14}$"
+                            type="tel"
+                            name="phone"
+                            required
+                        />
+                        <label for="phone"
+                            >Phone number that is used by the Boarding Bridge to
+                            contact you</label
+                        >
+                    </div>
+                    <div class="form_line"></div>
+                    <div class="form_sub_title">Legal Information</div>
+                    <div class="input">
+                        <input
+                            id="leg_name"
+                            placeholder="Legal Name"
+                            name="legName"
+                            type="text"
+                            required
+                        />
+                        <label for="leg_name"
+                            >Name that is used in NIC/Driving License/Passport
+                            Document</label
+                        >
+                    </div>
+                    <div class="input">
+                        <input
+                            id="address"
+                            placeholder="Address"
+                            name="address"
+                            type="text"
+                            required
+                        />
+                        <label for="address">Current Residential Address</label>
+                    </div>
+                    <div class="input">
+                        <div class="file_input">
+                            <input
+                                id="legal_doc"
+                                placeholder="Legal Document"
+                                type="file"
+                                accept=".pdf, .jpg, .jpeg, .png"
+                                name="legDocument"
+                                required
+                                hidden
+                            />
+                            <input
+                                id="customDocFileName"
+                                type="text"
+                                placeholder="NIC/Driving License/Passport Document"
+                                readonly
+                                class="file_readonly"
+                            />
+                            <button
+                                type="button"
+                                class="file_button"
+                                id="docSelectBtn"
+                            >
+                                Select File
+                            </button>
+                        </div>
+                        <label for="legal_doc"
+                            >Accepted file types: jpeg, png</label
+                        >
+                    </div>
+                    <div class="input">
+                        <div class="checkbox">
+                            <input id="terms" type="checkbox" required />
+                            <label for="terms"
+                                >I agree to the
+                                <a href="#">[Terms & Conditions]</a> and<a
+                                    href="#"
+                                >
+                                    [Privacy Policy]</a
+                                ></label
+                            >
+                        </div>
+                    </div>
+                    <div class="input">
+                        <button id="submitBtn" type="submit">Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+    <script>
+        const imagePreview = document.getElementById("imagePreview");
+        const profilePhotoInput = document.getElementById("profilePhoto");
+        const customFileNameInput = document.getElementById("customFileName");
+        const profileSelectBtn = document.getElementById("profileSelectBtn");
+        const registrationForm = document.getElementById("registrationForm")
+
+        const legalDocInput = document.getElementById("legal_doc");
+        const customDocFileNameInput =
+            document.getElementById("customDocFileName");
+        const docSelectBtn = document.getElementById("docSelectBtn");
+
+        profilePhotoInput.addEventListener("change", function () {
+            const file = profilePhotoInput.files[0];
+
+            if (file) {
+                customFileNameInput.value = file.name;
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = "block";
+                };
+                reader.readAsDataURL(file);
+            } else {
+                customFileNameInput.value = "Profile photo";
+                imagePreview.style.display = "none";
+            }
+        });
+
+        legalDocInput.addEventListener("change", function () {
+            const file = legalDocInput.files[0];
+
+            if (file) {
+                customDocFileNameInput.value = file.name;
+            } else {
+                customDocFileNameInput.value =
+                    "NIC/Driving License/Passport Document";
+            }
+        });
+
+        document
+            .getElementById("registrationForm")
+            .addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                const password = document.getElementById("password").value;
+                const confirmPassword =
+                    document.getElementById("confirmPassword").value;
+
+                if (password !== confirmPassword) {
+                    alert(
+                        "Passwords do not match. Please confirm your password."
+                    );
+                    return;
+                }
+
+                const termsCheckbox = document.getElementById("terms");
+
+                if (!termsCheckbox.checked) {
+                    alert("You must agree to the Terms and Conditions.");
+                    return;
+                }
+
+                const formData = new FormData(
+                    document.getElementById("registrationForm")
+                );
+
+                formData.forEach((value, key) => {
+                    console.log(key + ": " + value);
+                });
+                alert("Form submitted successfully!");
+            });
+
+        customFileName.addEventListener("click", function () {
+            profilePhotoInput.click();
+        });
+        profileSelectBtn.addEventListener("click", function () {
+            profilePhotoInput.click();
+        });
+        customDocFileNameInput.addEventListener("click", function () {
+            legalDocInput.click();
+        });
+        docSelectBtn.addEventListener("click", function () {
+            legalDocInput.click();
+        });
+    </script>
+</html>
