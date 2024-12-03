@@ -1,3 +1,8 @@
+import {
+    validatePassword,
+    validateConfirmPassword,
+} from "./modules/password_validation.js";
+
 const imagePreview = document.getElementById("imagePreview");
 const profilePhotoInput = document.getElementById("profilePhoto");
 const customFileNameInput = document.getElementById("customFileName");
@@ -11,15 +16,8 @@ const passwordInput = document.getElementById("password");
 const confirmPasswordLabel = document.getElementById("confirm_password_label");
 const confirmPasswordInput = document.getElementById("confirmPassword");
 
-var valid = false;
-
-const pwErrors = [
-    "Password must be at least 8 characters long.",
-    "Password must contain at least one lowercase letter",
-    "Password must contain at least one uppercase letter",
-    "Password must contain at least one number.",
-    "Password must contain at least one special character (!@#$%^&*)",
-];
+let pwvalid = false;
+let pwcvalid = false;
 
 // ! Event handlers
 
@@ -29,48 +27,6 @@ const handleDocInput = () => {
         customDocFileNameInput.value = file.name;
     } else {
         customDocFileNameInput.value = "NIC/Driving License/Passport Document";
-    }
-};
-
-const validatePassword = () => {
-    passwordInput.style.backgroundColor = "#ffe8e8";
-    validateConfirmPassword();
-    if (passwordInput.value.length == 0) {
-        passwordLabel.innerText = pwErrors[0];
-        valid = false;
-    } else if (!/[!@#$%^&*]/.test(passwordInput.value)) {
-        passwordLabel.innerText = pwErrors[4];
-        valid = false;
-    } else if (!/[a-z]/.test(passwordInput.value)) {
-        passwordLabel.innerText = pwErrors[1];
-        valid = false;
-    } else if (!/[A-Z]/.test(passwordInput.value)) {
-        passwordLabel.innerText = pwErrors[2];
-        valid = false;
-    } else if (!/\d/.test(passwordInput.value)) {
-        passwordLabel.innerText = pwErrors[3];
-        valid = false;
-    } else if (passwordInput.value.length < 8) {
-        passwordLabel.innerText = pwErrors[0];
-        valid = false;
-    } else {
-        passwordLabel.innerText = "Password is valid";
-        passwordInput.style.backgroundColor = "#f0ffe8";
-    }
-};
-
-const validateConfirmPassword = () => {
-    valid = false;
-    confirmPasswordInput.style.backgroundColor = "#ffe8e8";
-    confirmPasswordLabel.innerText = "Passwords don't match";
-
-    if (
-        passwordInput.value === confirmPasswordInput.value &&
-        confirmPasswordInput.value.length
-    ) {
-        confirmPasswordLabel.innerText = "Password confirmed";
-        confirmPasswordInput.style.backgroundColor = "#f0ffe8";
-        valid = true;
     }
 };
 
@@ -93,16 +49,28 @@ const handlePhotoInput = () => {
 const validateForm = () => {
     const termsCheckbox = document.getElementById("terms");
 
-    if (!valid) {
+    if (!pwvalid) {
         passwordInput.scrollIntoView({ behavior: "smooth", block: "center" });
+        return false;
+    } else if (!pwcvalid) {
+        confirmPasswordInput.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+        });
         return false;
     } else if (!profilePhotoInput.files.length) {
         customFileNameInput.style.backgroundColor = "#ffe8e8";
-        customFileNameInput.scrollIntoView({ behavior: "smooth", block: "center" });
+        customFileNameInput.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+        });
         return false;
     } else if (!legalDocInput.files.length) {
         customDocFileNameInput.style.backgroundColor = "#ffe8e8";
-        customDocFileNameInput.scrollIntoView({ behavior: "smooth", block: "center" });
+        customDocFileNameInput.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+        });
         return false;
     } else if (!termsCheckbox.checked) {
         alert("You must agree to the Terms and Conditions.");
@@ -142,5 +110,18 @@ customFileName.addEventListener("click", triggerPhotoInput);
 profileSelectBtn.addEventListener("click", triggerPhotoInput);
 customDocFileNameInput.addEventListener("click", triggerDocInput);
 docSelectBtn.addEventListener("click", triggerDocInput);
-passwordInput.addEventListener("input", validatePassword);
-confirmPasswordInput.addEventListener("input", validateConfirmPassword);
+passwordInput.addEventListener("input", () => {
+    pwvalid = validatePassword(passwordInput, passwordLabel);
+    pwcvalid = validateConfirmPassword(
+        passwordInput,
+        confirmPasswordInput,
+        confirmPasswordLabel
+    );
+});
+confirmPasswordInput.addEventListener("input", () => {
+    pwcvalid = validateConfirmPassword(
+        passwordInput,
+        confirmPasswordInput,
+        confirmPasswordLabel
+    );
+});
