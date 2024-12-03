@@ -1,27 +1,33 @@
 import express from "express";
 import dotenv from "dotenv";
-import cors from "cors" ;
+import cors from "cors";
 import path from "path";
-import adminRouter from "./backend/routes/admin.js";
-import ownerRouter from "./backend/routes/owner.js";
+import adminAPi from "./backend/routes/apis/adminApis.js";
+import ownerApi from "./backend/routes/apis/ownerApis.js";
+import ownerView from "./backend/routes/views/ownerViews.js";
 import { ConnetToSQLServer } from "./backend/database.js";
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-
 const app = express();
+
+app.set("view engine", "ejs");
+
 app.use(cors());
 app.use(express.json());
+app.use(express.static("public"));
+
 dotenv.config();
 
-app.use("/api/admin", adminRouter);
-app.use("/api/owner", ownerRouter);
-app.get('/dashboard', (req, res) => {
-    res.status(200).render(path.join(__dirname, 'components', 'dashboard.html'));
-});
+app.use("/admin/api", adminAPi);
+//app.use("/admin/page", adminView);
+
+app.use("/owner/api", ownerApi);
+app.use("/owner/page", ownerView);
+
 
 app.listen(process.env.PORT, () => {
     console.log(`Server running on port: ${process.env.PORT}`);

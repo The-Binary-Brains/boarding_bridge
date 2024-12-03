@@ -1,0 +1,26 @@
+<div class="nav">
+    <a href="http://localhost:5000/owner/page/dashboard">
+        <div
+            class="nav_button <%= page === 'dashboard' ? 'selected' : '' %>"
+            id="dashboardButton"
+        >
+            <i class="fa-solid fa-gauge"></i></div></a
+    ><a href="http://localhost:5000/owner/page/property">
+        <div
+            class="nav_button <%= page === 'property' ? 'selected' : '' %>"
+            id="accommodationButton"
+        >
+            <i class="fa-solid fa-building"></i></div
+    ></a>
+    <a href="http://localhost:5000/owner/page/inbox">
+        <div
+            class="nav_button <%= page === 'inbox' ? 'selected' : '' %>"
+            id="messagesButton"
+        >
+            <i class="fa-solid fa-envelope-open-text"></i></div
+    ></a>
+    <a href="http://localhost:5000/owner/page/profile">
+        <div class="nav_button <%= page === 'profile' ? 'selected' : '' %>">
+            <i class="fa-solid fa-user"></i></div
+    ></a>
+</div>

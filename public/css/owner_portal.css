@@ -80,15 +80,16 @@ html {
         align-items: center;
         background-color: #ffffff;
         box-shadow: 5px 0 20px rgb(208, 208, 208);
-        color: rgb(50, 50, 50);
 
-
+        a {
+            text-decoration: none;
+            color: rgb(50, 50, 50);
+        }
         .nav_button {
             width: 25px;
             padding: 25px;
             cursor: pointer;
             transition: 0.3s ease-in-out;
-
 
             i {
                 font-size: 22px;
@@ -119,7 +120,6 @@ html {
         }
 
         .analitics {
-
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -132,7 +132,6 @@ html {
                 height: 20vh;
                 color: white;
                 background-color: #800000;
-
 
                 .title {
                     font-size: 20px;
@@ -155,9 +154,8 @@ html {
                     margin-inline: 50px;
                     background-color: #630000;
                 }
-
             }
-/*
+            /*
             .analitics_container.total {
                 background-color: #389AF0;
                 i {
@@ -181,14 +179,10 @@ html {
             padding: 30px;
             background-color: white;
 
-
-
-              .calender_wrapper {
-
+            .calender_wrapper {
                 display: flex;
                 justify-content: space-between;
                 margin-block: 50px;
-
 
                 .calendar {
                     width: 50%;
@@ -196,55 +190,54 @@ html {
                     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
                     border-radius: 10px;
                     overflow: hidden;
-                  }
+                }
 
-                  .calendar-header {
+                .calendar-header {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
                     padding: 20px;
                     background: #800000;
                     color: #ffffff;
-                  }
+                }
 
-                  .calendar-header button {
+                .calendar-header button {
                     background: none;
                     border: none;
                     color: #ffffff;
                     font-size: 18px;
                     cursor: pointer;
-                  }
+                }
 
-                  .calendar-header button:hover {
+                .calendar-header button:hover {
                     text-decoration: underline;
-                  }
+                }
 
-                  .calendar-body {
+                .calendar-body {
                     padding: 20px;
-                  }
+                }
 
-                  .calendar-days {
+                .calendar-days {
                     display: grid;
                     grid-template-columns: repeat(7, 1fr);
                     gap: 10px;
                     text-align: center;
                     font-size: 14px;
                     margin-bottom: 50px;
-                  }
+                }
 
-                  .calendar-days div {
+                .calendar-days div {
                     font-weight: bold;
-                  }
+                }
 
-                  .calendar-dates {
-
+                .calendar-dates {
                     display: grid;
                     grid-template-columns: repeat(7, 1fr);
                     gap: 10px;
                     place-items: center;
-                  }
+                }
 
-                  .calendar-dates button {
+                .calendar-dates button {
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -256,25 +249,24 @@ html {
                     cursor: pointer;
                     background-color: rgb(255, 255, 255);
                     font-size: 20px;
-                  }
+                }
 
-                  .calendar-dates button:hover {
+                .calendar-dates button:hover {
                     background: #80000080;
                     color: #ffffff;
-                  }
+                }
 
-                  .calendar-dates .current-date {
+                .calendar-dates .current-date {
                     background: #800000;
                     color: #ffffff;
-                  }
+                }
 
-                  .properties {
+                .properties {
                     width: 40%;
                     padding-inline: 50px;
-                  }
-              }
+                }
+            }
         }
-
     }
 }
 
@@ -322,7 +314,7 @@ footer {
     }
 }
 
-.nav_button.selected {
+.selected {
     background-color: #640000;
     color: white;
 }
