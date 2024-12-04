@@ -1,0 +1,279 @@
+<div class="profile">
+    <div class="overlay">
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <div class="loading-text">Profile updating. Please wait</div>
+        </div>
+        <div class="status" id="success">
+            <div class="title">
+                Sccess!
+            </div>
+            <div class="desc">
+                your profile has been updated,
+            </div>
+            <button class="submit_button" id="successCloseBtn">Done</button>
+        </div>
+        <div class="status" id="failed">
+            <div class="title">
+                Failed!
+            </div>
+            <div class="desc">
+                Someting went wrong during update, <br>Please try again later.
+            </div>
+            <button class="submit_button" id="failedCloseBtn">Cancel</button>
+        </div>
+        <div class="password_reset_form">
+            <div class="form_container form_padding">
+                <form id="passwordUpdateForm">
+                    <div class="input">
+                        <input
+                            id="password"
+                            placeholder="Password"
+                            type="password"
+                            name="password"
+                            required
+                        />
+                        <label for="password" id="password_label"
+                            >Please provide a strong password</label
+                        >
+                    </div>
+                    <div class="input">
+                        <input
+                            id="confirmPassword"
+                            placeholder="Confirm Password"
+                            type="password"
+                            required
+                        />
+                        <label for="confirmPassword" id="confirm_password_label"
+                            >confirm entered password above</label
+                        >
+                    </div>
+                    <div class="input">
+                        <button class="submit_button" type="submit">Update</button>
+                        <button class="cancel_button" id="passwordCancelBtn" type="button">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="contact_update_form">
+            <div class="form_container form_padding">
+                <form id="contactUpdateForm">
+                    <div class="input">
+                        <input
+                            id="email"
+                            placeholder="Email"
+                            type="email"
+                            name="email"
+                            required
+                        />
+                        <label for="email"
+                            >Email that is used by the Boarding Bridge to
+                            contact you</label
+                        >
+                    </div>
+                    <div class="input">
+                        <input
+                            id="phone"
+                            placeholder="Phone (Ex: +94 123 456 7890)"
+                            pattern="^\+?[1-9]\d{1,14}$"
+                            type="tel"
+                            name="phone"
+                            required
+                        />
+                        <label for="phone"
+                            >Phone number that is used by the Boarding Bridge to
+                            contact you</label
+                        >
+                    </div>
+                    <div class="input">
+                        <button class="submit_button" type="submit">Update</button>
+                        <button class="cancel_button" id="contactCancelBtn" type="button">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="user_update_form">
+            <div class="form_container form_padding">
+                <form id="userUpdateForm">
+                    <div class="input">
+                        <input
+                            id="firstName"
+                            placeholder="First Name"
+                            type="text"
+                            name="firstName"
+                            required
+                        />
+                        <label for="firstName"
+                            >First name will be displayed to users</label
+                        >
+                    </div>
+                    <div class="input">
+                        <input
+                            id="lastName"
+                            placeholder="Last Name"
+                            type="text"
+                            name="lastName"
+                            required
+                        />
+                        <label for="lastName"
+                            >Last name will be displayed to users</label
+                        >
+                    </div>
+                    <div class="input">
+                        <input
+                            id="userName"
+                            placeholder="User Name"
+                            type="text"
+                            name="userName"
+                            required
+                        />
+                        <label for="userName"
+                            >User name is used for login process</label
+                        >
+                    </div>
+                    <div class="input">
+                        <textarea
+                            id="about"
+                            placeholder="Tell Us About You"
+                            required
+                            name="about"
+                            maxlength="500"
+                        ></textarea>
+                        <label for="about"
+                            >Brief Description about your self (max: 500
+                            charactors)
+                        </label>
+                    </div>
+                    <div class="input">
+                        <button class="submit_button" type="submit">Update</button>
+                        <button class="cancel_button" id="userCancelBtn" type="button">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="profpic_update_form">
+            <div class="form_container form_padding">
+                <form id="profPicUpdateForm">
+                    <div class="input">
+                        <div class="file_input">
+                            <input
+                                id="profilePhoto"
+                                placeholder="Profile photo"
+                                type="file"
+                                accept=".jpg, .jpeg, .png"
+                                name="profilePhoto"
+                                hidden
+                            />
+                            <input
+                                id="customFileName"
+                                type="text"
+                                placeholder="Profile photo"
+                                readonly
+                                class="file_readonly"
+                            />
+                            <button
+                                type="button"
+                                class="file_button"
+                                id="profileSelectBtn"
+                            >
+                                Select File
+                            </button>
+                        </div>
+                        <label for="profilePhoto"
+                            >Accepted file types: jpeg, png</label
+                        >
+                        <img
+                            id="imagePreview"
+                            src="#"
+                            alt="Image Preview"
+                            style="display: none"
+                        />
+                    </div>
+                    <div class="input">
+                        <button class="submit_button" type="submit">Update</button>
+                        <button class="cancel_button" id="profPicCancelBtn" type="button">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="top_container">
+        <div class="header">
+            <div class="container_title">My Account</div>
+            <button id="userEditBtn" class="add_new">Edit</button>
+        </div>
+        <div class="container_line"></div>
+        <div class="info_container">
+            <div class="img_container">
+                <img src="/images/fow_owners.png" alt="" />
+                <button id="profilePicEditBtn"><i class="fa-solid fa-camera"></i></button>
+            </div>
+            <div class="account_info">
+                <div class="user_name">Jane's Accomandations</div>
+                <div class="name">Jane Doe</div>
+                <div class="about">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut
+                    amet distinctio vel impedit! In rem, perspiciatis nesciunt
+                    nostrum enim sunt eum dolores saepe est quaerat alias maxime
+                    at culpa ratione eligendi quas voluptas molestias possimus
+                    ex omnis cumque aspernatur! Reprehenderit quisquam ullam
+                    aliquam error quaerat natus officia illum quod recusandae.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom_container">
+        <div class="left">
+            <div class="header">
+                <div class="container_title">Contact Info</div>
+                <button id="contactEditBtn"class="add_new">Edit</button>
+            </div>
+            <div class="container_line"></div>
+            <div class="info_container">
+                <div class="info">
+                    <div class="lable">Phone</div>
+                    <div class="value">4684646466846153</div>
+                </div>
+                <div class="info">
+                    <div class="lable">Email</div>
+                    <div class="value">sample@samplemail.com</div>
+                </div>
+            </div>
+        </div>
+        <div class="mid">
+            <div class="header">
+                <div class="container_title">Legal Info</div>
+            </div>
+            <div class="container_line"></div>
+            <div class="info_container">
+
+                <div class="info">
+                    <div class="lable">Legal Name</div>
+                    <div class="value">Alexander Nathaniel Whitmore</div>
+                </div>
+                <div class="info">
+                    <div class="lable">Permenet Address</div>
+                    <div class="value">
+                        1234 Evergreen Corporate Towers, Suite 5678, 15 Harmony
+                        Drive, Central Business District, Colombo 07, Sri Lanka.
+                    </div>
+                </div>
+                <div class="lable">Legal information cannot be updated due to security reasons. For assistance, please contact our technical support team at <a href="#">support@example.com</a> or call our hotline at +1-800-123-4567.</div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="header">
+                <div class="container_title">Securuty</div>
+            </div>
+            <div class="container_line"></div>
+            <div class="info_container">
+                <div class="info">
+                    <button id="passwordEditBtn">Update Password</button>
+                    <button>Forgot Password (Coming Soon)</button>
+                    <button>Enable 2FA (Coming Soon)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/owner_profile.js" type="module"></script>

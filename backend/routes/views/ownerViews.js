@@ -14,4 +14,8 @@ ownerView.get("/inbox", (req, res) => {
     res.render("owner_boilerplate", { page: "inbox"});
 });
 
+ownerView.get("/profile", (req, res) => {
+    res.render("owner_boilerplate", { page: "profile"});
+});
+
 export default ownerView;
