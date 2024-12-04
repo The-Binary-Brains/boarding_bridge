@@ -3,7 +3,10 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="/css/owner_portal.css" />
+        <link rel="stylesheet" href="/css/owner_boilerplate.css" />
+        <link rel="stylesheet" href="/css/owner_dashboard.css" />
+        <link rel="stylesheet" href="/css/owner_properties.css" />
+        <link rel="stylesheet" href="/css/owner_inbox.css" />
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
@@ -17,18 +20,20 @@
     </head>
     <body>
         <%- include('components/header') %>
-        <div class="container">
+        <div class="boilerplate_container">
             <%- include('components/navigation', { page: page}) %>
-            <div class="content">
+            <div class="boilerplate_content">
                 <div class="page_title"><%= page.charAt(0).toUpperCase() + page.slice(1) %></div>
                 <% if (page === 'dashboard') { %>
                     <%- include('components/dashboard') %>
                 <% } else if (page === 'properties') { %>
-                    <%- include('partials/properties') %>
+                    <%- include('components/properties') %>
+                <% } else if (page === 'inbox') { %>
+                    <%- include('components/inbox') %>
                 <% } %>
             </div>
         </div>
         <%- include('components/footer') %>
     </body>
-    <script src="/js/owner_dashboard.js" type="module"></script>
+    <script src="/js/owner_dashboard.js"></script>
 </html>

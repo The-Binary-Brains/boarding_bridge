@@ -7,7 +7,11 @@ ownerView.get("/dashboard", (req, res) => {
 });
 
 ownerView.get("/property", (req, res) => {
-    res.render("owner_boilerplate", { page: "property"});
+    res.render("owner_boilerplate", { page: "properties"});
+});
+
+ownerView.get("/inbox", (req, res) => {
+    res.render("owner_boilerplate", { page: "inbox"});
 });
 
 export default ownerView;
