@@ -7,6 +7,73 @@ const legalDocInput = document.getElementById("legal_doc");
 const customDocFileNameInput = document.getElementById("customDocFileName");
 const docSelectBtn = document.getElementById("docSelectBtn");
 
+const overlay = document.getElementById("overlay");
+const overlayContentHTML = document.getElementById("overlayContent");
+
+const paymetGetaway = `
+<div class="payment_getaway">
+                <div class="container_title">Payment Getaway</div>
+                <div class="container_line"></div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Name:</td>
+                            <td>Jhon Doe</td>
+                        </tr>
+                        <tr>
+                            <td>Payment ID:</td>
+                            <td>PY51568613864</td>
+                        </tr>
+                        <tr>
+                            <td>Amount:</td>
+                            <td>Rs: 1000</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="container_line"></div>
+                <div class="info">Enter the CAPTCHA before submit</div>
+                <div class="captcha">^5wd46@#</div>
+                <form id="paymentCaptcha">
+                    <input type="text" required />
+                    <div class="container_line"></div>
+                    <div class="button_container">
+                        <button id="cancelPaymentBtn" type="button">Cancel</button>
+                        <button type="submit">Pay</button>
+                    </div>
+                </form>
+            </div>
+`;
+
+const loadingHTML = `
+<div class="loading" id="loading">
+<div class="spinner"></div>
+<div class="loading-text" id="loadingText">Payment Processing...</div>
+</div>
+`;
+
+const paymentSuccess = `Payment success! <br> Finishing up registration... <br>`;
+
+const registrationSuccess = `Payment success! <br> Registeration compleate! <br> You will be redirected to the properties page..`;
+
+const handlePaymet = (e) => {
+    e.preventDefault();
+
+    overlayContentHTML.innerHTML = loadingHTML;
+
+    const loadingText = document.getElementById("loadingText");
+
+    setTimeout(() => {
+        loadingText.innerHTML = paymentSuccess;
+        setTimeout(() => {
+            loadingText.innerHTML = registrationSuccess;
+            setTimeout(() => {
+                window.location.href =
+                    "http://localhost:5000/owner/page/property";
+            }, 5000);
+        }, 3000);
+    }, 5000);
+};
+
 const handlePhotoInput = () => {
     const files = profilePhotoInput.files;
     if (files.length > 0) {
@@ -59,8 +126,7 @@ const handleDocInput = () => {
     if (file) {
         customDocFileNameInput.value = file.name;
     } else {
-        customDocFileNameInput.value =
-            "NIC/Driving License/Passport Document";
+        customDocFileNameInput.value = "NIC/Driving License/Passport Document";
     }
 };
 
@@ -108,14 +174,27 @@ const handleFormSubmission = (event) => {
     event.preventDefault();
 
     if (!validateForm()) return;
-
-    const formData = new FormData(
-        document.getElementById("registrationForm")
-    );
+    /*
+    const formData = new FormData(document.getElementById("registrationForm"));
     formData.forEach((value, key) => {
         console.log(key + ": " + value);
     });
-    alert("Form submitted successfully!");
+    alert("Form submitted successfully!");*/
+
+    overlay.style.display = "flex";
+    document.body.style.overflow = 'hidden';
+    overlayContentHTML.innerHTML = paymetGetaway;
+
+    document
+        .getElementById("cancelPaymentBtn")
+        .addEventListener("click", () => {
+            overlay.style.display = "none";
+            document.body.style.overflow = '';
+        });
+
+    document
+        .getElementById("paymentCaptcha")
+        .addEventListener("submit", handlePaymet);
 };
 
 profileSelectBtn.addEventListener("click", () => profilePhotoInput.click());
