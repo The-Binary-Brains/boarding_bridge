@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="/css/owner_boilerplate.css" />
         <link rel="stylesheet" href="/css/owner_dashboard.css" />
         <link rel="stylesheet" href="/css/owner_properties.css" />
+        <link rel="stylesheet" href="/css/owner_new_property.css" />
         <link rel="stylesheet" href="/css/owner_inbox.css" />
         <link rel="stylesheet" href="/css/owner_profile.css" />
         <link
@@ -29,6 +30,8 @@
                     <%- include('components/dashboard') %>
                 <% } else if (page === 'properties') { %>
                     <%- include('components/properties') %>
+                <% } else if (page === 'new property') { %>
+                    <%- include('components/new_property') %>
                 <% } else if (page === 'inbox') { %>
                     <%- include('components/inbox') %>
                 <% } else if (page === 'profile') { %>

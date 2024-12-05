@@ -1,0 +1,322 @@
+<div class="form_section">
+    <div class="form_title">Property Registration</div>
+    <div class="form_line"></div>
+    <div class="form_header form_padding">
+        <div class="form_sub_title">
+            Welcome to Boarding Bridge Property Registration
+        </div>
+        <div class="form_info">
+            Before submitting your property for registration with Boarding
+            Bridge, please ensure that all provided information is comprehensive
+            and accurate. Our team will conduct a detailed review to confirm
+            property details, ensuring they align with the quality and safety
+            standards necessary for listing. Any discrepancies, inaccuracies, or
+            incomplete sections may delay the processing of your application or
+            result in its rejection. By submitting, you agree to comply with our
+            guidelines and support our commitment to offering a reliable and
+            secure experience for all guests on Boarding Bridge.<br /><br />
+            <b>*Note:</b> Listing your first property on Boarding Bridge is free
+            and includes the complete verification process. To maintain our
+            quality standards, adding additional properties will incur a listing
+            fee of RS: 1000 per property.
+        </div>
+    </div>
+    <div class="form_container form_padding">
+        <form id="registrationForm">
+            <div class="form_line"></div>
+            <div class="form_sub_title">Property Details</div>
+            <div class="input">
+                <input
+                    id="name"
+                    placeholder="Property Name"
+                    type="text"
+                    name="name"
+                    required
+                />
+                <label for="name"
+                    >Property name will be displayed to users</label
+                >
+            </div>
+            <div class="input">
+                <select id="propertyType" name="propertyType" required>
+                    <option value="" disabled selected>
+                        Select your option
+                    </option>
+                    <option value="apartment">Apartment</option>
+                    <option value="house">House</option>
+                    <option value="studio">Studio</option>
+                    <option value="shared-room">Shared Room</option>
+                </select>
+                <label for="propertyType">Propery type</label>
+            </div>
+            <div class="input">
+                <input
+                    id="address"
+                    placeholder="Property Address"
+                    type="text"
+                    name="address"
+                    required
+                />
+                <label for="address">exact location of your property</label>
+            </div>
+
+            <div class="input">
+                <input
+                    id="occupancy"
+                    placeholder="Occupancy"
+                    type="number"
+                    name="occupancy"
+                    required
+                />
+                <label for="occupancy">Number of students accommodated</label>
+            </div>
+
+            <div class="input">
+                <input
+                    id="distance"
+                    placeholder="Distance From the University (km)"
+                    type="number"
+                    name="distance"
+                    required
+                />
+                <label for="distance"
+                    >Approximate distance from the university
+                </label>
+            </div>
+            <div class="input">
+                <div class="radio_group">
+                    <label class="radio-option">
+                        <input
+                            type="radio"
+                            name="furnishingType"
+                            value="fully-furnished"
+                            required
+                        />
+                        <span>Fully Furnished</span>
+                    </label>
+                    <label class="radio-option">
+                        <input
+                            type="radio"
+                            name="furnishingType"
+                            value="semi-furnished"
+                        />
+                        <span>Semi-Furnished</span>
+                    </label>
+                    <label class="radio-option">
+                        <input
+                            type="radio"
+                            name="furnishingType"
+                            value="none"
+                        />
+                        <span>None</span>
+                    </label>
+                </div>
+
+                <label for="furnishingType">Furnishing Type</label>
+            </div>
+            <div class="input">
+                <label for="password" id="password_label"
+                    >Amenities (Choose all that apply)</label
+                >
+                <div class="amenities_checks">
+                    <div class="amenities_check">
+                        <input
+                            type="checkbox"
+                            id="wifi"
+                            name="amenities"
+                            value="wifi"
+                        />
+                        <label for="wifi" class="checkbox-label"
+                            ><i class="fa-solid fa-wifi"></i>Wi-Fi</label
+                        >
+                    </div>
+                    <div class="amenities_check">
+                        <input
+                            type="checkbox"
+                            id="kitchen"
+                            name="amenities"
+                            value="kitchen"
+                        />
+                        <label for="kitchen" class="checkbox-label"
+                            ><i class="fa-solid fa-fire-burner"></i
+                            >Kitchen</label
+                        >
+                    </div>
+                    <div class="amenities_check">
+                        <input
+                            type="checkbox"
+                            id="bath"
+                            name="amenities"
+                            value="bath"
+                        />
+                        <label for="bath" class="checkbox-label"
+                            ><i class="fa-solid fa-bath"></i>Attached
+                            bathrooms</label
+                        >
+                    </div>
+                    <div class="amenities_check">
+                        <input
+                            type="checkbox"
+                            id="food"
+                            name="amenities"
+                            value="food"
+                        />
+                        <label for="food" class="checkbox-label"
+                            ><i class="fa-solid fa-utensils"></i>Food
+                            arrangement</label
+                        >
+                    </div>
+                    <div class="amenities_check">
+                        <input
+                            type="checkbox"
+                            id="washingMachine"
+                            name="amenities"
+                            value="washingMachine"
+                        />
+                        <label for="washingMachine" class="checkbox-label"
+                            ><i class="fa-solid fa-shirt"></i>Washing
+                            machine</label
+                        >
+                    </div>
+                </div>
+            </div>
+            <div class="input">
+                <div class="file_input">
+                    <input
+                        id="profilePhoto"
+                        placeholder="Profile photo"
+                        type="file"
+                        accept=".jpg, .jpeg, .png"
+                        name="profilePhoto"
+                        multiple
+                        hidden
+                        maxlength="10"
+                    />
+                    <input
+                        id="customFileName"
+                        type="text"
+                        placeholder="Property Images"
+                        readonly
+                        class="file_readonly"
+                    />
+                    <button
+                        type="button"
+                        class="file_button"
+                        id="profileSelectBtn"
+                    >
+                        Select Files
+                    </button>
+                </div>
+                <label for="profilePhoto"
+                    >Accepted file types: jpeg, png (Minimun: 5, Maximum:
+                    10)</label
+                >
+
+                <div id="imagePreviews" class="image-previews">
+                    <!-- Images will be previewed here -->
+                </div>
+            </div>
+            <div class="input">
+                <textarea
+                    id="about"
+                    placeholder="About"
+                    required
+                    name="about"
+                    maxlength="500"
+                ></textarea>
+                <label for="about"
+                    >Brief Description about your Property (max: 500 charactors)
+                </label>
+            </div>
+            <div class="form_line"></div>
+            <div class="form_sub_title">Contact Details</div>
+            <div class="input">
+                <input
+                    id="email"
+                    placeholder="Email"
+                    type="email"
+                    name="email"
+                    required
+                />
+                <label for="email"
+                    >Email that is used by the Boarding Bridge to contact
+                    you</label
+                >
+            </div>
+            <div class="input">
+                <input
+                    id="phone"
+                    placeholder="Phone (Ex: +94 123 456 7890)"
+                    pattern="^\+?[1-9]\d{1,14}$"
+                    type="tel"
+                    name="phone"
+                    required
+                />
+                <label for="phone"
+                    >Phone number that is used by the Boarding Bridge to contact
+                    you</label
+                >
+            </div>
+            <div class="form_line"></div>
+            <div class="form_sub_title">Legal Information</div>
+            <div class="input">
+                <input
+                    id="leg_name"
+                    placeholder="Full Name of the Property Owner"
+                    name="legName"
+                    type="text"
+                    required
+                />
+                <label for="leg_name"
+                    >Name that is used in any of a legal Document (e.g., utility
+                    bill, bank statement)</label
+                >
+            </div>
+            <div class="input">
+                <div class="file_input">
+                    <input
+                        id="legal_doc"
+                        placeholder="Tax Bill/Municipal Bill/Utility Bill"
+                        type="file"
+                        accept=".pdf, .jpg, .jpeg, .png"
+                        name="legDocument"
+                        hidden
+                    />
+                    <input
+                        id="customDocFileName"
+                        type="text"
+                        placeholder="NIC/Driving License/Passport Document"
+                        readonly
+                        class="file_readonly"
+                    />
+                    <button type="button" class="file_button" id="docSelectBtn">
+                        Select File
+                    </button>
+                </div>
+                <label for="legal_doc"
+                    >Please upload a recent document (e.g., utility bill, bank
+                    statement) to verify your identity. This document should
+                    display your name and address clearly and must be dated
+                    within the last 3 months<br />Accepted file types: jpeg,
+                    png</label
+                >
+            </div>
+            <div class="input">
+                <div class="checkbox">
+                    <input id="terms" type="checkbox" required />
+                    <label for="terms"
+                        >I agree to the
+                        <a href="#">[Terms & Conditions]</a> and<a href="#">
+                            [Privacy Policy]</a
+                        ></label
+                    >
+                </div>
+            </div>
+            <div class="input">
+                <button id="submitBtn" type="submit">Submit for review</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="/js/owner_property_reg.js"></script>
+
