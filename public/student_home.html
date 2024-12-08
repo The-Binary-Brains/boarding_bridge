@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boarding Bridge - Home</title>
+    <link rel="stylesheet" href="./css/student_home.css">
+</head>
+<body>
+    <div class="header">
+        <div class="logo_container">
+            <img class="logo" src="./images/favicon.png" alt="logo" />
+            <h1 class="logo_title">Boarding Bridge</h1>
+        </div>
+        <button id="get_start_btn">Get Start</button>
+    </div>
+    <div class="line"></div>
+    <div class="hero">
+        <span class="hero_title">
+            "Connecting Students with <br />
+            Quality Accommodations"
+        </span>
+    </div>
+    <div class="section_one">
+        <form class="search-form">
+            <div class="form-group">
+                <label for="location">Where</label>
+                <input type="text" id="location" placeholder="All Locations">
+            </div>
+            <div class="form-group">
+                <label for="sort">Sort By</label>
+                <select id="sort">
+                    <option value="low-high">Price (Low to High)</option>
+                    <option value="high-low">Price (High to Low)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="filters">Filters</label>
+                <input type="text" id="filters" placeholder="None">
+            </div>
+            <button type="submit" class="search-btn">Search</button>
+        </form>
+    </div>
+    <div class="disclaimer">
+        <p>
+            <strong>disclaimer:</strong><br>
+            BoardingBridge is a platform that connects students with landlords 
+            for long-term accommodation solutions. While we strive to provide 
+            accurate and reliable listings, we do not guarantee the quality, 
+            safety, or legality of the properties listed. Students are encouraged 
+            to visit and assess properties in person before making any commitments. 
+            BoardingBridge and the associated university are not responsible for 
+            any disputes or issues that arise between students and landlords. 
+            For any concerns, please reach out to our <b>support team</b>.
+        </p>
+    </div>
+    <!-- Available Accommodations Section -->
+    <section class="accommodations">
+        <h2>Available Accommodations</h2>
+        <div class="cards-container">
+            <!-- Placeholder card: Dynamic content will replace this -->
+            <div class="card">
+                <img src="https://via.placeholder.com/300x200" alt="Property Image">
+                <div class="card-content">
+                    <h3>Mirihana, Sri Lanka</h3>
+                    <p>Hosted by John Doe</p>
+                    <p>Rs: 20,000 / Month</p>
+                </div>
+            </div>
+            <!-- More dynamically generated cards will appear here -->
+        </div>
+        <button class="load-more-btn">Load more</button>
+    </section>
+
+    <footer>
+        <div class="top">
+            <div class="left">
+                <div class="logo">
+                    <div class="title">Boarding Bridge</div>
+                    <div class="sub_title">
+                        "Connecting Students with Quality Accommodations"
+                    </div>
+                </div>
+                <ul>
+                    <li>Phone : +94 01 457 8546</li>
+                    <li>Email : support@boardingbridge.lk</li>
+                    <li>Address: 123 Campus Dr., City</li>
+                </ul>
+            </div>
+            <div class="center">
+                <div class="title">Quick Links</div>
+                <div class="line"></div>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="right">
+                <div class="title">News letter</div>
+                <div class="line"></div>
+                <div class="newslitter_lable">
+                    Subscribe to our news letter to get newest listings.
+                </div>
+                <form action="">
+                    <input placeholder="email" ="text" />
+                    <submit>Send</submit>
+                </form>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="bottom_line"></div>
+            <span>© 2024 BoardingBridge. All rights reserved.</span>
+        </div>
+    </footer>
+</body>
+</html>
