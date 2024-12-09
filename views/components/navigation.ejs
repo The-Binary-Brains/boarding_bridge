@@ -1,26 +1,36 @@
 <div class="nav">
     <a href="http://localhost:5000/owner/page/dashboard">
+        <div class="nav_button <%= page === 'dashboard' ? 'selected' : '' %>">
+            <i class="fa-solid fa-gauge"></i>
+            <div class="title">Dashboard</div>
+        </div></a
+    >
+    <a href="http://localhost:5000/owner/page/property">
         <div
-            class="nav_button <%= page === 'dashboard' ? 'selected' : '' %>"
-            id="dashboardButton"
+            class="nav_button <%= page === 'properties' || page === 'new property' || page === 'edit property' || page === 'view property' || page === 'solve property'? 'selected' : '' %>"
         >
-            <i class="fa-solid fa-gauge"></i></div></a
-    ><a href="http://localhost:5000/owner/page/property">
-        <div
-            class="nav_button <%= page === 'properties' || page === 'new property' || page === 'edit property' ? 'selected' : '' %>"
-            id="accommodationButton"
-        >
-            <i class="fa-solid fa-building"></i></div
-    ></a>
+            <i class="fa-solid fa-building"></i>
+            <div class="title">Property</div>
+        </div></a
+    >
+    <a href="http://localhost:5000/owner/page/reservations">
+        <div class="nav_button <%= page === 'reservations' || page === 'reservation info' ? 'selected' : '' %>">
+            <i class="fa-solid fa-calendar-days"></i>
+            <div class="title">Reservation</div>
+        </div></a
+    >
     <a href="http://localhost:5000/owner/page/inbox">
         <div
-            class="nav_button <%= page === 'inbox' ? 'selected' : '' %>"
-            id="messagesButton"
+            class="nav_button <%= page === 'inbox' || page === 'inbox view' ? 'selected' : '' %>"
         >
-            <i class="fa-solid fa-envelope-open-text"></i></div
-    ></a>
+            <i class="fa-solid fa-envelope-open-text"></i>
+            <div class="title">inbox</div>
+        </div></a
+    >
     <a href="http://localhost:5000/owner/page/profile">
         <div class="nav_button <%= page === 'profile' ? 'selected' : '' %>">
-            <i class="fa-solid fa-user"></i></div
-    ></a>
+            <i class="fa-solid fa-user"></i>
+            <div class="title">Profile</div>
+        </div></a
+    >
 </div>

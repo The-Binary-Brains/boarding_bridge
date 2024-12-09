@@ -1,7 +1,11 @@
 const imagePreviewsContainer = document.getElementById("imagePreviews");
-const propertyPhotoInput = document.getElementById("profilePhoto");
+const profilePhotoInput = document.getElementById("profilePhoto");
 const customFileNameInput = document.getElementById("customFileName");
 const profileSelectBtn = document.getElementById("profileSelectBtn");
+
+const legalDocInput = document.getElementById("legal_doc");
+const customDocFileNameInput = document.getElementById("customDocFileName");
+const docSelectBtn = document.getElementById("docSelectBtn");
 
 const overlay = document.getElementById("overlay");
 const overlayContentHTML = document.getElementById("overlayContent");
@@ -9,41 +13,27 @@ const overlayContentHTML = document.getElementById("overlayContent");
 const loadingHTML = `
 <div class="loading" id="loading">
 <div class="spinner"></div>
-<div class="loading-text" id="loadingText">Updating Property...</div>
+<div class="loading-text" id="loadingText">Submitting Changes...</div>
 </div>
 `;
 
-const updateSuccess = `Update success! <br> You will be redirected to the properties page..`;
+const submissionSuccess = `Submit success! <br> You will be redirected to the properties page..`;
 
-// Simulated server data
-const formData = {
-    name: "Cozy Apartment",
-    propertyType: "apartment",
-    occupancy: 4,
-    furnishingType: "fully-furnished",
-    amenities: ["wifi", "kitchen", "bath"],
-    about: "A cozy apartment located near the university.",
-    email: "owner@example.com",
-    phone: "12345678",
-};
-
-// ! Event Handlers
-
-const updateProperty = () => {
+const handleSubmit = () => {
     overlayContentHTML.innerHTML = loadingHTML;
 
     const loadingText = document.getElementById("loadingText");
 
     setTimeout(() => {
-        loadingText.innerHTML = updateSuccess;
+        loadingText.innerHTML = submissionSuccess;
         setTimeout(() => {
             window.location.href = "http://localhost:5000/owner/page/property";
-        }, 3000);
-    }, 5000);
+        }, 5000);
+    }, 3000);
 };
 
 const handlePhotoInput = () => {
-    const files = propertyPhotoInput.files;
+    const files = profilePhotoInput.files;
     if (files.length > 0) {
         customFileNameInput.style.backgroundColor = "white";
         customFileNameInput.value = `${files.length} file(s) selected`;
@@ -71,7 +61,7 @@ const handlePhotoInput = () => {
                     updatedFiles.forEach((file) =>
                         newDataTransfer.items.add(file)
                     );
-                    propertyPhotoInput.files = newDataTransfer.files;
+                    profilePhotoInput.files = newDataTransfer.files;
 
                     handlePhotoInput();
                 };
@@ -89,10 +79,24 @@ const handlePhotoInput = () => {
     }
 };
 
+const handleDocInput = () => {
+    const file = legalDocInput.files[0];
+    if (file) {
+        customDocFileNameInput.value = file.name;
+    } else {
+        customDocFileNameInput.value = "NIC/Driving License/Passport Document";
+    }
+};
+
+const triggerDocInput = () => {
+    customDocFileNameInput.style.backgroundColor = "white";
+    legalDocInput.click();
+};
+
 const validateForm = () => {
     const termsCheckbox = document.getElementById("terms");
 
-    if (!propertyPhotoInput.files.length) {
+    if (!profilePhotoInput.files.length) {
         customFileNameInput.style.backgroundColor = "#ffe8e8";
         customFileNameInput.scrollIntoView({
             behavior: "smooth",
@@ -100,13 +104,20 @@ const validateForm = () => {
         });
         return false;
     } else if (
-        propertyPhotoInput.files.length > 10 ||
-        propertyPhotoInput.files.length < 5
+        profilePhotoInput.files.length > 10 ||
+        profilePhotoInput.files.length < 5
     ) {
         customFileNameInput.style.backgroundColor = "#ffe8e8";
         customFileNameInput.value =
             customFileNameInput.value + " (Minimun: 5, Maximum: 10)";
         customFileNameInput.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+        });
+        return false;
+    } else if (!legalDocInput.files.length) {
+        customDocFileNameInput.style.backgroundColor = "#ffe8e8";
+        customDocFileNameInput.scrollIntoView({
             behavior: "smooth",
             block: "center",
         });
@@ -129,40 +140,11 @@ const handleFormSubmission = (event) => {
 
     overlay.style.display = "flex";
     document.body.style.overflow = "hidden";
-    updateProperty();
+    handleSubmit();
 };
 
-// ! Event Listners
-
-profileSelectBtn.addEventListener("click", () => propertyPhotoInput.click());
-propertyPhotoInput.addEventListener("change", handlePhotoInput);
+profileSelectBtn.addEventListener("click", () => profilePhotoInput.click());
+profilePhotoInput.addEventListener("change", handlePhotoInput);
+legalDocInput.addEventListener("change", handleDocInput);
+docSelectBtn.addEventListener("click", triggerDocInput);
 registrationForm.addEventListener("submit", handleFormSubmission);
-
-// Function to auto-fill form
-document.addEventListener("DOMContentLoaded", () => {
-    // Fill text and number inputs
-    document.getElementById("name").value = formData.name;
-    document.getElementById("occupancy").value = formData.occupancy;
-    document.getElementById("about").value = formData.about;
-    document.getElementById("email").value = formData.email;
-    document.getElementById("phone").value = formData.phone;
-
-    // Fill select input
-    document.getElementById("propertyType").value = formData.propertyType;
-
-    // Fill radio buttons
-    const furnishingRadios = document.querySelectorAll(
-        'input[name="furnishingType"]'
-    );
-    furnishingRadios.forEach((radio) => {
-        if (radio.value === formData.furnishingType) {
-            radio.checked = true;
-        }
-    });
-
-    // Fill checkboxes
-    formData.amenities.forEach((amenity) => {
-        const checkbox = document.getElementById(amenity);
-        if (checkbox) checkbox.checked = true;
-    });
-});
