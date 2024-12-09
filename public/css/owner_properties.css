@@ -64,7 +64,11 @@
                 }
             }
 
-            button {
+            a {
+
+                text-decoration: none;
+                color: rgb(40, 40, 40);
+
                 margin-right: 10px;
                 padding: 10px;
                 cursor: pointer;
