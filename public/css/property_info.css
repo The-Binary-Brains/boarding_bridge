@@ -57,7 +57,7 @@ body {
     color: black;
 
     h2{
-        font-size: 36px;
+        font-size: 26px;
     }
 }
 
@@ -99,6 +99,30 @@ body {
     height: 200px; 
 }
 
+.input{
+    display: flex;
+    margin-top: -70px;
+    flex-direction: row-reverse;
+    margin-right: 30px;
+
+    #gallery {
+        width: 150px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .gallery-btn{
+        display: flex;
+        align-items: center;
+        height: 35px;
+
+        p{
+            margin-left: 10px;
+        }
+
+    }
+}
+
 .main{
     margin: 20px 40px;
     font-family: "poppins", sans-serif;
@@ -115,12 +139,12 @@ body {
 
     .Property-name {
         margin-top: 0;
-        font-size: 32px;
+        font-size: 24px;
         margin-bottom: 0;
     }
     
     .Property-details {
-        font-size: 24px;
+        font-size: 18px;
         margin-top: 0;
         margin-bottom: 20px;
         font-weight: 200;
@@ -142,7 +166,7 @@ body {
             margin-left: 30px;
         
             .name {
-                font-size: 24px;
+                font-size: 22px;
             }
         
             .since {
@@ -155,13 +179,13 @@ body {
         margin: 30px 0;
 
         h1 {
-            font-size: 24px;
+            font-size: 22px;
             margin-bottom: 10px;
-            font-weight: 500;
+            font-weight:700;
         }
 
         p{
-            font-size: 20px;
+            font-size: 16px;
             font-weight:300;
             margin-top: 0;
         }
@@ -171,11 +195,11 @@ body {
         margin: 30px 0;
 
         h1{
-            font-size: 24px;
+            font-size: 22px;
         }
 
         p{
-            font-size: 20px;
+            font-size: 16px;
             font-weight: 400;
         }
     }
@@ -184,7 +208,7 @@ body {
         margin: 30px 0;
 
         h1{
-            font-size: 24px;
+            font-size: 22px;
         }
 
         .facilitity-container{
@@ -198,7 +222,7 @@ body {
 
             .wrap-content{
                 border: 1px solid rgb(167, 167, 167);
-                font-size: 20px;
+                font-size: 16px;
                 margin: 5px;
                 display: flex;
                 justify-content: center;
@@ -219,7 +243,7 @@ body {
         margin: 30px 0;
 
         h1{
-            font-size: 20px;
+            font-size: 22px;
         }
 
         .navigation{
@@ -250,13 +274,13 @@ body {
 
             h1{
                 font-weight: 500;
-                font-size: 24px;
+                font-size: 22px;
                 margin-bottom: 0;
             }
 
             p{
                 font-weight: 600;
-                font-size: 24px;
+                font-size: 16px;
                 margin-top: 0;
                 margin-bottom: 20px;
             }
@@ -280,7 +304,7 @@ body {
 
             h1{
                 font-weight: 500;
-                font-size: 24px;
+                font-size: 22px;
                 margin: 0;
             }
         }
