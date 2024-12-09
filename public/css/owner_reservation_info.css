@@ -1,0 +1,108 @@
+.res_info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 50px auto;
+    width: 100%;
+    background-color: white;
+
+    .reserved_dates_container {
+        width: 100%;
+        background-color: none;
+    }
+
+    .table_container {
+        padding: 50px;
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        .span_row {
+            text-align: center;
+            height: 100px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 8px;
+        }
+
+        th {
+            text-align: center;
+        }
+
+        td {
+            padding: 20px;
+
+            .property {
+                display: flex;
+                align-items: center;
+                gap: 30px;
+
+                img {
+                    width: 80px;
+                    height: 80px;
+                    object-fit: cover;
+                    border-radius: 10% 0 0 10%;
+                }
+
+                .title {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+
+            a {
+                text-decoration: none;
+                color: rgb(40, 40, 40);
+
+                margin-right: 10px;
+                padding: 10px;
+                cursor: pointer;
+                background: white;
+                border: 1px solid gray;
+                transition: 0.1s ease-in-out;
+
+                &:hover {
+                    background-color: #800008;
+                    color: white;
+                }
+            }
+
+            .active {
+                background-color: rgb(8, 165, 14);
+                color: white;
+                width: fit-content;
+                padding: 10px;
+            }
+
+            .pending {
+                background-color: rgb(237, 150, 0);
+                color: white;
+                width: fit-content;
+                padding: 10px;
+            }
+
+            .warning {
+                background-color: rgb(197, 9, 9);
+                color: white;
+                width: fit-content;
+                padding: 10px;
+            }
+        }
+
+        col:nth-child(1) {
+            width: 20%;
+        }
+
+        col:nth-child(2) {
+            width: 80%;
+        }
+    }
+}

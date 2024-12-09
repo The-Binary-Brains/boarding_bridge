@@ -1,10 +1,16 @@
-<div class="form_section">
-    <div class="form_header ">
-        <div class="form_info">
+<div class="solve_form_section">
+    <div class="form_title">Solve Property Registration</div>
+    <div class="form_line"></div>
+    <div class="form_header form_padding">
+        <div class="form_sub_title">
+        </div>
+        <div class="form_info warning">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam molestiae aliquam consectetur quam illum pariatur ad, aut eius? Accusamus, praesentium facere. Tempore eius nemo voluptatum rem, labore vitae saepe fugiat nesciunt repudiandae, pariatur laudantium officiis odit porro explicabo officia optio sequi. Porro iusto et dignissimos incidunt architecto nam veniam optio!
         </div>
     </div>
     <div class="form_container form_padding">
         <form id="registrationForm">
+            <div class="form_line"></div>
             <div class="form_sub_title">Property Details</div>
             <div class="input">
                 <input
@@ -30,6 +36,16 @@
                 </select>
                 <label for="propertyType">Propery type</label>
             </div>
+            <div class="input">
+                <input
+                    id="address"
+                    placeholder="Property Address"
+                    type="text"
+                    name="address"
+                    required
+                />
+                <label for="address">exact location of your property</label>
+            </div>
 
             <div class="input">
                 <input
@@ -42,7 +58,18 @@
                 <label for="occupancy">Number of students accommodated</label>
             </div>
 
-
+            <div class="input">
+                <input
+                    id="distance"
+                    placeholder="Distance From the University (km)"
+                    type="number"
+                    name="distance"
+                    required
+                />
+                <label for="distance"
+                    >Approximate distance from the university
+                </label>
+            </div>
             <div class="input">
                 <div class="radio_group">
                     <label class="radio-option">
@@ -217,6 +244,50 @@
                     you</label
                 >
             </div>
+            <div class="form_line"></div>
+            <div class="form_sub_title">Legal Information</div>
+            <div class="input">
+                <input
+                    id="leg_name"
+                    placeholder="Full Name of the Property Owner"
+                    name="legName"
+                    type="text"
+                    required
+                />
+                <label for="leg_name"
+                    >Name that is used in any of a legal Document (e.g., utility
+                    bill, bank statement)</label
+                >
+            </div>
+            <div class="input">
+                <div class="file_input">
+                    <input
+                        id="legal_doc"
+                        placeholder="Tax Bill/Municipal Bill/Utility Bill"
+                        type="file"
+                        accept=".pdf, .jpg, .jpeg, .png"
+                        name="legDocument"
+                        hidden
+                    />
+                    <input
+                        id="customDocFileName"
+                        type="text"
+                        placeholder="NIC/Driving License/Passport Document"
+                        readonly
+                        class="file_readonly"
+                    />
+                    <button type="button" class="file_button" id="docSelectBtn">
+                        Select File
+                    </button>
+                </div>
+                <label for="legal_doc"
+                    >Please upload a recent document (e.g., utility bill, bank
+                    statement) to verify your identity. This document should
+                    display your name and address clearly and must be dated
+                    within the last 3 months<br />Accepted file types: jpeg,
+                    png</label
+                >
+            </div>
             <div class="input">
                 <div class="checkbox">
                     <input id="terms" type="checkbox" required />
@@ -229,7 +300,7 @@
                 </div>
             </div>
             <div class="input">
-                <button id="submitBtn" type="submit">Update</button>
+                <button id="submitBtn" type="submit">Submit for review</button>
             </div>
         </form>
     </div>
@@ -237,4 +308,4 @@
         <div class="content" id="overlayContent"></div>
     </div>
 </div>
-<script src="/js/owner_property_edit.js"></script>
+<script src="/js/owner_property_solve.js"></script>
