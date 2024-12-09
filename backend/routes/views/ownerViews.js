@@ -14,6 +14,10 @@ ownerView.get("/property/new", (req, res) => {
     res.render("owner_boilerplate", { page: "new property"});
 });
 
+ownerView.get("/property/edit", (req, res) => {
+    res.render("owner_boilerplate", { page: "edit property"});
+});
+
 ownerView.get("/inbox", (req, res) => {
     res.render("owner_boilerplate", { page: "inbox"});
 });
