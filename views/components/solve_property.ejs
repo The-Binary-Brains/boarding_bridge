@@ -5,7 +5,7 @@
         <div class="form_sub_title">
         </div>
         <div class="form_info warning">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam molestiae aliquam consectetur quam illum pariatur ad, aut eius? Accusamus, praesentium facere. Tempore eius nemo voluptatum rem, labore vitae saepe fugiat nesciunt repudiandae, pariatur laudantium officiis odit porro explicabo officia optio sequi. Porro iusto et dignissimos incidunt architecto nam veniam optio!
+            <%= propertyData.rejectReson%>
         </div>
     </div>
     <div class="form_container form_padding">
@@ -18,23 +18,19 @@
                     placeholder="Property Name"
                     type="text"
                     name="name"
-                    required
+                    value="<%= propertyData.name %>"
                 />
-                <label for="name"
-                    >Property name will be displayed to users</label
-                >
+                <label for="name">Property name will be displayed to users</label>
             </div>
             <div class="input">
-                <select id="propertyType" name="propertyType" required>
-                    <option value="" disabled selected>
-                        Select your option
-                    </option>
-                    <option value="apartment">Apartment</option>
-                    <option value="house">House</option>
-                    <option value="studio">Studio</option>
-                    <option value="shared-room">Shared Room</option>
+                <select id="propertyType" name="propertyType">
+                    <option value="" disabled <%= !propertyData.propertyType ? "selected" : "" %>>Select your option</option>
+                    <option value="apartment" <%= propertyData.propertyType === 'apartment' ? "selected" : "" %>>Apartment</option>
+                    <option value="house" <%= propertyData.propertyType === 'house' ? "selected" : "" %>>House</option>
+                    <option value="studio" <%= propertyData.propertyType === 'studio' ? "selected" : "" %>>Studio</option>
+                    <option value="shared-room" <%= propertyData.propertyType === 'shared-room' ? "selected" : "" %>>Shared Room</option>
                 </select>
-                <label for="propertyType">Propery type</label>
+                <label for="propertyType">Property type</label>
             </div>
             <div class="input">
                 <input
@@ -43,32 +39,42 @@
                     type="text"
                     name="address"
                     required
+                    value="<%= propertyData.address %>"
                 />
-                <label for="address">exact location of your property</label>
+                <label for="address">Exact location of your property</label>
             </div>
-
+            <div class="input">
+                <input
+                    id="location"
+                    placeholder="0.0000000, 0.0000000"
+                    type="text"
+                    name="location"
+                    value="<%= propertyData.latitude + ', ' +  propertyData.longitude %>"
+                    required
+                />
+                <label for="location">latitude and longitude values copied from google maps</label>
+            </div>
             <div class="input">
                 <input
                     id="occupancy"
                     placeholder="Occupancy"
                     type="number"
                     name="occupancy"
+                    value="<%= propertyData.occupancy %>"
                     required
                 />
                 <label for="occupancy">Number of students accommodated</label>
             </div>
-
             <div class="input">
                 <input
                     id="distance"
                     placeholder="Distance From the University (km)"
                     type="number"
                     name="distance"
+                    value="<%= propertyData.distance %>"
                     required
                 />
-                <label for="distance"
-                    >Approximate distance from the university
-                </label>
+                <label for="distance">Approximate distance from the university</label>
             </div>
             <div class="input">
                 <div class="radio_group">
@@ -78,6 +84,7 @@
                             name="furnishingType"
                             value="fully-furnished"
                             required
+                            <%= propertyData.furnishingType === 'fully-furnished' ? 'checked' : '' %>
                         />
                         <span>Fully Furnished</span>
                     </label>
@@ -86,6 +93,7 @@
                             type="radio"
                             name="furnishingType"
                             value="semi-furnished"
+                            <%= propertyData.furnishingType === 'semi-furnished' ? 'checked' : '' %>
                         />
                         <span>Semi-Furnished</span>
                     </label>
@@ -94,17 +102,17 @@
                             type="radio"
                             name="furnishingType"
                             value="none"
+                            <%= propertyData.furnishingType === 'none' ? 'checked' : '' %>
                         />
                         <span>None</span>
                     </label>
                 </div>
-
                 <label for="furnishingType">Furnishing Type</label>
             </div>
             <div class="input">
-                <label for="password" id="password_label"
-                    >Amenities (Choose all that apply)</label
-                >
+                <label for="password" id="password_label">
+                    Amenities (Choose all that apply)
+                </label>
                 <div class="amenities_checks">
                     <div class="amenities_check">
                         <input
@@ -112,10 +120,11 @@
                             id="wifi"
                             name="amenities"
                             value="wifi"
+                            <% if (propertyData.amenities.includes("wifi")) { %> checked <% } %>
                         />
-                        <label for="wifi" class="checkbox-label"
-                            ><i class="fa-solid fa-wifi"></i>Wi-Fi</label
-                        >
+                        <label for="wifi" class="checkbox-label">
+                            <i class="fa-solid fa-wifi"></i>Wi-Fi
+                        </label>
                     </div>
                     <div class="amenities_check">
                         <input
@@ -123,11 +132,11 @@
                             id="kitchen"
                             name="amenities"
                             value="kitchen"
+                            <% if (propertyData.amenities.includes("kitchen")) { %> checked <% } %>
                         />
-                        <label for="kitchen" class="checkbox-label"
-                            ><i class="fa-solid fa-fire-burner"></i
-                            >Kitchen</label
-                        >
+                        <label for="kitchen" class="checkbox-label">
+                            <i class="fa-solid fa-fire-burner"></i>Kitchen
+                        </label>
                     </div>
                     <div class="amenities_check">
                         <input
@@ -135,11 +144,11 @@
                             id="bath"
                             name="amenities"
                             value="bath"
+                            <% if (propertyData.amenities.includes("bath")) { %> checked <% } %>
                         />
-                        <label for="bath" class="checkbox-label"
-                            ><i class="fa-solid fa-bath"></i>Attached
-                            bathrooms</label
-                        >
+                        <label for="bath" class="checkbox-label">
+                            <i class="fa-solid fa-bath"></i>Attached bathrooms
+                        </label>
                     </div>
                     <div class="amenities_check">
                         <input
@@ -147,11 +156,11 @@
                             id="food"
                             name="amenities"
                             value="food"
+                            <% if (propertyData.amenities.includes("food")) { %> checked <% } %>
                         />
-                        <label for="food" class="checkbox-label"
-                            ><i class="fa-solid fa-utensils"></i>Food
-                            arrangement</label
-                        >
+                        <label for="food" class="checkbox-label">
+                            <i class="fa-solid fa-utensils"></i>Food arrangement
+                        </label>
                     </div>
                     <div class="amenities_check">
                         <input
@@ -159,14 +168,15 @@
                             id="washingMachine"
                             name="amenities"
                             value="washingMachine"
+                            <% if (propertyData.amenities.includes("washingMachine")) { %> checked <% } %>
                         />
-                        <label for="washingMachine" class="checkbox-label"
-                            ><i class="fa-solid fa-shirt"></i>Washing
-                            machine</label
-                        >
+                        <label for="washingMachine" class="checkbox-label">
+                            <i class="fa-solid fa-shirt"></i>Washing machine
+                        </label>
                     </div>
                 </div>
             </div>
+
             <div class="input">
                 <div class="file_input">
                     <input
@@ -177,7 +187,6 @@
                         name="profilePhoto"
                         multiple
                         hidden
-                        maxlength="10"
                     />
                     <input
                         id="customFileName"
@@ -186,21 +195,13 @@
                         readonly
                         class="file_readonly"
                     />
-                    <button
-                        type="button"
-                        class="file_button"
-                        id="profileSelectBtn"
-                    >
+                    <button type="button" class="file_button" id="profileSelectBtn">
                         Select Files
                     </button>
                 </div>
-                <label for="profilePhoto"
-                    >Accepted file types: jpeg, png (Minimun: 5, Maximum:
-                    10)</label
-                >
+                <label for="profilePhoto">Accepted file types: jpeg, png (Minimum: 5, Maximum: 10)</label>
 
                 <div id="imagePreviews" class="image-previews">
-                    <!-- Images will be previewed here -->
                 </div>
             </div>
             <div class="input">
@@ -210,10 +211,9 @@
                     required
                     name="about"
                     maxlength="500"
-                ></textarea>
-                <label for="about"
-                    >Brief Description about your Property (max: 500 charactors)
-                </label>
+                    required
+                ><%= propertyData.about %></textarea>
+                <label for="about">Brief Description about your Property (max: 500 characters)</label>
             </div>
             <div class="form_line"></div>
             <div class="form_sub_title">Contact Details</div>
@@ -223,12 +223,10 @@
                     placeholder="Email"
                     type="email"
                     name="email"
+                    value="<%= propertyData.email %>"
                     required
                 />
-                <label for="email"
-                    >Email that is used by the Boarding Bridge to contact
-                    you</label
-                >
+                <label for="email">Email that is used by the Boarding Bridge to contact you</label>
             </div>
             <div class="input">
                 <input
@@ -238,11 +236,9 @@
                     type="tel"
                     name="phone"
                     required
+                    value="<%= propertyData.phone %>"
                 />
-                <label for="phone"
-                    >Phone number that is used by the Boarding Bridge to contact
-                    you</label
-                >
+                <label for="phone">Phone number that is used by the Boarding Bridge to contact you</label>
             </div>
             <div class="form_line"></div>
             <div class="form_sub_title">Legal Information</div>
@@ -252,12 +248,10 @@
                     placeholder="Full Name of the Property Owner"
                     name="legName"
                     type="text"
+                    value="<%= propertyData.legName %>"
                     required
                 />
-                <label for="leg_name"
-                    >Name that is used in any of a legal Document (e.g., utility
-                    bill, bank statement)</label
-                >
+                <label for="leg_name">Name that is used in any of a legal document (e.g., utility bill, bank statement)</label>
             </div>
             <div class="input">
                 <div class="file_input">
@@ -280,29 +274,20 @@
                         Select File
                     </button>
                 </div>
-                <label for="legal_doc"
-                    >Please upload a recent document (e.g., utility bill, bank
-                    statement) to verify your identity. This document should
-                    display your name and address clearly and must be dated
-                    within the last 3 months<br />Accepted file types: jpeg,
-                    png</label
-                >
+                <label for="legal_doc">Please upload a recent document (e.g., utility bill, bank statement) to verify your identity. This document should display your name and address clearly and must be dated within the last 3 months. Accepted file types: jpeg, png</label>
             </div>
             <div class="input">
                 <div class="checkbox">
-                    <input id="terms" type="checkbox" required />
-                    <label for="terms"
-                        >I agree to the
-                        <a href="#">[Terms & Conditions]</a> and<a href="#">
-                            [Privacy Policy]</a
-                        ></label
-                    >
+                    <input id="terms" type="checkbox" <%= propertyData.termsAccepted ? 'checked' : '' %> required />
+                    <label for="terms">I agree to the <a href="#">[Terms & Conditions]</a> and <a href="#">[Privacy Policy]</a></label>
                 </div>
             </div>
             <div class="input">
-                <button id="submitBtn" type="submit">Submit for review</button>
+                <button id="submitBtn" type="submit">Submit</button>
             </div>
         </form>
+
+
     </div>
     <div class="overlay" id="overlay">
         <div class="content" id="overlayContent"></div>

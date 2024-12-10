@@ -1,14 +1,11 @@
 <div class="view_section">
     <div class="top-container">
-        <h2 id="heading">
-            Speacious 2-Bedroom Apartment near campus
-        </h2>
         <div class="images-grid">
-            <img src="image1.jpg">
-            <img src="image2.jpg">
-            <img src="image3.jpg">
-            <img src="image4.jpg">
-            <img src="image5.jpg">
+            <img src="<%= propertyData.propertyPhoto[0]%>">
+            <img src="<%= propertyData.propertyPhoto[0]%>">
+            <img src="<%= propertyData.propertyPhoto[0]%>">
+            <img src="<%= propertyData.propertyPhoto[0]%>">
+            <img src="<%= propertyData.propertyPhoto[0]%>">
         </div>
         <div class="input">
             <button id="gallery" type="button">
@@ -22,22 +19,22 @@
     <div class="main">
         <div class="left-container">
             <p class="Property-name">
-                Entire House in Nugegoda, Sri Lanka
+                <%= propertyData.name + "  - (" + propertyData.propertyType + ")"%>
             </p>
             <p class="Property-details">
-                4 bedrooms - 8 beds - 2 bathrooms
+                <%= "occupancy " + propertyData.occupancy + " - distance " + propertyData.distance + " km" %>
             </p>
             <hr>
             <div class="owner">
                 <div class="profile">
-                    <img class="owner-img" src="image.jpg">
+                    <img class="owner-img" src="<%= propertyData.propertyPhoto[0]%>">
                 </div>
                 <div class="owner-details">
                     <span class="name">
-                        Hosted by Jane Doe
+                        Hosted by <%= propertyData.ownerName %>
                     </span><br>
                     <span class="since">
-                        Member since june 2023
+                        Member since <%= propertyData.member %>
                     </span>
                 </div>
             </div>
@@ -47,39 +44,58 @@
                     Price (Rs)
                 </h1>
                 <p>
-                    24,000
+                    <%= propertyData.price.toLocaleString() %>
                 </p>
             </div>
             <hr>
             <div class="info">
                 <h1>Description</h1>
-                <p>Sed condimentum diam orci, eget condimentum ipsum convallis quis.
-                    Sed ut perspiciatis, unde omnis iste natus error sit voluptatem
-                    accusantium doloremque laudantium, totam rem aperiam eaque ipsa,
-                    quae ab illo inventore veritatis et quasi architecto beatae vitae
-                    dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas
-                    sit, aspernatur aut odit aut fugit, sed quia consequuntur magni
-                    dolores eos, qui ratione voluptatem sequi nesciunt, neque porro
-                    quisquam est, qui dolorem ipsum, quia dolor sit amet consectetur
-                    adipiscing velit, sed quia non numquam do eius modi tempora
-                    inci[di]dunt, ut labore et </p>
+                <p><%= propertyData.about %> </p>
             </div>
             <hr>
             <div class="facilities">
                 <h1>What this place offers</h1>
                 <div class="facilitity-container">
-                    <div class="wrap-content">
-                        <i class="fa-solid fa-soap"></i>
-                        <p>Washing Machine</p>
-                    </div>
-                    <div class="wrap-content">
-                        <i class="fa-solid fa-bath"></i>
-                        <p>Attached Bathroom</p>
-                    </div>
-                    <div class="wrap-content">
-                        <i class="fa-solid fa-utensils"></i>
-                        <p>Food Arrangements</p>
-                    </div>
+                    <% if (propertyData.amenities.length === 0) { %>
+                        <div>No amenities yet</div>
+                    <% } else { %>
+                        <% if (propertyData.amenities.includes("wifi")) { %>
+                            <div class="wrap-content">
+                                <i class="fa-solid fa-wifi"></i>
+                                <p>Wi-Fi</p>
+                            </div>
+                        <% } %>
+
+                        <% if (propertyData.amenities.includes("kitchen")) { %>
+                            <div class="wrap-content">
+                                <i class="fa-solid fa-kitchen-set"></i>
+                                <p>Kitchen</p>
+                            </div>
+                        <% } %>
+
+                        <% if (propertyData.amenities.includes("bath")) { %>
+                            <div class="wrap-content">
+                                <i class="fa-solid fa-bath"></i>
+                                <p>Attached Bathrooms</p>
+                            </div>
+                        <% } %>
+
+                        <% if (propertyData.amenities.includes("food")) { %>
+                            <div class="wrap-content">
+                                <i class="fa-solid fa-utensils"></i>
+                                <p>Food Arrangement</p>
+                            </div>
+                        <% } %>
+
+                        <% if (propertyData.amenities.includes("washing_machine")) { %>
+                            <div class="wrap-content">
+                                <i class="fa-solid fa-soap"></i>
+                                <p>Washing Machine</p>
+                            </div>
+                        <% } %>
+                    <% } %>
+
+
                 </div>
             </div>
             <hr>
@@ -88,7 +104,7 @@
                     Location
                 </h1>
                 <div class="Navigation">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3584.7839207215166!2d79.90100967448238!3d6.852772319250441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25a8936886579%3A0xa8c769f4b86d85b5!2sUniversity%20of%20Sri%20Jayewardenepura!5e1!3m2!1sen!2slk!4v1733644905380!5m2!1sen!2slk" width="700" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://www.google.com/maps?q=<%= propertyData.latitude %>,<%= propertyData.longitude %>&hl=es;z=14&output=embed" width="700" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>
@@ -102,7 +118,7 @@
                         Call Owner
                     </h1>
                     <p>
-                        012 345 6789
+                        <%= propertyData.phone %>
                     </p>
                 </div>
             </div>
@@ -116,7 +132,21 @@
                         Email
                     </h1>
                     <p>
-                        samplemail@xyz.com
+                        <%= propertyData.email %>
+                    </p>
+                </div>
+            </div>
+            <hr>
+            <div class="contact">
+                <div class="icon">
+                    <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div class="info-container">
+                    <h1>
+                        Address
+                    </h1>
+                    <p>
+                        <%= propertyData.address %>
                     </p>
                 </div>
             </div>

@@ -15,31 +15,40 @@ const loadingHTML = `
 
 const updateSuccess = `Update success! <br> You will be redirected to the properties page..`;
 
-// Simulated server data
-const formData = {
-    name: "Cozy Apartment",
-    propertyType: "apartment",
-    occupancy: 4,
-    furnishingType: "fully-furnished",
-    amenities: ["wifi", "kitchen", "bath"],
-    about: "A cozy apartment located near the university.",
-    email: "owner@example.com",
-    phone: "12345678",
-};
-
 // ! Event Handlers
 
 const updateProperty = () => {
     overlayContentHTML.innerHTML = loadingHTML;
 
-    const loadingText = document.getElementById("loadingText");
+    const currentUrl = window.location.pathname;
+    const pathSegments = currentUrl.split("/");
+    const id = pathSegments[pathSegments.length - 1];
 
-    setTimeout(() => {
-        loadingText.innerHTML = updateSuccess;
-        setTimeout(() => {
-            window.location.href = "http://localhost:5000/owner/page/property";
-        }, 3000);
-    }, 5000);
+    let formData = new FormData(document.getElementById("registrationForm"));
+
+    formData.append("id", id);
+
+    fetch("http://localhost:5000/owner/api/property/edit/" + id, {
+        method: "POST",
+        body: formData,
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            overlayContentHTML.innerHTML = updateSuccess;
+            setTimeout(() => {
+                window.location.href =
+                    "http://localhost:5000/owner/page/property";
+            }, 2000);
+        })
+        .catch((error) => {
+            overlayContentHTML.innerHTML =
+                "Error submitting data, please try again.";
+            console.error("Error:", error);
+            setTimeout(() => {
+                window.location.href =
+                    "http://localhost:5000/owner/page/property";
+            }, 3000);
+        });
 };
 
 const handlePhotoInput = () => {
@@ -122,11 +131,6 @@ const handleFormSubmission = (event) => {
 
     if (!validateForm()) return;
 
-    const formData = new FormData(document.getElementById("registrationForm"));
-    formData.forEach((value, key) => {
-        console.log(key + ": " + value);
-    });
-
     overlay.style.display = "flex";
     document.body.style.overflow = "hidden";
     updateProperty();
@@ -137,32 +141,3 @@ const handleFormSubmission = (event) => {
 profileSelectBtn.addEventListener("click", () => propertyPhotoInput.click());
 propertyPhotoInput.addEventListener("change", handlePhotoInput);
 registrationForm.addEventListener("submit", handleFormSubmission);
-
-// Function to auto-fill form
-document.addEventListener("DOMContentLoaded", () => {
-    // Fill text and number inputs
-    document.getElementById("name").value = formData.name;
-    document.getElementById("occupancy").value = formData.occupancy;
-    document.getElementById("about").value = formData.about;
-    document.getElementById("email").value = formData.email;
-    document.getElementById("phone").value = formData.phone;
-
-    // Fill select input
-    document.getElementById("propertyType").value = formData.propertyType;
-
-    // Fill radio buttons
-    const furnishingRadios = document.querySelectorAll(
-        'input[name="furnishingType"]'
-    );
-    furnishingRadios.forEach((radio) => {
-        if (radio.value === formData.furnishingType) {
-            radio.checked = true;
-        }
-    });
-
-    // Fill checkboxes
-    formData.amenities.forEach((amenity) => {
-        const checkbox = document.getElementById(amenity);
-        if (checkbox) checkbox.checked = true;
-    });
-});
