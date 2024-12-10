@@ -6,12 +6,12 @@
         </div>
         <div class="status" id="success">
             <div class="title">
-                Sccess!
+                Success!
             </div>
             <div class="desc">
                 your profile has been updated,
             </div>
-            <button class="submit_button" id="successCloseBtn">Done</button>
+            <button class="submit_button" id="successCloseBtn" >Done</button>
         </div>
         <div class="status" id="failed">
             <div class="title">
@@ -205,19 +205,14 @@
         <div class="container_line"></div>
         <div class="info_container">
             <div class="img_container">
-                <img src="/images/fow_owners.png" alt="" />
+                <img src="<%= profileData.image%>" alt="" />
                 <button id="profilePicEditBtn"><i class="fa-solid fa-camera"></i></button>
             </div>
             <div class="account_info">
-                <div class="user_name">Jane's Accomandations</div>
-                <div class="name">Jane Doe</div>
+                <div class="user_name"><%= profileData.userName%></div>
+                <div class="name"><%= profileData.name%></div>
                 <div class="about">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut
-                    amet distinctio vel impedit! In rem, perspiciatis nesciunt
-                    nostrum enim sunt eum dolores saepe est quaerat alias maxime
-                    at culpa ratione eligendi quas voluptas molestias possimus
-                    ex omnis cumque aspernatur! Reprehenderit quisquam ullam
-                    aliquam error quaerat natus officia illum quod recusandae.
+                    <%= profileData.about%>
                 </div>
             </div>
         </div>
@@ -232,11 +227,11 @@
             <div class="info_container">
                 <div class="info">
                     <div class="lable">Phone</div>
-                    <div class="value">4684646466846153</div>
+                    <div class="value"><%= profileData.phone%></div>
                 </div>
                 <div class="info">
                     <div class="lable">Email</div>
-                    <div class="value">sample@samplemail.com</div>
+                    <div class="value"><%= profileData.email%></div>
                 </div>
             </div>
         </div>
@@ -249,13 +244,12 @@
 
                 <div class="info">
                     <div class="lable">Legal Name</div>
-                    <div class="value">Alexander Nathaniel Whitmore</div>
+                    <div class="value"><%= profileData.legName%></div>
                 </div>
                 <div class="info">
                     <div class="lable">Permenet Address</div>
                     <div class="value">
-                        1234 Evergreen Corporate Towers, Suite 5678, 15 Harmony
-                        Drive, Central Business District, Colombo 07, Sri Lanka.
+                        <%= profileData.address%>
                     </div>
                 </div>
                 <div class="lable">Legal information cannot be updated due to security reasons. For assistance, please contact our technical support team at <a href="#">support@example.com</a> or call our hotline at +1-800-123-4567.</div>

@@ -29,22 +29,23 @@
                     <%= page.charAt(0).toUpperCase() + page.slice(1) %>
                 </div>
                 <% if (page === 'dashboard') { %> <%-
-                include('components/dashboard') %> <% } else if (page ===
-                'properties') { %> <%- include('components/properties') %> <% }
+                include('components/owner_dashboard') %> <% } else if (page ===
+                'properties') { %> <%- include('components/owner_properties') %> <% }
                 else if (page === 'new property') { %> <%-
-                include('components/new_property') %> <% } else if (page ===
-                'edit property') { %> <%- include('components/edit_property') %>
-                <% } else if (page === 'view property') { %> <%-
-                include('components/view_property') %> <% } else if (page ===
-                'solve property') { %> <%- include('components/solve_property')
+                include('components/owner_property_new') %> <% } else if (page ===
+                'edit property') { %> <%-
+                include('components/owner_property_edit') %> <% } else if (page
+                === 'view property') { %> <%-
+                include('components/owner_property_view') %> <% } else if (page ===
+                'solve property') { %> <%- include('components/owner_property_solve')
                 %> <% } else if (page === 'reservations') { %> <%-
-                include('components/reservations') %> <% } else if (page ===
+                include('components/owner_reservations') %> <% } else if (page ===
                 'reservation info') { %> <%-
-                include('components/reservations_info') %> <% } else if (page
-                === 'inbox') { %> <%- include('components/inbox') %> <% } else
+                include('components/owner_reservations_info') %> <% } else if (page
+                === 'inbox') { %> <%- include('components/owner_inbox') %> <% } else
                 if (page === 'inbox view') { %> <%-
-                include('components/inbox_view') %> <% } else if (page ===
-                'profile') { %> <%- include('components/profile') %> <% } %>
+                include('components/owner_inbox_view') %> <% } else if (page ===
+                'profile') { %> <%- include('components/owner_profile') %> <% } %>
             </div>
         </div>
         <%- include('components/footer') %>

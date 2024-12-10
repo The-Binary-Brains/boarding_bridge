@@ -98,88 +98,31 @@
                 </tr>
             </thead>
             <tbody>
+                <% if (reservationData.length === 0) { %>
                 <tr>
-                    <td>1</td>
-                    <td>
-                        <div class="property">
-                            <img src="/images/property1.jpg" alt="" />
-                            <div class="title">
-                                Property OneProperty OneProperty OneProperty
-                                OneProperty OneProperty OneProperty OneProperty
-                                OneProperty OneProperty OneProperty OneProperty
-                                OneProperty OneProperty One
-                            </div>
-                        </div>
-                    </td>
-                    <td>2024-12-04</td>
-                    <td>2024-12-04</td>
-                    <td>
-                        <a
-                            href="http://localhost:5000/owner/page/reservations/info"
-                        >
-                            Info
-                        </a>
-                        <button onclick="handleNotificationDelete(1)">Cancel</button>
-                    </td>
+                    <td colspan="5">No reservations available.</td>
                 </tr>
-
-                <tr>
-                    <td>1</td>
-                    <td>
-                        <div class="property">
-                            <img src="/images/property1.jpg" alt="" />
-                            <div class="title">
-                                Property OneProperty OneProperty OneProperty
-                                OneProperty OneProperty OneProperty OneProperty
-                                OneProperty OneProperty OneProperty OneProperty
-                                OneProperty OneProperty One
+            <% } else { %>
+                <% reservationData.forEach((reservation, index) => { %>
+                    <tr>
+                        <td><%= index + 1 %></td>
+                        <td>
+                            <div class="property">
+                                <img src="<%= reservation.property.image %>" alt="Property Image" />
+                                <div class="title">
+                                    <%= reservation.property.title %>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                    <td>2024-12-04</td>
-                    <td>2024-12-04</td>
-                    <td>
-                        <a
-                            href="http://localhost:5000/owner/page/property/view"
-                        >
-                            Info
-                        </a>
-                        <a
-                            href="http://localhost:5000/owner/page/property/edit"
-                        >
-                            Cancel
-                        </a>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>1</td>
-                    <td>
-                        <div class="property">
-                            <img src="/images/property1.jpg" alt="" />
-                            <div class="title">
-                                Property OneProperty OneProperty OneProperty
-                                OneProperty OneProperty OneProperty OneProperty
-                                OneProperty OneProperty OneProperty OneProperty
-                                OneProperty OneProperty One
-                            </div>
-                        </div>
-                    </td>
-                    <td>2024-12-04</td>
-                    <td>2024-12-04</td>
-                    <td>
-                        <a
-                            href="http://localhost:5000/owner/page/property/view"
-                        >
-                            Info
-                        </a>
-                        <a
-                            href="http://localhost:5000/owner/page/property/edit"
-                        >
-                            Cancel
-                        </a>
-                    </td>
-                </tr>
+                        </td>
+                        <td><%= reservation.startDate %></td>
+                        <td><%= reservation.endDate %></td>
+                        <td>
+                            <a href="http://localhost:5000/owner/page/reservations/view/<%= reservation.id %>">Info</a>
+                            <button onclick='handleReservationCancel("<%= reservation.id %>")'>Cancel</button>
+                        </td>
+                    </tr>
+                <% }); %>
+            <% } %>
             </tbody>
         </table>
     </div>
@@ -201,7 +144,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 <script src="/js/owner_reservation.js"></script>
