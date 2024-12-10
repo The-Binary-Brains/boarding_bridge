@@ -26,9 +26,40 @@
             <img src="image2.jpg">
             <img src="image3.jpg">
             <img src="image4.jpg">
-            <img src="image5.jpg">
+            <img src="https://lh6.googleusercontent.com/proxy/Ci9diRQL1W_PahthFqTKtCznuMNpRd50PkEkHSZQjaBua9B-7QPf5L8Uaio3QfeJ208HC8FL6MqAi1uR035jDn1Y-KjGyTT55DkT0Jo4GswQVmyiRIjjAPKZDJE">
+        </div>
+        <div class="input">
+            <button id="gallery" type="button">
+                <div class="gallery-btn">
+                    <i class="fa-regular fa-images"></i>
+                    <p>Show all photos...</p>    
+                </div>
+            </button>  
         </div>
     </div>
+
+    <div id="galleryPopup" class="popup">
+        <div class="popup-content">
+            <div class="gallery-top">
+                <span class="close-btn" id="closePopup">&times;</span>
+            </div>
+            <div class="main-galary">
+                <button id="left-btn" class="left-btn" type="button">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <div class="img-view">
+                    <img class="img-preview" src="https://lh6.googleusercontent.com/proxy/Ci9diRQL1W_PahthFqTKtCznuMNpRd50PkEkHSZQjaBua9B-7QPf5L8Uaio3QfeJ208HC8FL6MqAi1uR035jDn1Y-KjGyTT55DkT0Jo4GswQVmyiRIjjAPKZDJE" alt="">
+                </div>
+                <button id="right-btn" class="right-btn" type="button">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="gallery-bottom" id="page-number">
+                <h1>Pages numbers appears here</h1>
+            </div>
+        </div>
+    </div>
+
     <div class="main">
         <div class="left-container">
             <p class="Property-name">
@@ -132,17 +163,37 @@
             </div>
             <hr>
             <div class="calendar">
-                <div class="icon">
-                    <i class="fa-solid fa-calendar-day"></i>
+                <div class="cal-info">
+                    <div class="icon">
+                        <i class="fa-solid fa-calendar-day"></i>
+                    </div>
+                    <div class="info-container">
+                        <h1>
+                            Reserve a Date for visit
+                        </h1>
+                    </div>
                 </div>
-                <div class="info-container">
-                    <h1>
-                        Reserved Dates
-                    </h1>
-                </div>
+                <button id="reservation" class="reservation" type="button">
+                    Reserve a date
+                </button>
             </div>
-            <div class="calendar-records">
-                
+        </div>
+    </div>
+<!-- reservation popup -->
+    <div id="reservationPopup" class="popup-reserve">
+        <div class="popup-content-reserve">
+            <div class="reserve-top">
+                <span class="close-btn" id="close">&times;</span>
+            </div>
+            <div class="reservation-head">
+                <h1>Reserve a date</h1>
+            </div>
+            <div class="form_line"></div>
+            <div class="reserve-main">
+                <p>Select a date according to your preference</p>
+                <form id="date-reservation">
+                    <input id="date" type="date" name="reservation" required/>
+                </form>
             </div>
         </div>
     </div>
@@ -189,4 +240,5 @@
         </div>
     </footer>
 </body>
+<script src="./js/gallery.js"></script>
 </html>
