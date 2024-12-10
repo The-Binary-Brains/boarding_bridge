@@ -9,36 +9,6 @@ const nextMonthButton = document.getElementById("next-month");
 const propertiesContainer = document.getElementById("properties_container");
 const resDate = document.getElementById("res_date");
 
-const changeSelectedButton = (selectedButton) => {
-    const buttons = document.querySelectorAll(".nav_button");
-    buttons.forEach((button) => {
-        button.classList.remove("selected");
-    });
-    selectedButton.classList.add("selected");
-};
-
-const loadContent = async (url) => {
-    try {
-        const response = await fetch(url);
-        const data = await response.text();
-
-        const contentDiv = document.querySelector(".content");
-        contentDiv.innerHTML = data;
-
-        const scripts = contentDiv.querySelectorAll("script");
-        scripts.forEach((script) => {
-            const newScript = document.createElement("script");
-            newScript.text = script.textContent || script.innerText;
-            document.body.appendChild(newScript);
-        });
-
-        if (typeof renderCalendar === "function") {
-            renderCalendar();
-        }
-    } catch (error) {
-        console.error("Error loading content:", error);
-    }
-};
 
 // ! Calender
 let reservedDatesOfTheMonth;
@@ -139,8 +109,6 @@ const reservedDates = async () => {
 
 reservedDates();
 
-// ! Event Listners
-
 prevMonthButton.addEventListener("click", () => {
     currentDate.setMonth(currentDate.getMonth() - 1);
     reservedDates();
@@ -195,7 +163,7 @@ const loadProperties = async (selectedDate) => {
         }
         data.forEach((property) => {
             const propertyDiv = document.createElement("a");
-            propertyDiv.href = `http://localhost:5000/owner/page/reservations/info/${property.id}`;
+            propertyDiv.href = `http://localhost:5000/owner/page/reservations/view/${property.id}`;
             propertyDiv.classList.add("property");
 
             console.log(property.id)

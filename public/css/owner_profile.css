@@ -205,7 +205,8 @@
     .info_container {
         padding-inline: 100px;
         display: flex;
-        gap: 50px;
+        justify-content: flex-start;
+        gap: 100px;
         margin-block: 50px;
     }
 

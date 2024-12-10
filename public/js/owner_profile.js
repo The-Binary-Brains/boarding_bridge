@@ -126,7 +126,7 @@ const validateProfilePicForm = () => {
 
 // ! Event handlers
 
-const handlePasswordFormSubmission = (event) => {
+const handlePasswordFormSubmission = async (event) => {
     passwordUpdateContainer.style.display = "none";
     loadingOverlay.style.display = "flex";
 
@@ -139,16 +139,36 @@ const handlePasswordFormSubmission = (event) => {
     }
 
     const formData = new FormData(passwordUpdateForm);
-    formData.forEach((value, key) => {
-        console.log(key + ": " + value);
-    });
-    setTimeout(() => {
+
+    try {
+        const formDataObj = Object.fromEntries(formData.entries());
+        const jsonFormData = JSON.stringify(formDataObj);
+
+        const response = await fetch(
+            `http://localhost:5000/owner/api/profile/update/password`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: jsonFormData,
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json();
+        console.log("Property edited successfully:", result);
         loadingOverlay.style.display = "none";
         successOverlay.style.display = "flex";
-    }, 1000);
+    } catch (error) {
+        console.error("Error editing property:", error);
+    }
 };
 
-const handleProfilePicFormSubmission = (event) => {
+const handleProfilePicFormSubmission = async (event) => {
     profPicUpdateContainer.style.display = "none";
     loadingOverlay.style.display = "flex";
     event.preventDefault();
@@ -160,44 +180,98 @@ const handleProfilePicFormSubmission = (event) => {
     }
 
     const formData = new FormData(profPicUpdateForm);
-    formData.forEach((value, key) => {
-        console.log(key + ": " + value);
-    });
-    setTimeout(() => {
+
+    try {
+
+        const response = await fetch(
+            `http://localhost:5000/owner/api/profile/update/image`,
+            {
+                method: "POST",
+                body: formData,
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json();
+        console.log("Property edited successfully:", result);
         loadingOverlay.style.display = "none";
         successOverlay.style.display = "flex";
-    }, 1000);
+    } catch (error) {
+        console.error("Error editing property:", error);
+    }
 };
 
-const handleUserFormSubmission = (event) => {
+const handleUserFormSubmission = async (event) => {
     userUpdateContainer.style.display = "none";
     loadingOverlay.style.display = "flex";
     event.preventDefault();
 
     const formData = new FormData(userUpdateForm);
-    formData.forEach((value, key) => {
-        console.log(key + ": " + value);
-    });
-    setTimeout(() => {
+
+    try {
+        const formDataObj = Object.fromEntries(formData.entries());
+        const jsonFormData = JSON.stringify(formDataObj);
+
+        const response = await fetch(
+            `http://localhost:5000/owner/api/profile/update/account`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: jsonFormData,
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json();
+        console.log("Property edited successfully:", result);
         loadingOverlay.style.display = "none";
         successOverlay.style.display = "flex";
-    }, 1000);
+    } catch (error) {
+        console.error("Error editing property:", error);
+    }
 };
 
-const handleContactFormSubmission = (event) => {
+const handleContactFormSubmission = async (event) => {
     contactUpdateContainer.style.display = "none";
     loadingOverlay.style.display = "flex";
     event.preventDefault();
 
     const formData = new FormData(contactUpdateForm);
-    formData.forEach((value, key) => {
-        console.log(key + ": " + value);
-    });
 
-    setTimeout(() => {
+    try {
+        const formDataObj = Object.fromEntries(formData.entries());
+        const jsonFormData = JSON.stringify(formDataObj);
+
+        const response = await fetch(
+            `http://localhost:5000/owner/api/profile/update/contact`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: jsonFormData,
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json();
+        console.log("Property edited successfully:", result);
         loadingOverlay.style.display = "none";
         successOverlay.style.display = "flex";
-    }, 2000);
+    } catch (error) {
+        console.error("Error editing property:", error);
+    }
 };
 
 const handlePhotoInput = () => {
@@ -251,8 +325,7 @@ contactCancelBtn.addEventListener("click", closeContactUpdateForm);
 userCancelBtn.addEventListener("click", closeUserUpdateForm);
 profPicCancelBtn.addEventListener("click", closeProfPicUpdateForm);
 successCloseBtn.addEventListener("click", () => {
-    successOverlay.style.display = "none";
-    closeOverlay();
+    window.location.href = "http://localhost:5000/owner/page/profile";
 });
 failedCloseBtn.addEventListener("click", () => {
     failedOverlay.style.display = "none";

@@ -1,7 +1,9 @@
 import express from "express";
 
-import { getAnalisys, getNotificationsTable, getPropertiesTable } from "../../controllers/ownerController.js";
+import { getAnalisys, getNotificationsTable,  getProfileById} from "../../controllers/ownerController.js";
 import propertyView from "./propertyViews.js";
+import reservationView from "./reservationViews.js";
+import inboxView from "./inboxViews.js";
 
 const ownerView = express.Router();
 
@@ -28,24 +30,23 @@ ownerView.get("/dashboard", async (req, res) => {
 
 ownerView.use("/property", propertyView);
 
-ownerView.get("/reservations", (req, res) => {
-    res.render("owner_boilerplate", { page: "reservations"});
-});
+ownerView.use("/reservations", reservationView);
 
-ownerView.get("/reservations/info/:id", (req, res) => {
-    res.render("owner_boilerplate", { page: "reservation info"});
-});
+ownerView.use("/inbox", inboxView);
 
-ownerView.get("/inbox", (req, res) => {
-    res.render("owner_boilerplate", { page: "inbox"});
-});
 
-ownerView.get("/inbox/view/:id", (req, res) => {
-    res.render("owner_boilerplate", { page: "inbox view"});
-});
+ownerView.get("/profile", async (req, res) => {
 
-ownerView.get("/profile", (req, res) => {
-    res.render("owner_boilerplate", { page: "profile"});
+    const id = req.params.id
+
+    try {
+        const profileData = await getProfileById(id);
+        res.render("owner_boilerplate", { page: "profile", profileData: profileData });
+    } catch (error) {
+        console.error("Error fetching analysis data:", error);
+        res.status(500).send("Error fetching dashboard data.");
+    }
+
 });
 
 export default ownerView;

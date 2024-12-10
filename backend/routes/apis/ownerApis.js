@@ -108,8 +108,35 @@ ownerApi.post("/property/edit/:id", upload.any(), async (req, res) => {
     res.status(200).json({
         message: "Data received successfully",
         formData: formData,
-        files: files, 
+        files: files,
     });
 });
+
+
+ownerApi.post("/profile/update/account", async (req, res) => {
+    console.log("Form Data:", req.body);
+    res.status(200).json("Recieved")
+});
+
+
+ownerApi.post("/profile/update/contact", async (req, res) => {
+    console.log("Form Data:", req.body);
+    res.status(200).json("Recieved")
+});
+
+ownerApi.post("/profile/update/password", async (req, res) => {
+    console.log("Form Data:", req.body);
+    res.status(200).json("Recieved")
+});
+
+ownerApi.post("/profile/update/image", upload.any(),async (req, res) => {
+    console.log("Files:", req.files);
+    const files = req.files;
+    files.forEach((file) => {
+        console.log(`File uploaded: ${file.originalname} - ${file.path}`);
+    });
+    res.status(200).json("Profile Picture Uploaded")
+});
+
 
 export default ownerApi;

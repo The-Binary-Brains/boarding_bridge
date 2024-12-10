@@ -189,3 +189,119 @@ export const getEditPropertyById = async (id) => {
         throw error;
     }
 };
+
+export const getReservationById = async (id) => {
+    try {
+        return {
+            name: "Y Thilukshan",
+            property: "apartment",
+            propertyId: 1,
+            date: "2024-06-11",
+            phone: "456456465",
+            email: "fully-furnished@gmail.com",
+            image: "/images/property1.jpg",
+        };
+    } catch (error) {
+        console.error("Error fetching properties:", error);
+        throw error;
+    }
+};
+
+export const getReservationTable = async () => {
+    try {
+        return [
+            {
+                id: 1,
+                property: {
+                    image: "/images/property1.jpg",
+                    title: "Property One",
+                },
+                startDate: "2024-12-04",
+                endDate: "2024-12-04",
+            },
+            {
+                id: 2,
+                property: {
+                    image: "/images/property2.jpg",
+                    title: "Property Two",
+                },
+                startDate: "2024-12-10",
+                endDate: "2024-12-12",
+            },
+        ];
+    } catch (error) {
+        console.error("Error fetching properties:", error);
+        throw error;
+    }
+};
+
+export const getInboxById = async (id) => {
+    try {
+        return {
+            title: "Y Thilukshan",
+            timestamp: "2024-06-11 12:55",
+            message: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat doloribus id eligendi ducimus magni soluta architecto assumenda maxime non sapiente.",
+        };
+    } catch (error) {
+        console.error("Error fetching properties:", error);
+        throw error;
+    }
+};
+
+export const getInboxTable = async () => {
+    try {
+        return [
+            {
+                id: 1,
+                category: "reservation",
+                status: "read",
+                content: {
+                    title: "Reservation One",
+                    description: "Reservation details go here.",
+                },
+                date: "2024-12-04",
+            },
+            {
+                id: 2,
+                category: "property",
+                status: "unread",
+                content: {
+                    title: "Property One",
+                    description: "Property details go here.",
+                },
+                date: "2024-12-05",
+            },
+            {
+                id: 3,
+                category: "profile",
+                status: "unread",
+                content: {
+                    title: "User Profile",
+                    description: "Profile details go here.",
+                },
+                date: "2024-12-06",
+            },
+        ];
+    } catch (error) {
+        console.error("Error fetching properties:", error);
+        throw error;
+    }
+};
+
+export const getProfileById = async (id) => {
+    try {
+        return {
+            userName: "Jane's Accomandations",
+            name: "Y Thilukshan",
+            about: "2024-06-11 12:55",
+            email: "6546@dsaasd.sad",
+            phone: "56+468+44555",
+            image: "/images/fow_owners.png",
+            address: "asdwadsdasdawdasdadawd",
+            legName: "asdw asdwadwa"
+        };
+    } catch (error) {
+        console.error("Error fetching properties:", error);
+        throw error;
+    }
+};
