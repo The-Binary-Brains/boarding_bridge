@@ -112,13 +112,27 @@ html {
             color: rgb(50, 50, 50);
         }
         .nav_button {
-            width: 25px;
-            padding: 25px;
+            width: 30px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
-            transition: 0.3s ease-in-out;
+            transition: 0.1s ease-in-out;
+
+            &:hover {
+                color: white;
+                background-color: #3e0000;
+            }
 
             i {
                 font-size: 22px;
+                margin-bottom: 10px;
+            }
+
+            .title {
+                font-size: 10px;
             }
         }
     }

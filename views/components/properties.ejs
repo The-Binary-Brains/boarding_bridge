@@ -60,15 +60,13 @@
                         Published
                     </div></td>
                     <td>
-                        <button>
+                        <a href="http://localhost:5000/owner/page/property/view">
                             Info
-                        </button>
-                        <button>
+                        </a>
+                        <a href="http://localhost:5000/owner/page/property/edit">
                             Edit
-                        </button>
-                        <button>
-                            Delete
-                        </button>
+                        </a>
+                        <button onclick="handlePropertyDelete(1)">Delete</button>
                 </tr>
                 <tr>
                     <td>1</td>
@@ -84,9 +82,7 @@
                         Action Needed
                     </div></td>
                     <td>
-                        <button>
-                            Solve
-                        </button>
+                        <a href="http://localhost:5000/owner/page/property/solve">Solve</a>
 
                 </tr>
                 <tr>
@@ -97,4 +93,23 @@
             </tbody>
         </table>
     </div>
+    <div class="overlay" id="overlay">
+        <div class="content" id="overlayContent">
+            <div class="title">
+                Are you Sure?
+            </div>
+            <div class="warning">
+                This can't be undone.
+            </div>
+            <div class="button_container">
+                <button class="closeBtn"  id="closeBtn">
+                    Go Back
+                </button>
+                <button class="deleteBtn" id="deleteBtn">
+                    Delete
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
+<script src="/js/owner_property.js"></script>
