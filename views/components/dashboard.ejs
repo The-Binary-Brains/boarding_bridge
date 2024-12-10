@@ -7,7 +7,7 @@
         </div>
         <div class="info">
             <div class="title">Total Views</div>
-            <div class="sub_title">124</div>
+            <div class="sub_title"><%= analisys.totalViews%></div>
         </div>
     </div>
     <div class="analitics_container properties">
@@ -18,7 +18,7 @@
         </div>
         <div class="info">
             <div class="title">Published Properties</div>
-            <div class="sub_title">5</div>
+            <div class="sub_title"><%= analisys.totalPublished%></div>
         </div>
     </div>
     <div class="analitics_container approvel">
@@ -29,7 +29,7 @@
         </div>
         <div class="info">
             <div class="title">Waiting for Approvel</div>
-            <div class="sub_title">2</div>
+            <div class="sub_title"><%= analisys.waitingForApproval%></div>
         </div>
     </div>
 </div>
@@ -59,48 +59,7 @@
         <div class="properties">
             <div class="container_title" id="res_date">Reservations</div>
             <div class="container_line"></div>
-            <div class="properties_container" id="properties_container">
-                <div class="property">
-                    <img src="/images/property1.jpg" alt="property" />
-                    <div>
-                        <div class="property_title">Property One</div>
-                        <div class="visiter">Reserved by: Jhon Doe</div>
-                        <div class="time">At: 09:00 AM</div>
-                    </div>
-                </div>
-                <div class="property">
-                    <img src="/images/property1.jpg" alt="property" />
-                    <div>
-                        <div class="property_title">Property One</div>
-                        <div class="visiter">Reserved by: Jhon Doe</div>
-                        <div class="time">At: 09:00 AM</div>
-                    </div>
-                </div>
-                <div class="property">
-                    <img src="/images/property1.jpg" alt="property" />
-                    <div>
-                        <div class="property_title">Property One</div>
-                        <div class="visiter">Reserved by: Jhon Doe</div>
-                        <div class="time">At: 09:00 AM</div>
-                    </div>
-                </div>
-                <div class="property">
-                    <img src="/images/property1.jpg" alt="property" />
-                    <div>
-                        <div class="property_title">Property One</div>
-                        <div class="visiter">Reserved by: Jhon Doe</div>
-                        <div class="time">At: 09:00 AM</div>
-                    </div>
-                </div>
-                <div class="property">
-                    <img src="/images/property1.jpg" alt="property" />
-                    <div>
-                        <div class="property_title">Property One</div>
-                        <div class="visiter">Reserved by: Jhon Doe</div>
-                        <div class="time">At: 09:00 AM</div>
-                    </div>
-                </div>
-            </div>
+            <div class="properties_container" id="properties_container"></div>
         </div>
     </div>
 </div>
@@ -111,86 +70,54 @@
         <div class="container">
             <img src="/images/property1.jpg" alt="property" />
             <div class="info_wrapper">
-                <div class="title">
-                    Spacious 2-Bedroom Apartment Near Campus
+                <div class="title"><%= analisys.mostViewed.name %></div>
+                <div class="pub_date">
+                    Published On: <%= analisys.mostViewed.pubDate %>
                 </div>
-                <div class="pub_date">Published On: 2024-09-17</div>
-                <div class="total">Total Views: 43</div>
-                <div class="duration">Published for: 24 Days</div>
+                <div class="total">
+                    Total Views: <%= analisys.mostViewed.totalViews %>
+                </div>
+                <div class="duration">
+                    Published for: <%= analisys.mostViewed.pubDuration %>
+                </div>
             </div>
         </div>
     </div>
     <div class="notifications">
         <div class="container_title">Inbox</div>
         <div class="container_line"></div>
+
         <div class="notifications_wrapper">
-            <div class="notification">
-                <div class="icon"><i class="fa-solid fa-check"></i></div>
-                <div class="not_info">
-                    <div class="title">Property Approved</div>
-                    <div class="timestamp">2024-10-19 18:54:55</div>
-                    <div class="description">
-                        Your property [Whole house with 2 rooms] is approved
-                        an...Your property [Whole house with 2 rooms] is
-                        approved Your property [Whole house with 2 rooms] is
-                        approved an...Your property [Whole house with 2 rooms]
-                        is approved
+            <% if (notificationData.length === 0) { %>
+            <div
+                style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 300px;
+                "
+            >
+                No Notifications
+            </div>
+            <% } else { %> <% notificationData.forEach((notification) => { %>
+            <a
+                href="http://localhost:5000/owner/page/inbox/view/<%= notification.id %>"
+                style="text-decoration: none; color: rgb(50, 50, 50)"
+            >
+                <div class="notification">
+                    <div class="icon"><i class="fa-solid fa-check"></i></div>
+                    <div class="not_info">
+                        <div class="title"><%= notification.title %></div>
+                        <div class="timestamp">
+                            <%= notification.timestamp %>
+                        </div>
+                        <div class="description">
+                            <%= notification.description %>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="notification">
-                <div class="icon"><i class="fa-solid fa-check"></i></div>
-                <div class="not_info">
-                    <div class="title">Property Approved</div>
-                    <div class="timestamp">2024-10-19 18:54:55</div>
-                    <div class="description">
-                        Your property [Whole house with 2 rooms] is approved
-                        an...Your property [Whole house with 2 rooms] is
-                        approved Your property [Whole house with 2 rooms] is
-                        approved an...Your property [Whole house with 2 rooms]
-                        is approved
-                    </div>
-                </div>
-            </div>
-            <div class="notification">
-                <div class="icon"><i class="fa-solid fa-check"></i></div>
-                <div class="not_info">
-                    <div class="title">Property Approved </div>
-                    <div class="timestamp">2024-10-19 18:54:55</div>
-                    <div class="description">
-                        Your property [Whole house with 2 rooms] is approved
-                        an...Your property [Whole house with 2 rooms] is approved
-                        Your property [Whole house with 2 rooms] is approved
-                        an...Your property [Whole house with 2 rooms] is approved
-                    </div>
-                </div>
-            </div>
-            <div class="notification">
-                <div class="icon"><i class="fa-solid fa-check"></i></div>
-                <div class="not_info">
-                    <div class="title">Property Approved </div>
-                    <div class="timestamp">2024-10-19 18:54:55</div>
-                    <div class="description">
-                        Your property [Whole house with 2 rooms] is approved
-                        an...Your property [Whole house with 2 rooms] is approved
-                        Your property [Whole house with 2 rooms] is approved
-                        an...Your property [Whole house with 2 rooms] is approved
-                    </div>
-                </div>
-            </div>
-            <div class="notification">
-                <div class="icon"><i class="fa-solid fa-check"></i></div>
-                <div class="not_info">
-                    <div class="title">Property Approved </div>
-                    <div class="timestamp">2024-10-19 18:54:55</div>
-                    <div class="description">
-                        Your property [Whole house with 2 rooms] is approved
-                        an...Your property [Whole house with 2 rooms] is approved
-                        Your property [Whole house with 2 rooms] is approved
-                        an...Your property [Whole house with 2 rooms] is approved
-                    </div>
-                </div>
-            </div>
+            </a>
+            <% }); %> <% } %>
         </div>
     </div>
 </div>

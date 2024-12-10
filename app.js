@@ -4,7 +4,7 @@ import cors from "cors";
 import path from "path";
 import adminAPi from "./backend/routes/apis/adminApis.js";
 import ownerApi from "./backend/routes/apis/ownerApis.js";
-import ownerView from "./backend/routes/views/ownerViews.js";
+import ownerView from "./backend/routes/views/owner/ownerViews.js";
 import { ConnetToSQLServer } from "./backend/database.js";
 import { fileURLToPath } from "url";
 import { dirname } from "path";

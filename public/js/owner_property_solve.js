@@ -10,6 +10,8 @@ const docSelectBtn = document.getElementById("docSelectBtn");
 const overlay = document.getElementById("overlay");
 const overlayContentHTML = document.getElementById("overlayContent");
 
+const submitBtn = document.getElementById("submitBtn");
+
 const loadingHTML = `
 <div class="loading" id="loading">
 <div class="spinner"></div>
@@ -22,14 +24,34 @@ const submissionSuccess = `Submit success! <br> You will be redirected to the pr
 const handleSubmit = () => {
     overlayContentHTML.innerHTML = loadingHTML;
 
-    const loadingText = document.getElementById("loadingText");
+    const currentUrl = window.location.pathname;
+    const pathSegments = currentUrl.split("/");
+    const id = pathSegments[pathSegments.length - 1];
 
-    setTimeout(() => {
-        loadingText.innerHTML = submissionSuccess;
-        setTimeout(() => {
-            window.location.href = "http://localhost:5000/owner/page/property";
-        }, 5000);
-    }, 3000);
+    let formData = new FormData(document.getElementById("registrationForm"));
+
+    formData.append("id", id);
+
+
+    fetch("http://localhost:5000/owner/api/property/solve/" + id, {
+        method: "POST",
+        body: formData,
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            overlayContentHTML.innerHTML = submissionSuccess;
+            setTimeout(() => {
+                 window.location.href = "http://localhost:5000/owner/page/property";
+            }, 2000);
+        })
+        .catch((error) => {
+            overlayContentHTML.innerHTML =
+                "Error submitting data, please try again.";
+            console.error("Error:", error);
+            setTimeout(() => {
+                window.location.href = "http://localhost:5000/owner/page/property";
+           }, 3000);
+        });
 };
 
 const handlePhotoInput = () => {
@@ -131,12 +153,13 @@ const validateForm = () => {
 const handleFormSubmission = (event) => {
     event.preventDefault();
 
-    if (!validateForm()) return;
+    const currentUrl = window.location.pathname;
+    const pathSegments = currentUrl.split("/");
+    const id = pathSegments[pathSegments.length - 1];
 
-    const formData = new FormData(document.getElementById("registrationForm"));
-    formData.forEach((value, key) => {
-        console.log(key + ": " + value);
-    });
+    console.log(id);
+
+    if (!validateForm()) return;
 
     overlay.style.display = "flex";
     document.body.style.overflow = "hidden";

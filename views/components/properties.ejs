@@ -30,66 +30,67 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>
-                        <div class="property">
-                            <img src="/images/property1.jpg" alt="">
-                            <div class="title">Property One</div>
-                        </div>
-                    </td>
-                    <td>2024-12-04</td>
-                    <td>2024-12-04</td>
-                    <td><div class="pending">
-                        Pending
-                    </div></td>
-                    <td>
-                       -
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>
-                        <div class="property">
-                            <img src="/images/property1.jpg" alt="">
-                            <div class="title">Property OneProperty OneProperty OneProperty OneProperty OneProperty OneProperty OneProperty OneProperty OneProperty OneProperty OneProperty OneProperty OneProperty One</div>
-                        </div>
-                    </td>
-                    <td>2024-12-04</td>
-                    <td>2024-12-04</td>
-                    <td><div class="active">
-                        Published
-                    </div></td>
-                    <td>
-                        <a href="http://localhost:5000/owner/page/property/view">
-                            Info
-                        </a>
-                        <a href="http://localhost:5000/owner/page/property/edit">
-                            Edit
-                        </a>
-                        <button onclick="handlePropertyDelete(1)">Delete</button>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>
-                        <div class="property">
-                            <img src="/images/property1.jpg" alt="">
-                            <div class="title">Property One</div>
-                        </div>
-                    </td>
-                    <td>2024-12-04</td>
-                    <td>2024-12-04</td>
-                    <td><div class="warning">
-                        Action Needed
-                    </div></td>
-                    <td>
-                        <a href="http://localhost:5000/owner/page/property/solve">Solve</a>
+                <% if (propertiesData.length === 0) { %>
+                    <tr>
+                        <td colspan="6" class="span_row">
+                            You don't have any listings.
+                        </td>
+                    </tr>
+                <% } else { %>
+                    <% let i = 1 %>
+                    <% propertiesData.forEach((property) => { %>
+                        <% if (property.status === "published") { %>
+                            <tr>
+                                <td><%= i++ %></td>
+                                <td>
+                                    <div class="property">
+                                        <img src="<%= property.image %>" alt="">
+                                        <div class="title"><%= property.title %></div>
+                                    </div>
+                                </td>
+                                <td><%= property.reviewDate %></td>
+                                <td><%= property.publishedDate %></td>
+                                <td><div class="active">Published</div></td>
+                                <td>
+                                    <a href="http://localhost:5000/owner/page/property/view/<%= property.id %>">Info</a>
+                                    <a href="http://localhost:5000/owner/page/property/edit/<%= property.id %>">Edit</a>
+                                    <button onclick="handlePropertyDelete('<%= property.id %>')">Delete</button>
+                                </td>
+                            </tr>
+                        <% } else if (property.status === "pending") { %>
+                            <tr>
+                                <td><%= i++ %></td>
+                                <td>
+                                    <div class="property">
+                                        <img src="<%= property.image %>" alt="">
+                                        <div class="title"><%= property.title %></div>
+                                    </div>
+                                </td>
+                                <td><%= property.reviewDate %></td>
+                                <td><%= property.publishedDate %></td>
+                                <td><div class="pending">Pending</div></td>
+                                <td>-</td>
+                            </tr>
+                        <% } else if (property.status === "rejected") { %>
+                            <tr>
+                                <td><%= i++ %></td>
+                                <td>
+                                    <div class="property">
+                                        <img src="<%= property.image %>" alt="">
+                                        <div class="title"><%= property.title %></div>
+                                    </div>
+                                </td>
+                                <td><%= property.reviewDate %></td>
+                                <td><%= property.publishedDate %></td>
+                                <td><div class="warning">Action Needed</div></td>
+                                <td>
+                                    <a href="http://localhost:5000/owner/page/property/solve/<%= property.id %>">Solve</a>
+                                </td>
+                            </tr>
+                        <% } %>
+                    <% }) %>
+                <% } %>
 
-                </tr>
-                <tr>
-                    <td colspan="6" class="span_row">
-                        You dont have any listings.
-                    </td>
-                </tr>
             </tbody>
         </table>
     </div>

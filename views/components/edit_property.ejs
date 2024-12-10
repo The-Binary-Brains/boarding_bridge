@@ -12,6 +12,7 @@
                     placeholder="Property Name"
                     type="text"
                     name="name"
+                    value="<%= propertyData.name %>"
                     required
                 />
                 <label for="name"
@@ -19,14 +20,12 @@
                 >
             </div>
             <div class="input">
-                <select id="propertyType" name="propertyType" required>
-                    <option value="" disabled selected>
-                        Select your option
-                    </option>
-                    <option value="apartment">Apartment</option>
-                    <option value="house">House</option>
-                    <option value="studio">Studio</option>
-                    <option value="shared-room">Shared Room</option>
+                <select id="propertyType" name="propertyType">
+                    <option value="" disabled <%= !propertyData.propertyType ? "selected" : "" %>>Select your option</option>
+                    <option value="apartment" <%= propertyData.propertyType === 'apartment' ? "selected" : "" %>>Apartment</option>
+                    <option value="house" <%= propertyData.propertyType === 'house' ? "selected" : "" %>>House</option>
+                    <option value="studio" <%= propertyData.propertyType === 'studio' ? "selected" : "" %>>Studio</option>
+                    <option value="shared-room" <%= propertyData.propertyType === 'shared-room' ? "selected" : "" %>>Shared Room</option>
                 </select>
                 <label for="propertyType">Propery type</label>
             </div>
@@ -37,6 +36,7 @@
                     placeholder="Occupancy"
                     type="number"
                     name="occupancy"
+                    value="<%= propertyData.occupancy %>"
                     required
                 />
                 <label for="occupancy">Number of students accommodated</label>
@@ -51,6 +51,7 @@
                             name="furnishingType"
                             value="fully-furnished"
                             required
+                            <%= propertyData.furnishingType === 'fully-furnished' ? 'checked' : '' %>
                         />
                         <span>Fully Furnished</span>
                     </label>
@@ -59,6 +60,7 @@
                             type="radio"
                             name="furnishingType"
                             value="semi-furnished"
+                            <%= propertyData.furnishingType === 'semi-furnished' ? 'checked' : '' %>
                         />
                         <span>Semi-Furnished</span>
                     </label>
@@ -67,6 +69,7 @@
                             type="radio"
                             name="furnishingType"
                             value="none"
+                            <%= propertyData.furnishingType === 'none' ? 'checked' : '' %>
                         />
                         <span>None</span>
                     </label>
@@ -85,10 +88,11 @@
                             id="wifi"
                             name="amenities"
                             value="wifi"
+                            <% if (propertyData.amenities.includes("wifi")) { %> checked <% } %>
                         />
-                        <label for="wifi" class="checkbox-label"
-                            ><i class="fa-solid fa-wifi"></i>Wi-Fi</label
-                        >
+                        <label for="wifi" class="checkbox-label">
+                            <i class="fa-solid fa-wifi"></i>Wi-Fi
+                        </label>
                     </div>
                     <div class="amenities_check">
                         <input
@@ -96,11 +100,11 @@
                             id="kitchen"
                             name="amenities"
                             value="kitchen"
+                            <% if (propertyData.amenities.includes("kitchen")) { %> checked <% } %>
                         />
-                        <label for="kitchen" class="checkbox-label"
-                            ><i class="fa-solid fa-fire-burner"></i
-                            >Kitchen</label
-                        >
+                        <label for="kitchen" class="checkbox-label">
+                            <i class="fa-solid fa-fire-burner"></i>Kitchen
+                        </label>
                     </div>
                     <div class="amenities_check">
                         <input
@@ -108,11 +112,11 @@
                             id="bath"
                             name="amenities"
                             value="bath"
+                            <% if (propertyData.amenities.includes("bath")) { %> checked <% } %>
                         />
-                        <label for="bath" class="checkbox-label"
-                            ><i class="fa-solid fa-bath"></i>Attached
-                            bathrooms</label
-                        >
+                        <label for="bath" class="checkbox-label">
+                            <i class="fa-solid fa-bath"></i>Attached bathrooms
+                        </label>
                     </div>
                     <div class="amenities_check">
                         <input
@@ -120,11 +124,11 @@
                             id="food"
                             name="amenities"
                             value="food"
+                            <% if (propertyData.amenities.includes("food")) { %> checked <% } %>
                         />
-                        <label for="food" class="checkbox-label"
-                            ><i class="fa-solid fa-utensils"></i>Food
-                            arrangement</label
-                        >
+                        <label for="food" class="checkbox-label">
+                            <i class="fa-solid fa-utensils"></i>Food arrangement
+                        </label>
                     </div>
                     <div class="amenities_check">
                         <input
@@ -132,11 +136,11 @@
                             id="washingMachine"
                             name="amenities"
                             value="washingMachine"
+                            <% if (propertyData.amenities.includes("washingMachine")) { %> checked <% } %>
                         />
-                        <label for="washingMachine" class="checkbox-label"
-                            ><i class="fa-solid fa-shirt"></i>Washing
-                            machine</label
-                        >
+                        <label for="washingMachine" class="checkbox-label">
+                            <i class="fa-solid fa-shirt"></i>Washing machine
+                        </label>
                     </div>
                 </div>
             </div>
@@ -183,7 +187,7 @@
                     required
                     name="about"
                     maxlength="500"
-                ></textarea>
+                ><%= propertyData.about %></textarea>
                 <label for="about"
                     >Brief Description about your Property (max: 500 charactors)
                 </label>
@@ -196,6 +200,7 @@
                     placeholder="Email"
                     type="email"
                     name="email"
+                    value="<%= propertyData.email %>"
                     required
                 />
                 <label for="email"
@@ -210,6 +215,7 @@
                     pattern="^\+?[1-9]\d{1,14}$"
                     type="tel"
                     name="phone"
+                    value="<%= propertyData.phone %>"
                     required
                 />
                 <label for="phone"
