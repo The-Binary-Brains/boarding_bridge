@@ -163,6 +163,11 @@
                 overflow-y: auto;
                 height: 500px;
 
+                a {
+                    color: rgb(29, 29, 29);
+                    text-decoration: none;
+                }
+
                 .propert_loading {
                     background-color: rgb(255, 255, 255);
                     width: 100%;
@@ -203,7 +208,7 @@
 
                 &:hover {
                     color: white;
-                    background-color: rgb(176, 75, 75);
+                    background-color: #800000;
                 }
 
                 img {

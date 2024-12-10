@@ -1,29 +1,10 @@
 <div class="form_section">
-    <div class="form_title">Property Registration</div>
-    <div class="form_line"></div>
-    <div class="form_header form_padding">
-        <div class="form_sub_title">
-            Welcome to Boarding Bridge Property Registration
-        </div>
+    <div class="form_header ">
         <div class="form_info">
-            Before submitting your property for registration with Boarding
-            Bridge, please ensure that all provided information is comprehensive
-            and accurate. Our team will conduct a detailed review to confirm
-            property details, ensuring they align with the quality and safety
-            standards necessary for listing. Any discrepancies, inaccuracies, or
-            incomplete sections may delay the processing of your application or
-            result in its rejection. By submitting, you agree to comply with our
-            guidelines and support our commitment to offering a reliable and
-            secure experience for all guests on Boarding Bridge.<br /><br />
-            <b>*Note:</b> Listing your first property on Boarding Bridge is free
-            and includes the complete verification process. To maintain our
-            quality standards, adding additional properties will incur a listing
-            fee of RS: 1000 per property.
         </div>
     </div>
     <div class="form_container form_padding">
         <form id="registrationForm">
-            <div class="form_line"></div>
             <div class="form_sub_title">Property Details</div>
             <div class="input">
                 <input
@@ -31,6 +12,7 @@
                     placeholder="Property Name"
                     type="text"
                     name="name"
+                    value="<%= propertyData.name %>"
                     required
                 />
                 <label for="name"
@@ -38,36 +20,14 @@
                 >
             </div>
             <div class="input">
-                <select id="propertyType" name="propertyType" required>
-                    <option value="" disabled selected>
-                        Select your option
-                    </option>
-                    <option value="apartment">Apartment</option>
-                    <option value="house">House</option>
-                    <option value="studio">Studio</option>
-                    <option value="shared-room">Shared Room</option>
+                <select id="propertyType" name="propertyType">
+                    <option value="" disabled <%= !propertyData.propertyType ? "selected" : "" %>>Select your option</option>
+                    <option value="apartment" <%= propertyData.propertyType === 'apartment' ? "selected" : "" %>>Apartment</option>
+                    <option value="house" <%= propertyData.propertyType === 'house' ? "selected" : "" %>>House</option>
+                    <option value="studio" <%= propertyData.propertyType === 'studio' ? "selected" : "" %>>Studio</option>
+                    <option value="shared-room" <%= propertyData.propertyType === 'shared-room' ? "selected" : "" %>>Shared Room</option>
                 </select>
                 <label for="propertyType">Propery type</label>
-            </div>
-            <div class="input">
-                <input
-                    id="address"
-                    placeholder="Property Address"
-                    type="text"
-                    name="address"
-                    required
-                />
-                <label for="address">exact location of your property</label>
-            </div>
-            <div class="input">
-                <input
-                    id="location"
-                    placeholder="0.0000000, 0.0000000"
-                    type="text"
-                    name="location"
-                    required
-                />
-                <label for="location">latitude and longitude values copied from google maps</label>
             </div>
 
             <div class="input">
@@ -76,23 +36,13 @@
                     placeholder="Occupancy"
                     type="number"
                     name="occupancy"
+                    value="<%= propertyData.occupancy %>"
                     required
                 />
                 <label for="occupancy">Number of students accommodated</label>
             </div>
 
-            <div class="input">
-                <input
-                    id="distance"
-                    placeholder="Distance From the University (km)"
-                    type="number"
-                    name="distance"
-                    required
-                />
-                <label for="distance"
-                    >Approximate distance from the university
-                </label>
-            </div>
+
             <div class="input">
                 <div class="radio_group">
                     <label class="radio-option">
@@ -101,6 +51,7 @@
                             name="furnishingType"
                             value="fully-furnished"
                             required
+                            <%= propertyData.furnishingType === 'fully-furnished' ? 'checked' : '' %>
                         />
                         <span>Fully Furnished</span>
                     </label>
@@ -109,6 +60,7 @@
                             type="radio"
                             name="furnishingType"
                             value="semi-furnished"
+                            <%= propertyData.furnishingType === 'semi-furnished' ? 'checked' : '' %>
                         />
                         <span>Semi-Furnished</span>
                     </label>
@@ -117,6 +69,7 @@
                             type="radio"
                             name="furnishingType"
                             value="none"
+                            <%= propertyData.furnishingType === 'none' ? 'checked' : '' %>
                         />
                         <span>None</span>
                     </label>
@@ -135,10 +88,11 @@
                             id="wifi"
                             name="amenities"
                             value="wifi"
+                            <% if (propertyData.amenities.includes("wifi")) { %> checked <% } %>
                         />
-                        <label for="wifi" class="checkbox-label"
-                            ><i class="fa-solid fa-wifi"></i>Wi-Fi</label
-                        >
+                        <label for="wifi" class="checkbox-label">
+                            <i class="fa-solid fa-wifi"></i>Wi-Fi
+                        </label>
                     </div>
                     <div class="amenities_check">
                         <input
@@ -146,11 +100,11 @@
                             id="kitchen"
                             name="amenities"
                             value="kitchen"
+                            <% if (propertyData.amenities.includes("kitchen")) { %> checked <% } %>
                         />
-                        <label for="kitchen" class="checkbox-label"
-                            ><i class="fa-solid fa-fire-burner"></i
-                            >Kitchen</label
-                        >
+                        <label for="kitchen" class="checkbox-label">
+                            <i class="fa-solid fa-fire-burner"></i>Kitchen
+                        </label>
                     </div>
                     <div class="amenities_check">
                         <input
@@ -158,11 +112,11 @@
                             id="bath"
                             name="amenities"
                             value="bath"
+                            <% if (propertyData.amenities.includes("bath")) { %> checked <% } %>
                         />
-                        <label for="bath" class="checkbox-label"
-                            ><i class="fa-solid fa-bath"></i>Attached
-                            bathrooms</label
-                        >
+                        <label for="bath" class="checkbox-label">
+                            <i class="fa-solid fa-bath"></i>Attached bathrooms
+                        </label>
                     </div>
                     <div class="amenities_check">
                         <input
@@ -170,11 +124,11 @@
                             id="food"
                             name="amenities"
                             value="food"
+                            <% if (propertyData.amenities.includes("food")) { %> checked <% } %>
                         />
-                        <label for="food" class="checkbox-label"
-                            ><i class="fa-solid fa-utensils"></i>Food
-                            arrangement</label
-                        >
+                        <label for="food" class="checkbox-label">
+                            <i class="fa-solid fa-utensils"></i>Food arrangement
+                        </label>
                     </div>
                     <div class="amenities_check">
                         <input
@@ -182,11 +136,11 @@
                             id="washingMachine"
                             name="amenities"
                             value="washingMachine"
+                            <% if (propertyData.amenities.includes("washingMachine")) { %> checked <% } %>
                         />
-                        <label for="washingMachine" class="checkbox-label"
-                            ><i class="fa-solid fa-shirt"></i>Washing
-                            machine</label
-                        >
+                        <label for="washingMachine" class="checkbox-label">
+                            <i class="fa-solid fa-shirt"></i>Washing machine
+                        </label>
                     </div>
                 </div>
             </div>
@@ -233,7 +187,7 @@
                     required
                     name="about"
                     maxlength="500"
-                ></textarea>
+                ><%= propertyData.about %></textarea>
                 <label for="about"
                     >Brief Description about your Property (max: 500 charactors)
                 </label>
@@ -246,6 +200,7 @@
                     placeholder="Email"
                     type="email"
                     name="email"
+                    value="<%= propertyData.email %>"
                     required
                 />
                 <label for="email"
@@ -260,55 +215,12 @@
                     pattern="^\+?[1-9]\d{1,14}$"
                     type="tel"
                     name="phone"
+                    value="<%= propertyData.phone %>"
                     required
                 />
                 <label for="phone"
                     >Phone number that is used by the Boarding Bridge to contact
                     you</label
-                >
-            </div>
-            <div class="form_line"></div>
-            <div class="form_sub_title">Legal Information</div>
-            <div class="input">
-                <input
-                    id="leg_name"
-                    placeholder="Full Name of the Property Owner"
-                    name="legName"
-                    type="text"
-                    required
-                />
-                <label for="leg_name"
-                    >Name that is used in any of a legal Document (e.g., utility
-                    bill, bank statement)</label
-                >
-            </div>
-            <div class="input">
-                <div class="file_input">
-                    <input
-                        id="legal_doc"
-                        placeholder="Tax Bill/Municipal Bill/Utility Bill"
-                        type="file"
-                        accept=".pdf, .jpg, .jpeg, .png"
-                        name="legDocument"
-                        hidden
-                    />
-                    <input
-                        id="customDocFileName"
-                        type="text"
-                        placeholder="NIC/Driving License/Passport Document"
-                        readonly
-                        class="file_readonly"
-                    />
-                    <button type="button" class="file_button" id="docSelectBtn">
-                        Select File
-                    </button>
-                </div>
-                <label for="legal_doc"
-                    >Please upload a recent document (e.g., utility bill, bank
-                    statement) to verify your identity. This document should
-                    display your name and address clearly and must be dated
-                    within the last 3 months<br />Accepted file types: jpeg,
-                    png</label
                 >
             </div>
             <div class="input">
@@ -323,7 +235,7 @@
                 </div>
             </div>
             <div class="input">
-                <button id="submitBtn" type="submit">Submit for review</button>
+                <button id="submitBtn" type="submit">Update</button>
             </div>
         </form>
     </div>
@@ -331,4 +243,4 @@
         <div class="content" id="overlayContent"></div>
     </div>
 </div>
-<script src="/js/owner_property_reg.js"></script>
+<script src="/js/owner_property_edit.js"></script>

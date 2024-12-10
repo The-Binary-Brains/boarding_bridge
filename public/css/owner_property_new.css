@@ -60,7 +60,7 @@
             font-weight: 700;
             font-size: 22px;
             padding: 10px;
-            margin-block: 30px
+            margin-block: 30px;
         }
 
         #paymentCaptcha {
@@ -72,15 +72,12 @@
 
             input {
                 box-sizing: border-box;
-               padding: 20px;
-               font-size: 18px;
+                padding: 20px;
+                font-size: 18px;
                 width: 100%;
             }
 
-
-
             .button_container {
-
                 display: flex;
                 justify-content: space-between;
                 width: 100%;
@@ -98,8 +95,8 @@
 
                 button {
                     box-sizing: border-box;
-                   font-size: 18px;
-                    width:45%;
+                    font-size: 18px;
+                    width: 45%;
                     color: white;
                     background-color: #800000;
                     border: none;
@@ -110,8 +107,6 @@
                         color: white;
                         background-color: #480000;
                     }
-
-
                 }
             }
         }
@@ -174,6 +169,11 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+
+        .warning {
+            color: red;
+            margin-top: -50px;
+        }
     }
 
     .form_sub_title {
