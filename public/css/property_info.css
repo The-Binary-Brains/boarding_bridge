@@ -463,7 +463,7 @@ body {
         font-family: "poppins", sans-serif;
         box-shadow: 0px 0px 20px gray;
         padding: 20px;
-        height: 80%;
+        height: 65%;
         width: 40%;
         max-width: 1210px;
         position: relative;
@@ -496,10 +496,42 @@ body {
 
         .reserve-main {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            justify-content: center;
              
+            .date-btn{
+                background-color: #800000;
+                padding: 15px;
+                color: white;
+                font-size: 18px;
+                border: none;
+                outline: none;
+                border-radius: 5px;
+                margin-top: 40px;
+                display: flex;
+            }
         }
     }
+}
+
+input[type="date"]{
+    background-color: #800000;
+    padding: 15px;
+    color: white;
+    font-size: 18px;
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    margin-top: 40px;
+    display: flex;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator{
+    background-color: white;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 3px;
 }
 
 
