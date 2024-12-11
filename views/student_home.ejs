@@ -6,6 +6,7 @@
     <script src="https://kit.fontawesome.com/52121e5312.js" crossorigin="anonymous"></script>
     <title>Boarding Bridge - Home</title>
     <link rel="stylesheet" href="/css/student_home.css">
+    <link rel="icon" href="/images/favicon.png" type="image/icon type" />
 </head>
 <body>
     <div class="header">
@@ -13,7 +14,7 @@
             <img class="logo" src="/images/favicon.png" alt="logo" />
             <h1 class="logo_title">Boarding Bridge</h1>
         </div>
-        <button id="get_start_btn">Get Start</button>
+        <button id="get_start_btn">Profile</button>
     </div>
     <div class="hero">
         <span class="hero_title">
@@ -21,146 +22,159 @@
             Quality Accommodations"
         </span>
     </div>
-    <div class="filter">
-        <section class="search-bar">
-            <div class="input-group">
-                <input type="text" id="location" class="input-form" placeholder="All Locations">
-            </div>
-            <div class="input-group">
-                <input type="text" id="sort" class="input-form" placeholder="Price (Low To High)">
-            </div>
-            <button id="filterButton" class="btn">
-                <i class="fa-solid fa-filter"></i>
-                <span>Filters</span>
-            </button>
-            <button class="btn search-btn">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <span>Search</span>
-            </button>
-        </section>
-    </div>
-    <div id="filterPopup" class="popup">
-        <div class="popup-content">
-            <span class="close-btn" id="closePopup">&times;</span>
-            <h2>Filters</h2>
-            <hr>
-            <div class="filter-group">
-                <label>Type Of Place</label>
-                <div class="options">
-                    <div class="radio_group">
-                        <label class="radio-option">
-                            <input type="radio" name="anyType" value="any-type" required/>
-                            <span>Any type</span>
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="room" value="room" required/>
-                            <span>Room</span>
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="entireHouse" value="entire-house" required/>
-                            <span>Entire House</span>
-                        </label>
-                    </div>
+    <form id="filterForm">
+        <div class="filter">
+            <section class="search-bar">
+                <div class="input-group">
+                    <input type="text" id="location" class="input-form" name="location" placeholder="All Locations" />
                 </div>
-            </div>
-            <hr>
-            <div class="filter-group">
-                <h1>Price Range (Rs)</h1>
-                <p>Monthly rental fee</p>
-                <div class="price-slider">
-                    <div class="slider-container">
-                        <input type="range" min="10000" max="50000" value="15000" id="minSlider" step="1000">
-                        <input type="range" min="10000" max="50000" value="40000" id="maxSlider" step="1000">
-                    </div>
-                    <div class="price-range">
-                        <div class="min">
-                            <h1>Minimum</h1>
-                            <p id="minValue">15,000</p>
-                        </div>
-                        <div class="max">
-                            <h1>Maximum</h1>
-                            <p id="maxValue">40,000</p>
-                        </div>
-                    </div>
+                <div class="input-group">
+                    <select name="sort" id="sort" class="input-form">
+                        <option value="lowToHigh" selected>Price (Low To High)</option>
+                        <option value="highToLow">Price (High To Low)</option>
+                        <option value="nearest">Nearest to Campus</option>
+                        <option value="furthest">Furthest from Campus</option>
+                        <option value="mostViewed">Most Viewed</option>
+                    </select>
                 </div>
-            </div>
-            <hr>
-            <div class="filter-group">
-                <h1>Amenities</h1>
-                <div class="amenities">
-                    <div class="amenities_checks">
-                        <div class="amenities_check">
-                            <input
-                                type="checkbox"
-                                id="wifi"
-                                name="amenities"
-                                value="wifi"
-                            />
-                            <label for="wifi" class="checkbox-label"
-                                ><i class="fa-solid fa-wifi"></i>Wi-Fi</label
-                            >
-                        </div>
-                        <div class="amenities_check">
-                            <input
-                                type="checkbox"
-                                id="kitchen"
-                                name="amenities"
-                                value="kitchen"
-                            />
-                            <label for="kitchen" class="checkbox-label"
-                                ><i class="fa-solid fa-fire-burner"></i
-                                >Kitchen</label
-                            >
-                        </div>
-                        <div class="amenities_check">
-                            <input
-                                type="checkbox"
-                                id="bath"
-                                name="amenities"
-                                value="bath"
-                            />
-                            <label for="bath" class="checkbox-label"
-                                ><i class="fa-solid fa-bath"></i>Attached
-                                bathrooms</label
-                            >
-                        </div>
-                        <div class="amenities_check">
-                            <input
-                                type="checkbox"
-                                id="food"
-                                name="amenities"
-                                value="food"
-                            />
-                            <label for="food" class="checkbox-label"
-                                ><i class="fa-solid fa-utensils"></i>Food
-                                arrangement</label
-                            >
-                        </div>
-                        <div class="amenities_check">
-                            <input
-                                type="checkbox"
-                                id="washingMachine"
-                                name="amenities"
-                                value="washingMachine"
-                            />
-                            <label for="washingMachine" class="checkbox-label"
-                                ><i class="fa-solid fa-shirt"></i>Washing
-                                machine</label
-                            >
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="popup-bottom">
-                <button id="close" type="button" class="close">
-                    <p>Clear All</p>
+                <button type="button" id="filterButton" class="btn">
+                    <i class="fa-solid fa-filter"></i>
+                    <p>Filters</p>
                 </button>
-                <button id="submit" type="button" class="submit">
-                    <p>Apply Filters</p>
+                <button type="submit" class="btn search-btn">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <p>Search</p>
                 </button>
+            </section>
+        </div>
+        <div id="filterPopup" class="popup">
+            <div class="popup-content">
+                <span class="close-btn" id="closePopup">&times;</span>
+                <h2>Filters</h2>
+                <hr>
+
+                <div class="filter-group">
+                    <h1>Type</h1>
+                    <div class="amenities">
+                        <div class="checks">
+                            <div class="check">
+                                <input
+                                    type="checkbox"
+                                    id="type-apartment"
+                                    name="type"
+                                    value="apartment"
+                                />
+                                <label for="type-apartment" class="checkbox-label"
+                                    >Apartment</label
+                                >
+                            </div>
+                            <div class="check">
+                                <input
+                                    type="checkbox"
+                                    id="type-house"
+                                    name="type"
+                                    value="house"
+                                />
+                                <label for="type-house" class="checkbox-label"
+                                    >House</label
+                                >
+                            </div>
+                            <div class="check">
+                                <input
+                                    type="checkbox"
+                                    id="type-sharedRoom"
+                                    name="type"
+                                    value="sharedRoom"
+                                />
+                                <label for="type-sharedRoom" class="checkbox-label"
+                                    >Shared Room</label
+                                >
+                            </div>
+                            <div class="check">
+                                <input
+                                    type="checkbox"
+                                    id="type-studio"
+                                    name="type"
+                                    value="studio"
+                                />
+                                <label for="type-studio" class="checkbox-label"
+                                    >Studio</label
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="filter-group">
+                    <h1>Price Range (Rs)</h1>
+                    <p>Monthly rental fee</p>
+                    <div class="price-slider">
+                        <div class="slider-container">
+                            <input type="range" min="10000" max="50000" value="10000" id="minSlider" name="minPrice" step="1000" />
+                            <input type="range" min="10000" max="50000" value="50000" id="maxSlider" name="maxPrice" step="1000" />
+                        </div>
+                        <div class="price-range">
+                            <div class="min">
+                                <h1>Minimum</h1>
+                                <p id="minValue">15,000</p>
+                            </div>
+                            <div class="max">
+                                <h1>Maximum</h1>
+                                <p id="maxValue">40,000</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="filter-group">
+                    <h1>Amenities</h1>
+                    <div class="amenities">
+                        <div class="checks">
+                            <div class="check">
+                                <input type="checkbox" id="wifi" name="amenities" value="wifi" />
+                                <label for="wifi" class="checkbox-label">
+                                    <i class="fa-solid fa-wifi"></i>Wi-Fi
+                                </label>
+                            </div>
+                            <div class="check">
+                                <input type="checkbox" id="kitchen" name="amenities" value="kitchen" />
+                                <label for="kitchen" class="checkbox-label">
+                                    <i class="fa-solid fa-fire-burner"></i>Kitchen
+                                </label>
+                            </div>
+                            <div class="check">
+                                <input type="checkbox" id="bath" name="amenities" value="bath" />
+                                <label for="bath" class="checkbox-label">
+                                    <i class="fa-solid fa-bath"></i>Attached bathrooms
+                                </label>
+                            </div>
+                            <div class="check">
+                                <input type="checkbox" id="food" name="amenities" value="food" />
+                                <label for="food" class="checkbox-label">
+                                    <i class="fa-solid fa-utensils"></i>Food arrangement
+                                </label>
+                            </div>
+                            <div class="check">
+                                <input type="checkbox" id="washingMachine" name="amenities" value="washingMachine" />
+                                <label for="washingMachine" class="checkbox-label">
+                                    <i class="fa-solid fa-shirt"></i>Washing machine
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup-bottom">
+                    <button type="reset" class="btn clear-btn">
+                        Clear All
+                    </button>
+                    <button type="submit" class="btn submit-btn">
+                        Apply and Search
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
+
 
 
     <div class="disclaimer">
@@ -181,17 +195,20 @@
         <h2>Available Accommodations</h2>
         <div class="cards-container">
             <!-- Placeholder card: Dynamic content will replace this -->
-            <div class="card">
-                <img src="https://via.placeholder.com/300x200" alt="Property Image">
-                <div class="card-content">
-                    <h3>Mirihana, Sri Lanka</h3>
-                    <p>Hosted by John Doe</p>
-                    <p>Rs: 20,000 / Month</p>
-                </div>
-            </div>
+            <% accommodationData.forEach((accommodation) => { %>
+                <a class="card" href="http://localhost:5000/student/page/accommodation/<%= accommodation.id%>">
+                    <img src="<%= accommodation.image %>" alt="Property Image">
+                    <div class="card-content">
+                        <h3><%= accommodation.type %></h3>
+                        <p>Hosted by <%= accommodation.owner %></p>
+                        <p>Rs: <%= accommodation.price %> / Month</p>
+                    </div>
+                </a>
+            <% }); %>
+
+
             <!-- More dynamically generated cards will appear here -->
         </div>
-        <button class="load-more-btn">Load more</button>
     </section>
 
     <footer>

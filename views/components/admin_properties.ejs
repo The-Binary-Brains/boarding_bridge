@@ -1,0 +1,85 @@
+<div class="listings">
+    <div class="header">
+        <div class="container_title">All Properties</div>
+    </div>
+    <div class="container_line"></div>
+    <div class="table_container">
+        <table>
+            <colgroup>
+                <col />
+                <col />
+                <col />
+                <col />
+                <col />
+                <col />
+            </colgroup>
+
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Property</th>
+                    <th>owner</th>
+                    <th>Contact</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (reservationData.length === 0) { %>
+                <tr>
+                    <td colspan="6">No reservations available.</td>
+                </tr>
+            <% } else { %>
+                <% reservationData.forEach((reservation, index) => { %>
+                    <tr>
+                        <td><%= index + 1 %></td>
+                        <td>
+                            <div class="property">
+                                <img src="<%= reservation.property.image %>" alt="Property Image" />
+                                <div class="title">
+                                    <%= reservation.property.title %>
+                                </div>
+                            </div>
+                        </td>
+                        <td><%= reservation.owner %></td>
+                        <td><%= reservation.contact %></td>
+                        <td>
+                            <% if (reservation.status === "confirmed") { %>
+                                <div class="active">Confirmed</div>
+                            <% } else if (reservation.status === "pending") { %>
+                                <div class="pending">Pending</div>
+                            <% } else if (reservation.status === "cancelled") { %>
+                                <div class="warning">Cancelled</div>
+                            <% } %>
+                        </td>
+                        <td>
+                            <a href="http://localhost:5000/owner/page/reservations/view/<%= reservation.id %>">Info</a>
+                            <button onclick='handleReservationCancel("<%= reservation.id %>")'>Remove</button>
+                        </td>
+                    </tr>
+                <% }); %>
+            <% } %>
+            </tbody>
+        </table>
+    </div>
+    <div class="overlay" id="overlay">
+        <div class="content" id="overlayContent">
+            <div class="title">
+                Are you Sure?
+            </div>
+            <div class="warning">
+                This can't be undone.
+            </div>
+            <div class="button_container">
+                <button class="closeBtn"  id="closeBtn">
+                    Go Back
+                </button>
+                <button class="deleteBtn" id="deleteBtn">
+                    Cancel Reservation
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/owner_reservation.js"></script>
