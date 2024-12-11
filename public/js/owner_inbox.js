@@ -19,12 +19,31 @@ Cancel
 
 // ! Event Handlers
 
-const deleteNotification = () => {
+const deleteNotification = async (id) => {
+
     overlayContentHTML.innerHTML = loadingHTML;
 
-    setTimeout(() => {
+    try {
+
+        const response = await fetch(
+            `http://localhost:5000/owner/api/inbox/delete/${id}`,
+            {
+                method: "POST",
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json();
+        console.log("Notification deleted successfully:", result);
         overlayContentHTML.innerHTML = deleteSuccess;
-    }, 2000);
+    } catch (error) {
+        console.error("Error deleted notification:", error);
+        overlayContentHTML.innerHTML = deleteFailed;
+    }
+
 };
 
 
@@ -46,8 +65,8 @@ const handleNotificationDelete = (id) => {
 
     console.log(id)
     openOverlay()
-    document.getElementById("deleteBtn").addEventListener("click", deleteNotification)
     document.getElementById("closeBtn").addEventListener("click", closeOverlay)
+    document.getElementById("deleteBtn").addEventListener("click",  () => deleteNotification(id))
 };
 
 // ! Event Listners

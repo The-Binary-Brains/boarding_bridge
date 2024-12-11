@@ -5,6 +5,8 @@ import path from "path";
 import adminAPi from "./backend/routes/apis/adminApis.js";
 import ownerApi from "./backend/routes/apis/ownerApis.js";
 import ownerView from "./backend/routes/views/owner/ownerViews.js";
+import studentApi from "./backend/routes/apis/studentApis.js";
+import studentView from "./backend/routes/views/student/studentViews.js";
 import { ConnetToSQLServer } from "./backend/database.js";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
@@ -27,6 +29,9 @@ app.use("/admin/api", adminAPi);
 
 app.use("/owner/api", ownerApi);
 app.use("/owner/page", ownerView);
+
+app.use("/student/api", studentApi);
+app.use("/student/page", studentView);
 
 app.use("/", (req, res) => {
     res.render("index");

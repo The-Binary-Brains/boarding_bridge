@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/login.css" />
-    <link rel="icon" href="./images/favicon.png" type="image/icon type" />
+    <link rel="stylesheet" href="/css/login.css" />
+    <link rel="icon" href="/images/favicon.png" type="image/icon type" />
     <title>Student Login</title>
 </head>
 <body>
@@ -21,8 +21,9 @@
                 University to access and use the system and services offered by Boarding Bridge.
             </div>
         </div>
+        <div id="error" class="error">Wrong Credentitals</div>
         <div class="form_container form_padding">
-            <form id="registrationForm">
+            <form id="loginForm">
                 <div class="input">
                     <input
                         id="userName"
@@ -32,7 +33,7 @@
                         required
                     />
                     <label for="userName"
-                        >User name is used for login process</label
+                        >Enter your username</label
                     >
                 </div>
                 <div class="input">
@@ -44,7 +45,7 @@
                         required
                     />
                     <label for="password" id="password_label"
-                        >Please provide a strong password</label
+                        >Enter your passwod</label
                     >
                 </div>
                 <div class="input">
@@ -53,7 +54,7 @@
                 <div class="form_line"></div>
                 <p class="post-note">
                     Forgot password? <a href="#"><i>Reset Password</i></a><br>
-                    Don't have an account? <a href="Student_Registration.html"><i>Create an account</i></a>
+                    Don't have an account? <a href="http://localhost:5000/student/page/register"><i>Create an account</i></a>
                 </p>
             </form>
         </div>
@@ -76,5 +77,52 @@
             <span class="rights">© 2024 BoardingBridge. All rights reserved.</span>
         </div>
     </footer>
+
 </body>
+<script>
+    const loginForm = document.getElementById("loginForm");
+    const error = document.getElementById("error");
+
+    const handleUserFormSubmission = async (event) => {
+
+        event.preventDefault();
+
+        const formData = new FormData(loginForm);
+
+        try {
+            const formDataObj = Object.fromEntries(formData.entries());
+            const jsonFormData = JSON.stringify(formDataObj);
+
+            const response = await fetch(
+                `http://localhost:5000/student/api/login`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: jsonFormData,
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            console.log("login success:", result);
+            if (result == "success") {
+
+            }else {
+                error.style.display = "block"
+            }
+
+        } catch (error) {
+            console.error("Error editing property:", error);
+            error.style.display = "block"
+            error.style.innerText = "Something went wrong!"
+        }
+    };
+
+    loginForm.addEventListener("submit", handleUserFormSubmission);
+    </script>
 </html>
