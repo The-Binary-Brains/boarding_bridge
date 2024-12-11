@@ -27,15 +27,21 @@
                 <input type="text" id="location" class="input-form" placeholder="All Locations">
             </div>
             <div class="input-group">
-                <input type="text" id="sort" class="input-form" placeholder="Price (Low To High)">
+                <select id="sort" class="input-form">
+                    <option value="lowToHigh" selected>Price (Low To High)</option>
+                    <option value="highToLow">Price (High To Low)</option>
+                    <option value="nearest">Nearest to Campus</option>
+                    <option value="furthest">Furthest from Campus</option>
+                    <option value="mostViewed">Most Viewed</option>
+                </select>
             </div>
             <button id="filterButton" class="btn">
                 <i class="fa-solid fa-filter"></i>
-                <span>Filters</span>
+                <p>Filters</p>
             </button>
             <button class="btn search-btn">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <span>Search</span>
+                <p>search</p>
             </button>
         </section>
     </div>
