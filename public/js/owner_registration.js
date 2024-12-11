@@ -62,7 +62,7 @@ const loadingHTML = `
 
 const paymentSuccess = `Payment success! <br> Finishing up registration... <br>`;
 
-const registrationSuccess = `Payment success! <br> Registeration compleate! <br> You will be redirected to the login page..`;
+const registrationSuccess = `Payment success! <br> Registeration compleate! <br> You will be redirected to the login page shortly..`;
 
 let pwvalid = false;
 let pwcvalid = false;
@@ -159,7 +159,7 @@ const handlePaymet = async (e) => {
 
         setTimeout(() => {
             window.location.href = "http://localhost:5000/owner/page/login";
-        }, 2000);
+        }, 5000);
     } catch (error) {
         overlayContentHTML.innerHTML =
             "Error submitting data, please try again.";
@@ -186,8 +186,6 @@ const handleFormSubmission = async (event) => {
     document
         .getElementById("paymentCaptcha")
         .addEventListener("submit", handlePaymet);
-
-    alert("Form submitted successfully!");
 };
 
 const triggerPhotoInput = () => {

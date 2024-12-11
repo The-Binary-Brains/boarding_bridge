@@ -12,6 +12,18 @@ const passwordInput = document.getElementById("password");
 const confirmPasswordLabel = document.getElementById("confirm_password_label");
 const confirmPasswordInput = document.getElementById("confirmPassword");
 
+const overlay = document.getElementById("overlay");
+const overlayContentHTML = document.getElementById("overlayContent");
+
+const loadingHTML = `
+<div class="loading" id="loading">
+<div class="spinner"></div>
+<div class="loading-text" id="loadingText">Please Wait...</div>
+</div>
+`;
+
+const registrationSuccess = ` Registeration compleate! <br> You will be redirected to the login page shortly..`;
+
 // ! Event handlers
 const validateForm = () => {
     const termsCheckbox = document.getElementById("terms");
@@ -32,16 +44,45 @@ const validateForm = () => {
     return true;
 };
 
-const handleFormSubmission = (event) => {
+const handleFormSubmission = async (event) => {
     event.preventDefault();
 
     if (!validateForm()) return;
 
-    const formData = new FormData(document.getElementById("registrationForm"));
-    formData.forEach((value, key) => {
-        console.log(key + ": " + value);
-    });
-    alert("Form submitted successfully!");
+    overlay.style.display = "flex";
+    document.body.style.overflow = "hidden";
+    overlayContentHTML.innerHTML = loadingHTML;
+
+    const formElement = document.getElementById("registrationForm");
+    const formData = new FormData(formElement);
+
+    const formJSON = Object.fromEntries(formData.entries());
+
+    try {
+        const response = await fetch(
+            `http://localhost:5000/student/api/register`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formJSON),
+            }
+        );
+
+        const result = await response.json();
+        console.log(result);
+
+        overlayContentHTML.innerHTML = registrationSuccess;
+
+        setTimeout(() => {
+            window.location.href = "http://localhost:5000/student/page/login";
+        }, 5000);
+    } catch (error) {
+        overlayContentHTML.innerHTML =
+            "Error submitting data, please try again.";
+        console.error("Error:", error);
+    }
 };
 
 // ! Event Listners
