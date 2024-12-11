@@ -21,8 +21,9 @@
                 Boarding Bridge to access and manage listings through this system.
             </div>
         </div>
+        <div id="error" class="error">Wrong Credentitals</div>
         <div class="form_container form_padding">
-            <form id="registrationForm">
+            <form id="loginForm">
                 <div class="input">
                     <input
                         id="userName"
@@ -77,4 +78,50 @@
         </div>
     </footer>
 </body>
+<script>
+const loginForm = document.getElementById("loginForm");
+const error = document.getElementById("error");
+
+const handleUserFormSubmission = async (event) => {
+
+    event.preventDefault();
+
+    const formData = new FormData(loginForm);
+
+    try {
+        const formDataObj = Object.fromEntries(formData.entries());
+        const jsonFormData = JSON.stringify(formDataObj);
+
+        const response = await fetch(
+            `http://localhost:5000/owner/api/login`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: jsonFormData,
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json();
+        console.log("login success:", result);
+        if (result == "success") {
+
+        }else {
+            error.style.display = "block"
+        }
+
+    } catch (error) {
+        console.error("Error editing property:", error);
+        error.style.display = "block"
+        error.style.innerText = "Something went wrong!"
+    }
+};
+
+loginForm.addEventListener("submit", handleUserFormSubmission);
+</script>
 </html>

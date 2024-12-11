@@ -42,6 +42,15 @@ html {
         padding: 50px;
     }
 
+    .error{
+        width: 85%;
+        text-align: center;
+        padding: 10px;
+        background-color: rgb(255, 70, 70);
+        color: white;
+        display: none;
+    }
+
     .form_line {
         height: 1px;
         width: 100%;

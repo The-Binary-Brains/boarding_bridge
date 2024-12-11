@@ -24,12 +24,29 @@ Cancel
 </button>`;
 
 
-const cancelReservation = () => {
+const cancelReservation = async (id) => {
     overlayContentHTML.innerHTML = loadingHTML;
 
-    setTimeout(() => {
+    try {
+
+        const response = await fetch(
+            `http://localhost:5000/owner/api/reservation/cancel/${id}`,
+            {
+                method: "POST",
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json();
+        console.log("Reservation canceled successfully:", result);
         overlayContentHTML.innerHTML = deleteSuccess;
-    }, 2000);
+    } catch (error) {
+        console.error("Error canceled reservation:", error);
+        overlayContentHTML.innerHTML = deleteFailed;
+    }
 };
 
 
@@ -51,7 +68,7 @@ const handleReservationCancel = (id) => {
 
     console.log(id)
     openOverlay()
-    document.getElementById("deleteBtn").addEventListener("click", cancelReservation)
+    document.getElementById("deleteBtn").addEventListener("click", () => cancelReservation(id))
     document.getElementById("closeBtn").addEventListener("click", closeOverlay)
 };
 

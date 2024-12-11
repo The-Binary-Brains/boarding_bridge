@@ -16,6 +16,54 @@ const passwordInput = document.getElementById("password");
 const confirmPasswordLabel = document.getElementById("confirm_password_label");
 const confirmPasswordInput = document.getElementById("confirmPassword");
 
+const overlay = document.getElementById("overlay");
+const overlayContentHTML = document.getElementById("overlayContent");
+
+const paymetGetaway = `
+<div class="payment_getaway">
+                <div class="container_title">Payment Getaway</div>
+                <div class="container_line"></div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Name:</td>
+                            <td>Jhon Doe</td>
+                        </tr>
+                        <tr>
+                            <td>Payment ID:</td>
+                            <td>PY51568613864</td>
+                        </tr>
+                        <tr>
+                            <td>Amount:</td>
+                            <td>Rs: 1000</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="container_line"></div>
+                <div class="info">Enter the CAPTCHA before submit</div>
+                <div class="captcha">^5wd46@#</div>
+                <form id="paymentCaptcha">
+                    <input type="text" required />
+                    <div class="container_line"></div>
+                    <div class="button_container">
+                        <button id="cancelPaymentBtn" type="button">Cancel</button>
+                        <button type="submit">Pay</button>
+                    </div>
+                </form>
+            </div>
+`;
+
+const loadingHTML = `
+<div class="loading" id="loading">
+<div class="spinner"></div>
+<div class="loading-text" id="loadingText">Payment Processing...</div>
+</div>
+`;
+
+const paymentSuccess = `Payment success! <br> Finishing up registration... <br>`;
+
+const registrationSuccess = `Payment success! <br> Registeration compleate! <br> You will be redirected to the login page..`;
+
 let pwvalid = false;
 let pwcvalid = false;
 
@@ -79,15 +127,66 @@ const validateForm = () => {
     return true;
 };
 
-const handleFormSubmission = (event) => {
+
+const handlePaymet = async (e) => {
+    e.preventDefault();
+
+    overlayContentHTML.innerHTML = loadingHTML;
+
+    const loadingText = document.getElementById("loadingText");
+
+
+    loadingText.innerHTML = paymentSuccess;
+
+    const formData = new FormData(document.getElementById("registrationForm"));
+
+    try {
+        const response = await fetch(
+            `http://localhost:5000/owner/api/register`,
+            {
+                method: "POST",
+                body: formData,
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+
+        const data = await response.json();
+
+        overlayContentHTML.innerHTML = registrationSuccess;
+
+        setTimeout(() => {
+            window.location.href = "http://localhost:5000/owner/page/login";
+        }, 2000);
+    } catch (error) {
+        overlayContentHTML.innerHTML =
+            "Error submitting data, please try again.";
+        console.error("Error:", error);
+    }
+};
+
+const handleFormSubmission = async (event) => {
     event.preventDefault();
 
     if (!validateForm()) return;
 
-    const formData = new FormData(document.getElementById("registrationForm"));
-    formData.forEach((value, key) => {
-        console.log(key + ": " + value);
-    });
+    overlay.style.display = "flex";
+    document.body.style.overflow = "hidden";
+    overlayContentHTML.innerHTML = paymetGetaway;
+
+    document
+        .getElementById("cancelPaymentBtn")
+        .addEventListener("click", () => {
+            overlay.style.display = "none";
+            document.body.style.overflow = "";
+        });
+
+    document
+        .getElementById("paymentCaptcha")
+        .addEventListener("submit", handlePaymet);
+
     alert("Form submitted successfully!");
 };
 
