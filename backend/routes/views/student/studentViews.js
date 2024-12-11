@@ -1,5 +1,7 @@
 import express from "express";
 
+import { getAvailableAccommodation, getAccommodationByID  } from "../../controllers/studentController.js";
+
 const studentView = express.Router();
 
 
@@ -11,12 +13,10 @@ studentView.get("/register", (req, res) => {
     res.render("student_reg");
 });
 
-studentView.get("/property/:id", async (req, res) => {
+studentView.get("/accommodation/:id", async (req, res) => {
     try {
-        const analysisData = await getAnalisys();
-        const notificationData = await getNotificationsTable();
-
-        res.render("owner_boilerplate", { page: "dashboard", analisys: analysisData, notificationData: notificationData });
+        const accommodationData = await getAccommodationByID();
+        res.render("property_info", { accommodationData: accommodationData });
     } catch (error) {
         console.error("Error fetching analysis data:", error);
         res.status(500).send("Error fetching dashboard data.");
@@ -24,15 +24,8 @@ studentView.get("/property/:id", async (req, res) => {
 });
 
 studentView.get("/home", async (req, res) => {
-    try {
-        const analysisData = await getAnalisys();
-        const notificationData = await getNotificationsTable();
-
-        res.render("owner_boilerplate", { page: "dashboard", analisys: analysisData, notificationData: notificationData });
-    } catch (error) {
-        console.error("Error fetching analysis data:", error);
-        res.status(500).send("Error fetching dashboard data.");
-    }
+    const accommodationData = await getAvailableAccommodation();
+        res.render("student_home", {accommodationData: accommodationData});
 });
 
 

@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import path from "path";
 import adminAPi from "./backend/routes/apis/adminApis.js";
+import adminView from "./backend/routes/views/admin/adminViews.js";
 import ownerApi from "./backend/routes/apis/ownerApis.js";
 import ownerView from "./backend/routes/views/owner/ownerViews.js";
 import studentApi from "./backend/routes/apis/studentApis.js";
@@ -25,7 +26,7 @@ app.use(express.static("public"));
 dotenv.config();
 
 app.use("/admin/api", adminAPi);
-//app.use("/admin/page", adminView);
+app.use("/admin/page", adminView);
 
 app.use("/owner/api", ownerApi);
 app.use("/owner/page", ownerView);

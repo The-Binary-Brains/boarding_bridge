@@ -5,15 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/52121e5312.js" crossorigin="anonymous"></script>
     <title>Boarding Bridge - Home</title>
-    <link rel="stylesheet" href="./css/student_home.css">
+    <link rel="stylesheet" href="/css/student_home.css">
+    <link rel="icon" href="/images/favicon.png" type="image/icon type" />
 </head>
 <body>
     <div class="header">
         <div class="logo_container">
-            <img class="logo" src="./images/favicon.png" alt="logo" />
+            <img class="logo" src="/images/favicon.png" alt="logo" />
             <h1 class="logo_title">Boarding Bridge</h1>
         </div>
-        <button id="get_start_btn">Get Start</button>
+        <button id="get_start_btn">Profile</button>
     </div>
     <div class="hero">
         <span class="hero_title">
@@ -21,7 +22,7 @@
             Quality Accommodations"
         </span>
     </div>
-    <form action="/search-results" method="GET">
+    <form id="filterForm">
         <div class="filter">
             <section class="search-bar">
                 <div class="input-group">
@@ -51,22 +52,55 @@
                 <span class="close-btn" id="closePopup">&times;</span>
                 <h2>Filters</h2>
                 <hr>
+
                 <div class="filter-group">
-                    <label>Type Of Place</label>
-                    <div class="options">
-                        <div class="radio_group">
-                            <label class="radio-option">
-                                <input type="radio" name="typeOfPlace" value="any-type" />
-                                <span>Any type</span>
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="typeOfPlace" value="room" />
-                                <span>Room</span>
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="typeOfPlace" value="entire-house" />
-                                <span>Entire House</span>
-                            </label>
+                    <h1>Type</h1>
+                    <div class="amenities">
+                        <div class="checks">
+                            <div class="check">
+                                <input
+                                    type="checkbox"
+                                    id="type-apartment"
+                                    name="type"
+                                    value="apartment"
+                                />
+                                <label for="type-apartment" class="checkbox-label"
+                                    >Apartment</label
+                                >
+                            </div>
+                            <div class="check">
+                                <input
+                                    type="checkbox"
+                                    id="type-house"
+                                    name="type"
+                                    value="house"
+                                />
+                                <label for="type-house" class="checkbox-label"
+                                    >House</label
+                                >
+                            </div>
+                            <div class="check">
+                                <input
+                                    type="checkbox"
+                                    id="type-sharedRoom"
+                                    name="type"
+                                    value="sharedRoom"
+                                />
+                                <label for="type-sharedRoom" class="checkbox-label"
+                                    >Shared Room</label
+                                >
+                            </div>
+                            <div class="check">
+                                <input
+                                    type="checkbox"
+                                    id="type-studio"
+                                    name="type"
+                                    value="studio"
+                                />
+                                <label for="type-studio" class="checkbox-label"
+                                    >Studio</label
+                                >
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -76,8 +110,8 @@
                     <p>Monthly rental fee</p>
                     <div class="price-slider">
                         <div class="slider-container">
-                            <input type="range" min="10000" max="50000" value="15000" id="minSlider" name="minPrice" step="1000" />
-                            <input type="range" min="10000" max="50000" value="40000" id="maxSlider" name="maxPrice" step="1000" />
+                            <input type="range" min="10000" max="50000" value="10000" id="minSlider" name="minPrice" step="1000" />
+                            <input type="range" min="10000" max="50000" value="50000" id="maxSlider" name="maxPrice" step="1000" />
                         </div>
                         <div class="price-range">
                             <div class="min">
@@ -95,32 +129,32 @@
                 <div class="filter-group">
                     <h1>Amenities</h1>
                     <div class="amenities">
-                        <div class="amenities_checks">
-                            <div class="amenities_check">
+                        <div class="checks">
+                            <div class="check">
                                 <input type="checkbox" id="wifi" name="amenities" value="wifi" />
                                 <label for="wifi" class="checkbox-label">
                                     <i class="fa-solid fa-wifi"></i>Wi-Fi
                                 </label>
                             </div>
-                            <div class="amenities_check">
+                            <div class="check">
                                 <input type="checkbox" id="kitchen" name="amenities" value="kitchen" />
                                 <label for="kitchen" class="checkbox-label">
                                     <i class="fa-solid fa-fire-burner"></i>Kitchen
                                 </label>
                             </div>
-                            <div class="amenities_check">
+                            <div class="check">
                                 <input type="checkbox" id="bath" name="amenities" value="bath" />
                                 <label for="bath" class="checkbox-label">
                                     <i class="fa-solid fa-bath"></i>Attached bathrooms
                                 </label>
                             </div>
-                            <div class="amenities_check">
+                            <div class="check">
                                 <input type="checkbox" id="food" name="amenities" value="food" />
                                 <label for="food" class="checkbox-label">
                                     <i class="fa-solid fa-utensils"></i>Food arrangement
                                 </label>
                             </div>
-                            <div class="amenities_check">
+                            <div class="check">
                                 <input type="checkbox" id="washingMachine" name="amenities" value="washingMachine" />
                                 <label for="washingMachine" class="checkbox-label">
                                     <i class="fa-solid fa-shirt"></i>Washing machine
@@ -134,12 +168,14 @@
                         Clear All
                     </button>
                     <button type="submit" class="btn submit-btn">
-                        Apply Filters
+                        Apply and Search
                     </button>
                 </div>
             </div>
         </div>
     </form>
+
+
 
     <div class="disclaimer">
         <p>
@@ -159,17 +195,20 @@
         <h2>Available Accommodations</h2>
         <div class="cards-container">
             <!-- Placeholder card: Dynamic content will replace this -->
-            <div class="card">
-                <img src="https://via.placeholder.com/300x200" alt="Property Image">
-                <div class="card-content">
-                    <h3>Mirihana, Sri Lanka</h3>
-                    <p>Hosted by John Doe</p>
-                    <p>Rs: 20,000 / Month</p>
-                </div>
-            </div>
+            <% accommodationData.forEach((accommodation) => { %>
+                <a class="card" href="http://localhost:5000/student/page/accommodation/<%= accommodation.id%>">
+                    <img src="<%= accommodation.image %>" alt="Property Image">
+                    <div class="card-content">
+                        <h3><%= accommodation.type %></h3>
+                        <p>Hosted by <%= accommodation.owner %></p>
+                        <p>Rs: <%= accommodation.price %> / Month</p>
+                    </div>
+                </a>
+            <% }); %>
+
+
             <!-- More dynamically generated cards will appear here -->
         </div>
-        <button class="load-more-btn">Load more</button>
     </section>
 
     <footer>
@@ -215,5 +254,5 @@
         </div>
     </footer>
 </body>
-<script src="./js/popup.js"></script>
+<script src="/js/popup.js"></script>
 </html>

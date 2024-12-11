@@ -1,0 +1,54 @@
+<div class="listings">
+    <div class="header">
+        <div class="container_title">Review</div>
+    </div>
+    <div class="container_line"></div>
+    <div class="table_container">
+        <table>
+            <colgroup>
+                <col>
+                <col>
+                <col>
+                <col>
+            </colgroup>
+
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Property</th>
+                    <th>Published On</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (propertiesData.length === 0) { %>
+                    <tr>
+                        <td colspan="4" class="span_row">
+                            You don't have any listings.
+                        </td>
+                    </tr>
+                <% } else { %>
+                    <% let i = 1 %>
+                    <% propertiesData.forEach((property) => { %>
+                            <tr>
+                                <td><%= i++ %></td>
+                                <td>
+                                    <div class="property">
+                                        <img src="<%= property.image %>" alt="">
+                                        <div class="title"><%= property.title %></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <%= property.publishedOn %>
+                                </td>
+                                <td>
+                                    <a href="http://localhost:5000/admin/page/property/review/<%= property.id %>">Review</a>
+                                </td>
+                            </tr>
+                    <% }) %>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="/js/owner_property.js"></script>

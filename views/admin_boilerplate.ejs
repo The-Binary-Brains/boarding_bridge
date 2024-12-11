@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/css/owner_boilerplate.css" />
+        <link rel="stylesheet" href="/css/owner_dashboard.css" />
+        <link rel="stylesheet" href="/css/owner_properties.css" />
+        <link rel="stylesheet" href="/css/owner_property_view.css" />
+        <link rel="stylesheet" href="/css/owner_property_new.css" />
+        <link rel="stylesheet" href="/css/owner_property_solve.css" />
+        <link rel="stylesheet" href="/css/owner_reservation.css" />
+        <link rel="stylesheet" href="/css/owner_reservation_info.css" />
+        <link rel="stylesheet" href="/css/owner_inbox.css" />
+        <link rel="stylesheet" href="/css/owner_profile.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        />
+        <link rel="icon" href="/images/favicon.png" type="image/icon type" />
+        <title><%= page.charAt(0).toUpperCase() + page.slice(1) %></title>
+    </head>
+    <body>
+        <%- include('components/header') %>
+        <div class="boilerplate_container">
+            <%- include('components/admin_navigation', { page: page}) %>
+            <div class="boilerplate_content">
+                <div class="page_title">
+                    <%= page.charAt(0).toUpperCase() + page.slice(1) %>
+                </div>
+                <% if (page === 'reviews') { %> <%-
+                include('components/admin_reviews') %> <% } else if (page ===
+                'properties') { %> <%- include('components/admin_properties') %> <% }
+                else if (page === 'new property') { %> <%-
+                include('components/owner_property_new') %> <% } else if (page ===
+                'edit property') { %> <%-
+                include('components/owner_property_edit') %> <% } else if (page
+                === 'view property') { %> <%-
+                include('components/owner_property_view') %> <% } else if (page ===
+                'solve property') { %> <%- include('components/owner_property_solve')
+                %> <% } else if (page === 'reservations') { %> <%-
+                include('components/owner_reservations') %> <% } else if (page ===
+                'reservation info') { %> <%-
+                include('components/owner_reservations_info') %> <% } else if (page
+                === 'inbox') { %> <%- include('components/owner_inbox') %> <% } else
+                if (page === 'inbox view') { %> <%-
+                include('components/owner_inbox_view') %> <% } else if (page ===
+                'profile') { %> <%- include('components/owner_profile') %> <% } %>
+            </div>
+        </div>
+        <%- include('components/footer') %>
+    </body>
+</html>

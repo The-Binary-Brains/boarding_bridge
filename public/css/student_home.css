@@ -92,7 +92,6 @@ body {
 .input-group {
     display: flex;
     flex-direction: column;
-    width: 220px;
     height: 50px;
 }
 
@@ -104,8 +103,7 @@ body {
     text-align: center;
     font-family: "poppins", sans-serif;
     font-weight: 400;
-    
-    
+
 }
 
 .input-form::placeholder{
@@ -115,8 +113,9 @@ body {
     font-weight: 500;
 }
 
-.input-group input {
+.input-group input, .input-group select{
     border: #800000 solid 1px;
+    width: 300px;
 }
 
 .btn {
@@ -167,11 +166,10 @@ body {
     max-width: 1210px;
     position: relative;
     overflow-y: scroll;
-    scrollbar-width: none;
 }
 
 .popup-content::-webkit-scrollbar {
-    display: none; 
+    display: none;
 }
 
 .popup-content h2 {
@@ -195,7 +193,7 @@ body {
     font-weight: 500;
     font-size: 24px;
     padding: 20px 80px;
-    
+
 }
 
 .filter-group label {
@@ -273,26 +271,26 @@ body {
     i {
         margin-right: 20px;
     }
-    
-    .amenities_checks {
+
+    .checks {
         display: flex;
         gap: 30px;
         margin-top: 10px;
     }
-    
-    .amenities_check {
+
+    .check {
         position: relative;
         display: flex;
         align-items: center;
         gap: 10px;
     }
-    
-    .amenities_check input[type="checkbox"] {
+
+    .check input[type="checkbox"] {
         position: absolute;
         opacity: 0;
         left: -9999px;
     }
-    
+
     .checkbox-label {
         display: inline-block;
         border: 1px solid gray;
@@ -307,8 +305,8 @@ body {
         font-size: 16px;
         padding: 0 10px;
     }
-    
-    .amenities_check
+
+    .check
         input[type="checkbox"]:checked
         + .checkbox-label {
         background-color: #800000;
@@ -349,37 +347,19 @@ body {
 .slider-container input[type="range"]::-webkit-slider-thumb {
     pointer-events: auto;
     appearance: none;
-    width: 25px; /* Increased width */
-    height: 25px; /* Increased height */
-    background: #007bff; /* Fill color */
-    border: 3px solid #0056b3; /* Border with a darker shade */
-    border-radius: 50%; /* Circular design */
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
-}
-
-.slider-container input[type="range"]::-moz-range-thumb {
-    pointer-events: auto;
     width: 25px;
     height: 25px;
-    background: #007bff;
-    border: 3px solid #0056b3;
+    border: 1px solid #340000;
+    background-color: rgb(255, 255, 255);
     border-radius: 50%;
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-.slider-container input[type="range"]::-ms-thumb {
-    pointer-events: auto;
-    width: 25px;
-    height: 25px;
-    background: #007bff;
-    border: 3px solid #0056b3;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+#minSlider, #maxSlider {
+    height: 10px;
+    height: 10px;
 }
-
 
 .price-slider {
     display: flex;
@@ -442,7 +422,7 @@ body {
 
     .close, .submit {
         padding: 15px;
-        
+
         p{
             font-size: 20px;
             font-weight: 700;
@@ -470,13 +450,13 @@ body {
 }
 
 .disclaimer {
-    margin: 10px 80px;
+    margin: 40px 80px;
     line-height: 30px;
 }
 
 /* Accommodations Section */
 .accommodations {
-    margin: 30px 80px;
+    margin: 80px 80px;
     background-color: #ffffff;
     text-align: center;
 }
@@ -487,10 +467,16 @@ body {
 }
 
 .cards-container {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    justify-items: center;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
 }
 
 .card {
@@ -498,10 +484,16 @@ body {
     border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
-    width: 300px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: left;
+    width: 100%;
+    cursor: pointer;
+
+    &:hover {
+        box-shadow: 0 0 20px rgba(23, 23, 23, 0.91);
+    }
 }
+
 
 .card img {
     width: 100%;
@@ -525,7 +517,7 @@ body {
     color: white;
     border: none;
     width: 100%;
-    height: 50px; 
+    height: 50px;
     padding: 0.5rem 1rem;
     cursor: pointer;
 }

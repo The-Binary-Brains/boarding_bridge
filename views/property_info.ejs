@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script
+            src="https://kit.fontawesome.com/52121e5312.js"
+            crossorigin="anonymous"
+        ></script>
+        <link rel="stylesheet" href="/css/property_info.css" />
+        <title>Property Information</title>
+    </head>
+    <body>
+        <div class="header">
+            <div class="logo_container">
+                <img class="logo" src="/images/favicon.png" alt="logo" />
+                <h1 class="logo_title">Boarding Bridge</h1>
+            </div>
+            <button id="get_start_btn">
+                My Profile
+                <i class="fa-solid fa-circle-user" style="color: #ffffff"></i>
+            </button>
+        </div>
+        <div class="top-container">
+            <div class="images-grid">
+                <img src="<%= accommodationData.propertyPhoto[0]%>" />
+                <img src="<%= accommodationData.propertyPhoto[0]%>" />
+                <img src="<%= accommodationData.propertyPhoto[0]%>" />
+                <img src="<%= accommodationData.propertyPhoto[0]%>" />
+                <img src="<%= accommodationData.propertyPhoto[0]%>" />
+            </div>
+            <div class="input">
+                <button id="gallery" type="button">
+                    <div class="gallery-btn">
+                        <i class="fa-regular fa-images"></i>
+                        <p>Show all photos...</p>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <div id="galleryPopup" class="popup">
+            <div class="popup-content">
+                <div class="gallery-top">
+                    <span class="close-btn" id="closePopup">&times;</span>
+                </div>
+                <div class="main-galary">
+                    <button id="left-btn" class="left-btn" type="button">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <div class="img-view">
+                        <img
+                            id="img-preview"
+                            class="img-preview"
+                            src="https://lh6.googleusercontent.com/proxy/Ci9diRQL1W_PahthFqTKtCznuMNpRd50PkEkHSZQjaBua9B-7QPf5L8Uaio3QfeJ208HC8FL6MqAi1uR035jDn1Y-KjGyTT55DkT0Jo4GswQVmyiRIjjAPKZDJE"
+                            alt=""
+                        />
+                    </div>
+                    <button id="right-btn" class="right-btn" type="button">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="gallery-bottom" id="page-number">
+                    <h1>Pages numbers appears here</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="main">
+            <div class="left-container">
+                <p class="Property-name">
+                    <%= accommodationData.name + "  - (" + accommodationData.propertyType + ")"%>
+                </p>
+                <p class="Property-details">
+                    <%= "occupancy " + accommodationData.occupancy + " - distance " + accommodationData.distance + " km" %>
+                </p>
+                <hr>
+                <div class="owner">
+                    <div class="profile">
+                        <img class="owner-img" src="<%= accommodationData.propertyPhoto[0]%>">
+                    </div>
+                    <div class="owner-details">
+                        <span class="name">
+                            Hosted by <%= accommodationData.ownerName %>
+                        </span><br>
+                        <span class="since">
+                            Member since <%= accommodationData.member %>
+                        </span>
+                    </div>
+                </div>
+                <hr>
+                <div class="price">
+                    <h1>
+                        Price (Rs)
+                    </h1>
+                    <p>
+                        <%= accommodationData.price.toLocaleString() %>
+                    </p>
+                </div>
+                <hr>
+                <div class="info">
+                    <h1>Description</h1>
+                    <p><%= accommodationData.about %> </p>
+                </div>
+                <hr>
+                <div class="facilities">
+                    <h1>What this place offers</h1>
+                    <div class="facilitity-container">
+                        <% if (accommodationData.amenities.length === 0) { %>
+                            <div>No amenities yet</div>
+                        <% } else { %>
+                            <% if (accommodationData.amenities.includes("wifi")) { %>
+                                <div class="wrap-content">
+                                    <i class="fa-solid fa-wifi"></i>
+                                    <p>Wi-Fi</p>
+                                </div>
+                            <% } %>
+
+                            <% if (accommodationData.amenities.includes("kitchen")) { %>
+                                <div class="wrap-content">
+                                    <i class="fa-solid fa-kitchen-set"></i>
+                                    <p>Kitchen</p>
+                                </div>
+                            <% } %>
+
+                            <% if (accommodationData.amenities.includes("bath")) { %>
+                                <div class="wrap-content">
+                                    <i class="fa-solid fa-bath"></i>
+                                    <p>Attached Bathrooms</p>
+                                </div>
+                            <% } %>
+
+                            <% if (accommodationData.amenities.includes("food")) { %>
+                                <div class="wrap-content">
+                                    <i class="fa-solid fa-utensils"></i>
+                                    <p>Food Arrangement</p>
+                                </div>
+                            <% } %>
+
+                            <% if (accommodationData.amenities.includes("washing_machine")) { %>
+                                <div class="wrap-content">
+                                    <i class="fa-solid fa-soap"></i>
+                                    <p>Washing Machine</p>
+                                </div>
+                            <% } %>
+                        <% } %>
+
+
+                    </div>
+                </div>
+                <hr>
+                <div class="location">
+                    <h1>
+                        Location
+                    </h1>
+                    <div class="Navigation">
+                        <iframe src="https://www.google.com/maps?q=<%= accommodationData.latitude %>,<%= accommodationData.longitude %>&hl=es;z=14&output=embed" width="700" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="right-container">
+                <div class="contact">
+                    <div class="icon">
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+                    <div class="info-container">
+                        <h1>Call Owner</h1>
+                        <p><%= accommodationData.phone %></p>
+                    </div>
+                </div>
+                <hr />
+                <div class="contact">
+                    <div class="icon">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <div class="info-container">
+                        <h1>Email</h1>
+                        <p><%= accommodationData.email %></p>
+                    </div>
+                </div>
+                <hr />
+                <div class="contact">
+                    <div class="icon">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <div class="info-container">
+                        <h1>Location</h1>
+                        <p><%= accommodationData.address %></p>
+                    </div>
+                </div>
+                <hr />
+                <div class="calendar">
+                    <div class="cal-info">
+                        <div class="icon">
+                            <i class="fa-solid fa-calendar-day"></i>
+                        </div>
+                        <div class="info-container">
+                            <h1>Reserve a Date for visit</h1>
+                        </div>
+                    </div>
+                    <button id="reservation" class="reservation" type="button">
+                        Reserve a date
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- reservation popup -->
+        <div id="reservationPopup" class="popup-reserve">
+            <div class="popup-content-reserve">
+                <div class="reserve-top">
+                    <span class="close-btn" id="close">&times;</span>
+                </div>
+                <div class="reservation-head">
+                    <h1>Reserve a date</h1>
+                </div>
+                <div class="form_line"></div>
+                <div class="reserve-main" id="reserve-main"></div>
+            </div>
+        </div>
+        <footer>
+            <div class="top">
+                <div class="left">
+                    <div class="logo">
+                        <div class="title">Boarding Bridge</div>
+                        <div class="sub_title">
+                            "Connecting Students with Quality Accommodations"
+                        </div>
+                    </div>
+                    <ul>
+                        <li>Phone : +94 01 457 8546</li>
+                        <li>Email : support@boardingbridge.lk</li>
+                        <li>Address: 123 Campus Dr., City</li>
+                    </ul>
+                </div>
+                <div class="center">
+                    <div class="title">Quick Links</div>
+                    <div class="line"></div>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="right">
+                    <div class="title">News letter</div>
+                    <div class="line"></div>
+                    <div class="newslitter_lable">
+                        Subscribe to our news letter to get newest listings.
+                    </div>
+                    <form action="">
+                        <input placeholder="email" ="text" />
+                        <submit>Send</submit>
+                    </form>
+                </div>
+            </div>
+            <div class="bottom">
+                <div class="bottom_line"></div>
+                <span>© 2024 BoardingBridge. All rights reserved.</span>
+            </div>
+        </footer>
+    </body>
+    <script src="/js/gallery.js"></script>
+</html>
