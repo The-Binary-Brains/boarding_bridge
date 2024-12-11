@@ -243,41 +243,92 @@ body{
     padding: 20px;
     box-sizing: border-box;
 
-    .info_container {
-        padding-inline: 100px;
+    .mid-container {
         display: flex;
-        gap: 50px;
-        margin-block: 50px;
-    }
 
-    img {
-        width: 200px;
-        height: 200px;
-        object-fit: cover;
-        border-radius: 100%;
-    }
-
-    .img_container {
-        position: relative;
-    }
-
-    .account_info {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-
-        .user_name {
-            font-size: 40px;
+        .info_container {
+            padding-inline: 100px;
+            display: flex;
+            gap: 50px;
+            margin-block: 50px;
+        }
+    
+        img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 100%;
+        }
+    
+        .img_container {
+            position: relative;
+        }
+    
+        .account_info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+    
+            .user_name {
+                font-size: 40px;
+            }
+    
+            .Student-id {
+                font-size: 24px;
+                margin-bottom: 50px;
+            }
+            .about {
+                font-weight: 400;
+                font-size: 20px;
+            }
         }
 
-        .Student-id {
-            font-size: 24px;
-            margin-bottom: 50px;
+        .reserve-info{
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            border: #434343 solid 1px;
+            justify-content: space-evenly;
+            color: #727272;
+            margin: 20px 0 20px 100px;
+
+            .reserve-head{
+                font-size: 24px;
+                padding: 0 20px;
+            }
+
+            .form_line {
+                height: 1px;
+                width: 100%;
+                background-color: #3b3b3b;
+                margin: 18px 0;
+            }
+
+            .info {
+                display: flex;
+                padding: 0 20px;
+                align-items: center;
+                font-size: 30px;
+
+                .info-text {
+                    margin-left: 40px;
+                    
+                    h1{
+                        margin: 0;
+                        font-size: 16px;
+                        color: #434343;
+                    }
+    
+                    p {
+                        font-size: 18px;
+                        margin: 0;
+                        padding: 0 9px;
+                    }
+                }
+                
+            }
         }
-        .about {
-            font-weight: 400;
-            font-size: 20px;
-        }
+
     }
 }
 
