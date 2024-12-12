@@ -42,7 +42,7 @@
                         way to discover, compare, and secure accommodation for
                         the academic year.
                     </div>
-                    <button>Get Start</button>
+                    <button id="get_start_btn2">Get Start</button>
                 </div>
             </div>
         </div>
@@ -123,7 +123,7 @@
                             make informed decisions.
                         </li>
                     </ul>
-                    <button>Enroll Now!</button>
+                    <a href="http://localhost:5000/student/page/register">Enroll Now!</a>
                 </div>
                 <img src="/images/for_student.png" alt="" />
             </div>
@@ -142,7 +142,7 @@
                             trustworthiness.
                         </li>
                     </ul>
-                    <button>Enroll Now!</button>
+                    <a href="http://localhost:5000/owner/page/register">Enroll Now!</a>
                 </div>
                 <img src="/images/fow_owners.png" alt="" />
             </div>
@@ -205,10 +205,15 @@
         const forStudentsDiv = document.getElementById("studentsDiv");
         const forOwnersDiv = document.getElementById("ownersDiv");
         const scrollToSectionButton = document.getElementById("get_start_btn");
+        const scrollToSectionButtonTwo = document.getElementById("get_start_btn2");
 
         const sectionThree = document.getElementById("section_three");
 
         scrollToSectionButton.addEventListener("click", () => {
+            sectionThree.scrollIntoView({ behavior: "smooth" });
+        });
+
+        scrollToSectionButtonTwo.addEventListener("click", () => {
             sectionThree.scrollIntoView({ behavior: "smooth" });
         });
 

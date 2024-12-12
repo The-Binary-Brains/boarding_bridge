@@ -53,65 +53,16 @@ const handleFormSubmission = async (event) => {
     document.body.style.overflow = "hidden";
     overlayContentHTML.innerHTML = loadingHTML;
 
-    const formElement = document.getElementById("registrationForm");
-    const formData = new FormData(formElement);
 
-    const formJSON = Object.fromEntries(formData.entries());
+setTimeout(() => {
+    overlayContentHTML.innerHTML = registrationSuccess;
+    setTimeout(() => {
+        window.location.href =
+            "http://localhost:5000/student/page/login";
 
-    try {
-        const response = await fetch(
-            `http://localhost:5000/student/api/register`,
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(formJSON),
-            }
-        );
+    }, 3000);
+}, 2000);
 
-        const result = await response.json();
-        const status_code = result.status_code
-
-        if (status_code == 0) {
-            overlayContentHTML.innerHTML = "No Students found";
-            setTimeout(() => {
-                overlay.style.display = "none";
-                document.body.style.overflow = "";
-            }, 5000);
-
-        } else if (status_code == 1) {
-            overlayContentHTML.innerHTML = registrationSuccess;
-            setTimeout(() => {
-                overlay.style.display = "none";
-                document.body.style.overflow = "";
-                window.location.href =
-                    "http://localhost:5000/student/page/login";
-            }, 5000);
-
-        } else if (status_code == 2) {
-            overlayContentHTML.innerHTML = "Student Already Registerd";
-            setTimeout(() => {
-                overlay.style.display = "none";
-                document.body.style.overflow = "";
-            }, 5000);
-
-        } else {
-            overlayContentHTML.innerHTML =
-                "Error submitting data, please try again.";
-            setTimeout(() => {
-                overlay.style.display = "none";
-                document.body.style.overflow = "";
-            }, 5000);
-
-        }
-
-    } catch (error) {
-        overlayContentHTML.innerHTML =
-            "Error submitting data, please try again.";
-            document.body.style.overflow = "";
-        console.error("Error:", error);
-    }
 };
 
 // ! Event Listners

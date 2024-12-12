@@ -215,7 +215,7 @@
                 width: 75px;
                 height: 75px;
                 border-radius: 50%;
-                object-fit: cover;
+                padding: 10px;
             }
 
             .owner-details {
@@ -346,7 +346,7 @@
 
         .calendar {
             padding: 10px 40px 0;
-            margin-top: 20px;
+            margin: 20px 0;
             display: flex;
             flex-direction: column;
 
@@ -371,7 +371,7 @@
                 }
             }
 
-            .reservation {
+            .gallery {
                 margin-top: 30px;
                 padding: 20px;
                 display: flex;
@@ -380,9 +380,37 @@
                 color: white;
                 justify-content: center;
                 font-weight: 700;
-                font-size: 20px;
+                font-size: 18px;
                 border: #800000;
                 cursor: pointer;
+                text-decoration: none;
+                box-sizing: border-box;
+            }
+        }
+
+        .review-btn {
+            margin-top: 200px;
+            display: flex;
+            padding: 10px 40px 0;
+            justify-content: space-between;
+
+            .reviewStatus-btn {
+                width: 200px;
+                padding: 20px;
+                height: 100%;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-evenly;
+                font-size: 18px;
+                background-color: #800000;
+                color: white;
+                border: none;
+                cursor: pointer;
+
+                .review-option {
+                    font-weight: 700;
+                }
             }
         }
     }
@@ -443,3 +471,4 @@
         }
     }
 }
+

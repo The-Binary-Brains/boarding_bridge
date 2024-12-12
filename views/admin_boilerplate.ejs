@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="/css/owner_reservation_info.css" />
         <link rel="stylesheet" href="/css/owner_inbox.css" />
         <link rel="stylesheet" href="/css/owner_profile.css" />
+        <link rel="stylesheet" href="/css/admin_property_review.css" />
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
@@ -35,11 +36,11 @@
                 === 'view property') { %> <%-
                 include('components/admin_property_view') %> <% } else if (page === 'owners') { %> <%-
                 include('components/admin_owners') %> <% } else if (page ===
-                'reservation info') { %> <%-
-                include('components/owner_reservations_info') %> <% } else if (page
-                === 'inbox') { %> <%- include('components/owner_inbox') %> <% } else
-                if (page === 'inbox view') { %> <%-
-                include('components/owner_inbox_view') %> <% } else if (page ===
+                'view owner') { %> <%-
+                include('components/admin_owner_view') %> <% } else if (page
+                === 'review property') { %> <%- include('components/admin_property_review') %> <% } else
+                if (page === 'review owner') { %> <%-
+                include('components/admin_owner_review') %> <% } else if (page ===
                 'profile') { %> <%- include('components/owner_profile') %> <% } %>
             </div>
         </div>

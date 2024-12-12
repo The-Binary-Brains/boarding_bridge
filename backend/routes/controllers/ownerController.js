@@ -19,7 +19,13 @@ export const getAnalisys = async (id) => {
         const data = await GetAnalisys(1);
         console.log(data);
 
-        return data;
+        return {
+            totalViews: 0,
+            totalPublished: 2,
+            waitingForApproval: 1,
+            mostViewed: { name: 'Room A', pubDate: "2024-01-17", totalViews: 0, pubDuration: 287 }
+          }
+
     } catch (error) {
         console.error("Error fetching properties:", error);
         throw error;

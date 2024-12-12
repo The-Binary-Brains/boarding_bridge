@@ -8,7 +8,17 @@ const rightBtn = document.getElementById("right-btn");
 const pageNumber = document.getElementById("page-number");
 const imgPreview = document.getElementById("img-preview");
 
-let images = [];
+let images = [
+    "/uploads/prop1.jpeg",
+    "/uploads/prop2.jpeg",
+    "/uploads/prop3.jpeg",
+    "/uploads/prop10.jpg",
+    "/uploads/prop9.jpg",
+    "/uploads/prop5.jpg",
+    "/uploads/prop6.jpg",
+    "/uploads/prop7.jpg",
+    "/uploads/prop8.jpg",
+];
 let currentIndex = 0;
 
 // Open the popup when the gallery button is clicked
@@ -57,39 +67,6 @@ window.addEventListener("click", (event) => {
     }
 });
 
-window.addEventListener("DOMContentLoaded", async () => {
-    const urlPath = window.location.pathname;
-    const segments = urlPath.split("/");
-    const id = segments[segments.length - 1];
-
-    if (!id || isNaN(id)) {
-        console.error("Invalid or missing ID in URL");
-        return;
-    }
-
-    try {
-        const response = await fetch(
-            `http://localhost:5000/student/api/accommodation/imgaes/${id}`,
-            {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            }
-        );
-
-        if (!response.ok) {
-            console.error("Failed to fetch images:", response.statusText);
-            return;
-        }
-
-        const result = await response.json();
-        images = result.images;
-        console.log("Images fetched successfully:", images);
-    } catch (error) {
-        console.error("Error fetching images:", error);
-    }
-});
 
 
 // Reservation Popup

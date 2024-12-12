@@ -40,7 +40,16 @@ ownerView.get("/profile", async (req, res) => {
     const id = 1
 
     try {
-        const profileData = await getProfileById(id);
+        const profileData = {
+            userName: "john's Accommodations",
+            name: 'John Doe',
+            about: 'An experienced owner managing multiple properties across various locations, specializing in providing comfortable and well-maintained accommodations. Dedicated to ensuring a seamless renting experience with prompt communication and attention to tenant needs. Actively seeking to build long-term relationships with renters through transparency and quality service.',
+            email: 'john.doe@example.com',
+            phone: '1234567890',
+            image: '/uploads/pers2.jpeg',
+            address: '123 Main St',
+            legName: 'John Doe Enterprises'
+          }
         res.render("owner_boilerplate", { page: "profile", profileData: profileData });
     } catch (error) {
         console.error("Error fetching analysis data:", error);
