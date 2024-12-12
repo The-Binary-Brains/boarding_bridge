@@ -8,8 +8,11 @@ import {
 const reservationView = express.Router();
 
 reservationView.get("/", async (req, res) => {
+
+    const id = 1
+
     try {
-        const reservationData = await getReservationTable();
+        const reservationData = await getReservationTable(id);
         res.render("owner_boilerplate", {
             page: "reservations",
             reservationData: reservationData,
@@ -21,8 +24,11 @@ reservationView.get("/", async (req, res) => {
 });
 
 reservationView.get("/view/:id", async (req, res) => {
+
+    const id = req.params.id
+
     try {
-        const reservationData = await getReservationById();
+        const reservationData = await getReservationById(id);
         res.render("owner_boilerplate", {
             page: "reservation info",
             reservationData: reservationData,

@@ -37,7 +37,7 @@ ownerView.use("/inbox", inboxView);
 
 ownerView.get("/profile", async (req, res) => {
 
-    const id = req.params.id
+    const id = 1
 
     try {
         const profileData = await getProfileById(id);

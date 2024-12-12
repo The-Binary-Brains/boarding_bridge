@@ -110,12 +110,12 @@
                             <div class="property">
                                 <img src="<%= reservation.property.image %>" alt="Property Image" />
                                 <div class="title">
-                                    <%= reservation.property.title %>
+                                    <%= reservation.property.name %>
                                 </div>
                             </div>
                         </td>
-                        <td><%= reservation.startDate %></td>
-                        <td><%= reservation.endDate %></td>
+                        <td><%= reservation.student.firstName + " "+ reservation.student.lastName %></td>
+                        <td><%= reservation.timestamp %></td>
                         <td>
                             <a href="http://localhost:5000/owner/page/reservations/view/<%= reservation.id %>">Info</a>
                             <button onclick='handleReservationCancel("<%= reservation.id %>")'>Cancel</button>
