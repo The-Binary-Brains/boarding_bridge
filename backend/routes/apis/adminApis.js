@@ -28,7 +28,7 @@ adminApi.post("/register", VerifyTokenAndAdmin, async (req, res) => {
         res.status(500).json(`error fetching admins: ${error}`);
     }
 });
-/*
+
 adminApi.post("/login", async (req, res) => {
     const { staffId, password } = req.body;
 
@@ -46,21 +46,17 @@ adminApi.post("/login", async (req, res) => {
             });
 
             res.status(200).json({
-                message: "Login Success",
+                message: "success",
                 token: token,
             });
         } else {
-            res.status(400).json("Wrong Credentials");
+            res.status(400).json({message: "failed"});
         }
     } catch (error) {
-        res.status(500).json("Error:" + error);
+        res.status(500).json({message: "failed"});
     }
 });
-*/
-adminApi.post("/login", async (req, res) => {
-    const {userName, password} = req.body
-    console.log(userName)
-    res.status(200).json("success")
-})
+
+
 
 export default adminApi;

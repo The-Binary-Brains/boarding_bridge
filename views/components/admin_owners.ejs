@@ -17,44 +17,43 @@
             <thead>
                 <tr>
                     <th>No.</th>
-                    <th>Property</th>
                     <th>Owner</th>
-                    <th>Contact</th>
+                    <th>Email</th>
+                    <th>Phone</th>
                     <th>Status</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <% if (reservationData.length === 0) { %>
+                <% if (ownersData.length === 0) { %>
                 <tr>
                     <td colspan="6" style="text-align: center; height: 200px;">No properties available.</td>
                 </tr>
             <% } else { %>
-                <% reservationData.forEach((reservation, index) => { %>
+                <% ownersData.forEach((owner, index) => { %>
                     <tr>
                         <td><%= index + 1 %></td>
                         <td>
                             <div class="property">
-                                <img src="<%= reservation.image %>" alt="Property Image" />
                                 <div class="title">
-                                    <%= reservation.title %>
+                                    <%= owner.name %>
                                 </div>
                             </div>
                         </td>
-                        <td><%= reservation.owner %></td>
-                        <td><%= reservation.contact %></td>
+                        <td><%= owner.email %></td>
+                        <td><%= owner.phone %></td>
                         <td>
-                            <% if (reservation.status === "published") { %>
+                            <% if (owner.status === "published") { %>
                                 <div class="active">Published</div>
-                            <% } else if (reservation.status === "pending") { %>
+                            <% } else if (owner.status === "pending") { %>
                                 <div class="pending">Pending</div>
-                            <% } else if (reservation.status === "rejected") { %>
+                            <% } else if (owner.status === "rejected") { %>
                                 <div class="warning">Rejected</div>
                             <% } %>
                         </td>
                         <td>
-                            <a href="http://localhost:5000/admin/page/reservations/view/<%= reservation.id %>">Info</a>
-                            <button onclick='handlePropertyDelete("<%= reservation.id %>")'>Remove</button>
+                            <a href="http://localhost:5000/admin/page/owners/view/<%= owner.id %>">Info</a>
+                            <button onclick='handlePropertyDelete("<%= owner.id %>")'>Remove</button>
                         </td>
                     </tr>
                 <% }); %>
@@ -82,4 +81,4 @@
     </div>
 </div>
 
-<script src="/js/admin_owners.js"></script>
+<script src="/js/admin_property.js"></script>

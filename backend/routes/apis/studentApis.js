@@ -4,6 +4,13 @@ import {
     getAccommodationImagesByID
 } from "../controllers/studentController.js";
 
+import { RegisterStudent, GetStudent } from "../../database.js";
+
+import dotnet from "dotenv";
+dotnet.config();
+
+import jwt from "jsonwebtoken";
+
 const studentApi = express.Router();
 
 studentApi.post("/filter", async (req, res) => {
@@ -58,14 +65,40 @@ studentApi.post("/reservations/cancel/:id", async (req, res) => {
 });
 
 studentApi.post("/login", async (req, res) => {
-    const { userName, password } = req.body;
-    res.status(200).json("success");
+    const { studentID, password } = req.body;
+
+    try {
+        const result = await GetStudent(studentID);
+
+        console.log(result)
+
+        if (result && result.password === password) {
+            const payload = {
+                id: result.student_id,
+                role: "student",
+            };
+
+            const token = jwt.sign(payload, process.env.JWT_SECRET_KEY, {
+                expiresIn: "1d",
+            });
+
+            res.status(200).json({
+                message: "success",
+                token: token,
+            });
+        } else {
+            res.status(200).json("Wrong Credentials");
+        }
+    } catch (error) {
+        res.status(500).json("Error:" + error);
+    }
 });
 
 studentApi.post("/register", async (req, res) => {
-    const { userName, password } = req.body;
-    console.log(userName);
-    res.status(200).json(userName);
+    const { studentID, email, password } = req.body;
+
+    const result = await RegisterStudent( studentID, email, password)
+    res.status(200).json(result);
 });
 
 

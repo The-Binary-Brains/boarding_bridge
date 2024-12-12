@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/52121e5312.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/student_profile.css">
+    <title>Student-Profile</title>
+</head>
+<body>
+    <div class="page-header">
+        <div class="logo_container">
+            <img class="logo" src="/images/favicon.png" alt="logo" />
+            <h1 class="logo_title">Boarding Bridge</h1>
+        </div>
+    </div>
+    <div class="profile">
+        <div class="overlay">
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <div class="loading-text">Profile updating. Please wait</div>
+            </div>
+            <div class="status" id="success">
+                <div class="title">
+                    Sccess!
+                </div>
+                <div class="desc">
+                    your profile has been updated,
+                </div>
+                <button class="submit_button" id="successCloseBtn">Done</button>
+            </div>
+            <div class="status" id="failed">
+                <div class="title">
+                    Failed!
+                </div>
+                <div class="desc">
+                    Someting went wrong during update, <br>Please try again later.
+                </div>
+                <button class="submit_button" id="failedCloseBtn">Cancel</button>
+            </div>
+            <div class="password_reset_form">
+                <div class="form_container form_padding">
+                    <form id="passwordUpdateForm">
+                        <div class="input">
+                            <input
+                                id="password"
+                                placeholder="Password"
+                                type="password"
+                                name="password"
+                                required
+                            />
+                            <label for="password" id="password_label"
+                                >Please provide a strong password</label
+                            >
+                        </div>
+                        <div class="input">
+                            <input
+                                id="confirmPassword"
+                                placeholder="Confirm Password"
+                                type="password"
+                                required
+                            />
+                            <label for="confirmPassword" id="confirm_password_label"
+                                >confirm entered password above</label
+                            >
+                        </div>
+                        <div class="input">
+                            <button class="submit_button" type="submit">Update</button>
+                            <button class="cancel_button" id="passwordCancelBtn" type="button">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="contact_update_form">
+                <div class="form_container form_padding">
+                    <form id="contactUpdateForm">
+                        <div class="input">
+                            <input
+                                id="email"
+                                placeholder="Email"
+                                type="email"
+                                name="email"
+                                required
+                            />
+                            <label for="email"
+                                >Email that is used by the Boarding Bridge to
+                                contact you</label
+                            >
+                        </div>
+                        <div class="input">
+                            <input
+                                id="phone"
+                                placeholder="Phone (Ex: +94 123 456 7890)"
+                                pattern="^\+?[1-9]\d{1,14}$"
+                                type="tel"
+                                name="phone"
+                                required
+                            />
+                            <label for="phone"
+                                >Phone number that is used by the Boarding Bridge to
+                                contact you</label
+                            >
+                        </div>
+                        <div class="input">
+                            <button class="submit_button" type="submit">Update</button>
+                            <button class="cancel_button" id="contactCancelBtn" type="button">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="user_update_form">
+                <div class="form_container form_padding">
+                    <form id="userUpdateForm">
+                        <div class="input">
+                            <input
+                                id="firstName"
+                                placeholder="First Name"
+                                type="text"
+                                name="firstName"
+                                required
+                            />
+                            <label for="firstName"
+                                >First name will be displayed to users</label
+                            >
+                        </div>
+                        <div class="input">
+                            <input
+                                id="lastName"
+                                placeholder="Last Name"
+                                type="text"
+                                name="lastName"
+                                required
+                            />
+                            <label for="lastName"
+                                >Last name will be displayed to users</label
+                            >
+                        </div>
+                        <div class="input">
+                            <input
+                                id="userName"
+                                placeholder="User Name"
+                                type="text"
+                                name="userName"
+                                required
+                            />
+                            <label for="userName"
+                                >User name is used for login process</label
+                            >
+                        </div>
+                        <div class="input">
+                            <textarea
+                                id="about"
+                                placeholder="Tell Us About You"
+                                required
+                                name="about"
+                                maxlength="500"
+                            ></textarea>
+                            <label for="about"
+                                >Brief Description about your self (max: 500
+                                charactors)
+                            </label>
+                        </div>
+                        <div class="input">
+                            <button class="submit_button" type="submit">Update</button>
+                            <button class="cancel_button" id="userCancelBtn" type="button">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="profpic_update_form">
+                <div class="form_container form_padding">
+                    <form id="profPicUpdateForm">
+                        <div class="input">
+                            <div class="file_input">
+                                <input
+                                    id="profilePhoto"
+                                    placeholder="Profile photo"
+                                    type="file"
+                                    accept=".jpg, .jpeg, .png"
+                                    name="profilePhoto"
+                                    hidden
+                                />
+                                <input
+                                    id="customFileName"
+                                    type="text"
+                                    placeholder="Profile photo"
+                                    readonly
+                                    class="file_readonly"
+                                />
+                                <button
+                                    type="button"
+                                    class="file_button"
+                                    id="profileSelectBtn"
+                                >
+                                    Select File
+                                </button>
+                            </div>
+                            <label for="profilePhoto"
+                                >Accepted file types: jpeg, png</label
+                            >
+                            <img
+                                id="imagePreview"
+                                src="#"
+                                alt="Image Preview"
+                                style="display: none"
+                            />
+                        </div>
+                        <div class="input">
+                            <button class="submit_button" type="submit">Update</button>
+                            <button class="cancel_button" id="profPicCancelBtn" type="button">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="top_container">
+            <div class="header">
+                <div class="container_title">My Account</div>
+            </div>
+            <hr>
+            <div class="mid-container">
+                <div class="info_container">
+                    <div class="img_container">
+                        <img src="https://cdn-icons-png.flaticon.com/512/9203/9203764.png" alt="" />
+                    </div>
+                    <div class="account_info">
+                        <div class="user_name">Student Name</div>
+                        <div class="Student-id">Student Id</div>
+                    </div>
+                </div>
+                <div class="reserve-info">
+                    <span class="reserve-head">
+                        Current Reservation Status
+                    </span>
+                    <div class="form_line"></div>
+                    <div class="info">
+                        <i class="fa-solid fa-calendar-check"></i>
+                        <div class="info-text">
+                            <h1>
+                                Reservation Date
+                            </h1>
+                            <p>
+                                Date display here
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form_line"></div>
+                    <div class="info">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <div class="info-text">
+                            <h1>
+                                Property Name
+                            </h1>
+                            <p>
+                                Name here
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form_line"></div>
+                    <div class="info">
+                        <i class="fa-solid fa-phone"></i>
+                        <div class="info-text">
+                            <h1>
+                                Contact Info
+                            </h1>
+                            <p>
+                                Number Here
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom_container">
+            <div class="left">
+                <div class="header">
+                    <div class="container_title">Contact Info</div>
+                </div>
+                <hr>
+                <div class="container_line"></div>
+                <div class="info_container">
+                    <div class="info">
+                        <div class="lable">Phone</div>
+                        <div class="value">4684646466846153</div>
+                    </div>
+                    <div class="info">
+                        <div class="lable">Email</div>
+                        <div class="value">sample@samplemail.com</div>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="header">
+                    <div class="container_title">Security</div>
+                </div>
+                <hr>
+                <div class="container_line"></div>
+                <div class="info_container">
+                    <div class="info">
+                        <button id="passwordEditBtn">Update Password</button>
+                        <button>Forgot Password (Coming Soon)</button>
+                        <button>Enable 2FA (Coming Soon)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/js/student_profile.js" type="module"></script>
+</html>

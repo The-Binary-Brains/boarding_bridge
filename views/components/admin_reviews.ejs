@@ -1,6 +1,6 @@
 <div class="listings">
     <div class="header">
-        <div class="container_title">Review</div>
+        <div class="container_title">Properties</div>
     </div>
     <div class="container_line"></div>
     <div class="table_container">
@@ -16,7 +16,7 @@
                 <tr>
                     <th>No.</th>
                     <th>Property</th>
-                    <th>Published On</th>
+                    <th>Submitted On</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -24,7 +24,7 @@
                 <% if (propertiesData.length === 0) { %>
                     <tr>
                         <td colspan="4" class="span_row">
-                            You don't have any listings.
+                            No properties available for review.
                         </td>
                     </tr>
                 <% } else { %>
@@ -39,7 +39,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <%= property.publishedOn %>
+                                    <%= property.submitDate %>
                                 </td>
                                 <td>
                                     <a href="http://localhost:5000/admin/page/property/review/<%= property.id %>">Review</a>
@@ -51,4 +51,56 @@
         </table>
     </div>
 </div>
-<script src="/js/owner_property.js"></script>
+
+<div class="listings">
+    <div class="header">
+        <div class="container_title">Owners</div>
+    </div>
+    <div class="container_line"></div>
+    <div class="table_container">
+        <table>
+            <colgroup>
+                <col>
+                <col>
+                <col>
+                <col>
+            </colgroup>
+
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Onwer</th>
+                    <th>Submitted On</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (ownersData.length === 0) { %>
+                    <tr>
+                        <td colspan="4" class="span_row">
+                            No properties available for review.
+                        </td>
+                    </tr>
+                <% } else { %>
+                    <% let i = 1 %>
+                    <% ownersData.forEach((owner) => { %>
+                            <tr>
+                                <td><%= i++ %></td>
+                                <td>
+                                    <div class="property">
+                                        <div class="title"><%= owner.name %></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <%= owner.submitDate %>
+                                </td>
+                                <td>
+                                    <a href="http://localhost:5000/admin/page/owner/review/<%= owner.id %>">Review</a>
+                                </td>
+                            </tr>
+                    <% }) %>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</div>

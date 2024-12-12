@@ -59,13 +59,16 @@
                 <div class="profile">
                     <img
                         class="owner-img"
-                        src="<%= propertyData.profile_url%>"
+                        src="<%= propertyData.propertyPhoto[0]%>"
                     />
                 </div>
                 <div class="owner-details">
                     <span class="name">
-                        Hosted by <%= propertyData.f_name + " "+  propertyData.l_name %> </span
+                        Hosted by <%= propertyData.ownerName %> </span
                     ><br />
+                    <span class="since">
+                        Member since <%= propertyData.member %>
+                    </span>
                 </div>
             </div>
             <hr />

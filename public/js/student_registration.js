@@ -71,16 +71,45 @@ const handleFormSubmission = async (event) => {
         );
 
         const result = await response.json();
-        console.log(result);
+        const status_code = result.status_code
 
-        overlayContentHTML.innerHTML = registrationSuccess;
+        if (status_code == 0) {
+            overlayContentHTML.innerHTML = "No Students found";
+            setTimeout(() => {
+                overlay.style.display = "none";
+                document.body.style.overflow = "";
+            }, 5000);
 
-        setTimeout(() => {
-            window.location.href = "http://localhost:5000/student/page/login";
-        }, 5000);
+        } else if (status_code == 1) {
+            overlayContentHTML.innerHTML = registrationSuccess;
+            setTimeout(() => {
+                overlay.style.display = "none";
+                document.body.style.overflow = "";
+                window.location.href =
+                    "http://localhost:5000/student/page/login";
+            }, 5000);
+
+        } else if (status_code == 2) {
+            overlayContentHTML.innerHTML = "Student Already Registerd";
+            setTimeout(() => {
+                overlay.style.display = "none";
+                document.body.style.overflow = "";
+            }, 5000);
+
+        } else {
+            overlayContentHTML.innerHTML =
+                "Error submitting data, please try again.";
+            setTimeout(() => {
+                overlay.style.display = "none";
+                document.body.style.overflow = "";
+            }, 5000);
+
+        }
+
     } catch (error) {
         overlayContentHTML.innerHTML =
             "Error submitting data, please try again.";
+            document.body.style.overflow = "";
         console.error("Error:", error);
     }
 };

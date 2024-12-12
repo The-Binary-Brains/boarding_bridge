@@ -1,6 +1,7 @@
 .listings {
     background-color: white;
     padding: 30px;
+    margin-bottom: 80px;
 
     .header {
         display: flex;

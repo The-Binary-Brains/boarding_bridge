@@ -26,14 +26,14 @@
             <form id="loginForm">
                 <div class="input">
                     <input
-                        id="userName"
-                        placeholder="User Name"
+                        id="studentID"
+                        placeholder="Student ID"
                         type="text"
-                        name="userName"
+                        name="studentID"
                         required
                     />
-                    <label for="userName"
-                        >Enter your username</label
+                    <label for="studentID"
+                        >Enter your Student ID</label
                     >
                 </div>
                 <div class="input">
@@ -109,8 +109,8 @@
             }
 
             const result = await response.json();
-            console.log("login success:", result);
-            if (result == "success") {
+            
+            if (result.message == "success") {
 
             }else {
                 error.style.display = "block"

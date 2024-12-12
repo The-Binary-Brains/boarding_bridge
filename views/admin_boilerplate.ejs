@@ -31,15 +31,10 @@
                 <% if (page === 'reviews') { %> <%-
                 include('components/admin_reviews') %> <% } else if (page ===
                 'properties') { %> <%- include('components/admin_properties') %> <% }
-                else if (page === 'new property') { %> <%-
-                include('components/owner_property_new') %> <% } else if (page ===
-                'edit property') { %> <%-
-                include('components/owner_property_edit') %> <% } else if (page
+                 else if (page
                 === 'view property') { %> <%-
-                include('components/owner_property_view') %> <% } else if (page ===
-                'solve property') { %> <%- include('components/owner_property_solve')
-                %> <% } else if (page === 'reservations') { %> <%-
-                include('components/owner_reservations') %> <% } else if (page ===
+                include('components/admin_property_view') %> <% } else if (page === 'owners') { %> <%-
+                include('components/admin_owners') %> <% } else if (page ===
                 'reservation info') { %> <%-
                 include('components/owner_reservations_info') %> <% } else if (page
                 === 'inbox') { %> <%- include('components/owner_inbox') %> <% } else

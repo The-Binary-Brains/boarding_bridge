@@ -33,15 +33,14 @@ body {
         font-weight: 700;
     }
 
-    button {
-        padding: 10px 20px;
+    a {
+        text-decoration: none;
+        padding: 20px 40px;
         font-family: "Poppins", sans-serif;
         font-weight: 600;
         font-style: normal;
         font-size: 1rem;
         color: white;
-        width: 150px;
-        height: 50px;
         background-color: #800000;
         border: none;
         cursor: pointer;

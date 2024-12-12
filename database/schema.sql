@@ -129,6 +129,10 @@ CREATE TABLE properties (
     furnishing_essentials ENUM("fully_furnished", "semi_furnished", "none") NOT NULL,
     status ENUM("approved", "pending", "in_review", "rejected") NOT NULL DEFAULT "pending",
     owner_id INT NOT NULL,
+    views INT DEFAULT 0
+    published_at DATE DEFAULT NULL,
+    lat INT
+    lang INT
     FOREIGN KEY (owner_id) REFERENCES owners(id) ON DELETE CASCADE
 );
 
@@ -209,5 +213,12 @@ CREATE TABLE reservations (
     property_id INT NOT NULL,
     timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (student_id) REFERENCES boardingbridge_students(id),
+     FOREIGN KEY (property_id) REFERENCES properties(id)
+);
+
+CREATE TABLE images (
+	id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    property_id INT NOT NULL,
+    url VARCHAR(2000),
      FOREIGN KEY (property_id) REFERENCES properties(id)
 );
