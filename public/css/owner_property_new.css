@@ -8,6 +8,123 @@
     border: 1px solid #3b3b3b;
     background-color: white;
 
+    .header {
+        background-color: #f9f9f9;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        border-bottom: 1px solid #e0e0e0;
+        text-align: center;
+    }
+
+    .payment-container {
+        background: #fff;
+        width: 100%;
+
+        .header {
+            background-color: #f9f9f9;
+        }
+
+        .payment-content {
+            display: flex;
+            padding: 50px;
+        }
+
+        .payment-details,
+        .order-summary {
+            width: 48%;
+        }
+
+        .payment-details {
+        }
+
+        .payment-details h3,
+        .order-summary h3 {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            text-align: left;
+            display: block;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            border-radius: 5px;
+        }
+
+        .form-group input[type="radio"] {
+            margin-bottom: -25px;
+        }
+
+        .card-type {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .card-type img {
+            width: 40px;
+            height: auto;
+        }
+
+        .btn-proceed {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn-proceed:hover {
+            background-color: #218838;
+        }
+
+        .order-summary {
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .order-summary h3 {
+            margin-bottom: 10px;
+        }
+
+        .order-summary .amount {
+            background-color: #e8f5e9;
+            padding: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
+            color: #388e3c;
+            border-radius: 5px;
+        }
+
+        .bank-logo {
+            text-align: right;
+            margin-top: 15px;
+        }
+
+        .bank-logo img {
+            width: 100px;
+            height: auto;
+        }
+    }
+
     .overlay {
         position: fixed;
         top: 0;

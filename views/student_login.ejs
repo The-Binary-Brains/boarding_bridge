@@ -1,128 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/login.css" />
-    <link rel="icon" href="/images/favicon.png" type="image/icon type" />
-    <title>Student Login</title>
-</head>
-<body>
-    <div class="header">
-        <span class="title">Boarding Bridge</span>
-    </div>
-    <div class="form_section">
-        <div class="form_title">Log in</div>
-        <div class="form_line"></div>
-        <div class="form_header form_padding">
-            <div class="form_sub_title">Welcome to Boarding Bridge</div>
-            <div class="form_info">
-                <strong>Note:</strong>  You must be a currently enrolled student at Sri Jayawardenapura
-                University to access and use the system and services offered by Boarding Bridge.
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/css/login.css" />
+        <link rel="icon" href="/images/favicon.png" type="image/icon type" />
+        <title>Student Login</title>
+    </head>
+    <body>
+        <div class="header">
+            <span class="title">Boarding Bridge</span>
+        </div>
+        <div class="form_section">
+            <div class="form_title">Log in</div>
+            <div class="form_line"></div>
+            <div class="form_header form_padding">
+                <div class="form_sub_title">Welcome to Boarding Bridge</div>
+                <div class="form_info">
+                    <strong>Note:</strong> You must be a currently enrolled
+                    student at Sri Jayawardenapura University to access and use
+                    the system and services offered by Boarding Bridge.
+                </div>
+            </div>
+            <div id="error" class="error">Wrong Credentitals</div>
+            <div class="form_container form_padding">
+                <form id="loginForm">
+                    <div class="input">
+                        <input
+                            id="studentID"
+                            placeholder="Student ID"
+                            type="text"
+                            name="studentID"
+                            required
+                        />
+                        <label for="studentID">Enter your Student ID</label>
+                    </div>
+                    <div class="input">
+                        <input
+                            id="password"
+                            placeholder="Password"
+                            type="password"
+                            name="password"
+                            required
+                        />
+                        <label for="password" id="password_label"
+                            >Enter your passwod</label
+                        >
+                    </div>
+                    <div class="input">
+                        <button id="submitBtn" type="submit">Log In</button>
+                    </div>
+                    <div class="form_line"></div>
+                    <p class="post-note">
+                        Forgot password? <a href="#"><i>Reset Password</i></a
+                        ><br />
+                        Don't have an account?
+                        <a href="http://localhost:5000/student/page/register"
+                            ><i>Create an account</i></a
+                        >
+                    </p>
+                </form>
             </div>
         </div>
-        <div id="error" class="error">Wrong Credentitals</div>
-        <div class="form_container form_padding">
-            <form id="loginForm">
-                <div class="input">
-                    <input
-                        id="studentID"
-                        placeholder="Student ID"
-                        type="text"
-                        name="studentID"
-                        required
-                    />
-                    <label for="studentID"
-                        >Enter your Student ID</label
+        <footer>
+            <div class="Center">
+                <div class="logo">
+                    <div class="title">Boarding Bridge</div>
+                    <div class="sub_title">
+                        "Connecting Students with Quality Accommodations"
+                    </div>
+                    <P
+                        >Phone : +94 01 457 8546 <br />
+                        Email : support@boardingbridge.lk <br />
+                        Address: 123 Campus Dr., City</P
                     >
                 </div>
-                <div class="input">
-                    <input
-                        id="password"
-                        placeholder="Password"
-                        type="password"
-                        name="password"
-                        required
-                    />
-                    <label for="password" id="password_label"
-                        >Enter your passwod</label
-                    >
-                </div>
-                <div class="input">
-                    <button id="submitBtn" type="submit">Log In</button>
-                </div>
-                <div class="form_line"></div>
-                <p class="post-note">
-                    Forgot password? <a href="#"><i>Reset Password</i></a><br>
-                    Don't have an account? <a href="http://localhost:5000/student/page/register"><i>Create an account</i></a>
-                </p>
-            </form>
-        </div>
-    </div>
-</div>
-    <footer>
-        <div class="Center">
-            <div class="logo">
-                <div class="title">Boarding Bridge</div>
-                <div class="sub_title">
-                    "Connecting Students with Quality Accommodations"
-                </div>
-                <P>Phone : +94 01 457 8546 <br>
-                    Email : support@boardingbridge.lk <br>
-                    Address: 123 Campus Dr., City</P>
             </div>
-        </div>
-        <div class="bottom">
-            <div class="bottom_line"></div>
-            <span class="rights">© 2024 BoardingBridge. All rights reserved.</span>
-        </div>
-    </footer>
+            <div class="bottom">
+                <div class="bottom_line"></div>
+                <span class="rights"
+                    >© 2024 BoardingBridge. All rights reserved.</span
+                >
+            </div>
+        </footer>
+    </body>
+    <script>
+        const loginForm = document.getElementById("loginForm");
+        const error = document.getElementById("error");
 
-</body>
-<script>
-    const loginForm = document.getElementById("loginForm");
-    const error = document.getElementById("error");
+        const handleUserFormSubmission = async (event) => {
+            event.preventDefault();
 
-    const handleUserFormSubmission = async (event) => {
-
-        event.preventDefault();
-
-        const formData = new FormData(loginForm);
-
-        try {
+            const formData = new FormData(loginForm);
             const formDataObj = Object.fromEntries(formData.entries());
-            const jsonFormData = JSON.stringify(formDataObj);
 
-            const response = await fetch(
-                `http://localhost:5000/student/api/login`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: jsonFormData,
-                }
-            );
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+            if (formDataObj.password == "student") {
+                window.location.href = "http://localhost:5000/student/page/home"
+            } else {
+                console.error("Error editing property:", error);
+                error.style.display = "block";
+                error.style.innerText = "Something went wrong!";
             }
+        };
 
-            const result = await response.json();
-            
-            if (result.message == "success") {
-
-            }else {
-                error.style.display = "block"
-            }
-
-        } catch (error) {
-            console.error("Error editing property:", error);
-            error.style.display = "block"
-            error.style.innerText = "Something went wrong!"
-        }
-    };
-
-    loginForm.addEventListener("submit", handleUserFormSubmission);
+        loginForm.addEventListener("submit", handleUserFormSubmission);
     </script>
 </html>

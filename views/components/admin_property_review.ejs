@@ -1,22 +1,4 @@
 <div class="view_section">
-    <div class="top-container">
-        <div class="images-grid">
-            <img src="<%= propertyData.propertyPhoto[0]%>" />
-            <img src="<%= propertyData.propertyPhoto[1]%>" />
-            <img src="<%= propertyData.propertyPhoto[2]%>" />
-            <img src="<%= propertyData.propertyPhoto[3]%>" />
-            <img src="<%= propertyData.propertyPhoto[4]%>" />
-        </div>
-        <div class="input">
-            <button id="gallery" type="button">
-                <div class="gallery-btn">
-                    <i class="fa-regular fa-images"></i>
-                    <p>Show all photos...</p>
-                </div>
-            </button>
-        </div>
-    </div>
-
     <div id="galleryPopup" class="popup">
         <div class="popup-content">
             <div class="gallery-top">
@@ -43,7 +25,9 @@
             </div>
         </div>
     </div>
-
+    <div class="overlay" id="overlay">
+        <div class="content" id="overlayContent"></div>
+    </div>
     <div class="main">
         <div class="left-container">
             <p class="Property-name">
@@ -64,9 +48,11 @@
                 </div>
                 <div class="owner-details">
                     <span class="name">
-                        Hosted by <%= propertyData.f_name + " "+
-                        propertyData.l_name %> </span
+                        Hosted by <%= propertyData.name %> </span
                     ><br />
+                    <span class="since">
+                        Member since <%= propertyData.member %>
+                    </span>
                 </div>
             </div>
             <hr />
@@ -162,6 +148,59 @@
                     <p><%= propertyData.address %></p>
                 </div>
             </div>
+            <hr />
+            <div class="contact">
+                <div class="icon">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="info-container">
+                    <h1>Full Name</h1>
+                    <p><%= propertyData.name %></p>
+                </div>
+            </div>
+            <hr />
+            <div class="calendar" style="margin-top: 80px">
+                <div class="cal-info">
+                    <div class="icon">
+                        <i class="fa-regular fa-image"></i>
+                    </div>
+                    <div class="info-container">
+                        <h1>Property photos</h1>
+                    </div>
+                </div>
+                <button id="gallery" class="gallery" type="button">
+                    View Property photos
+                </button>
+            </div>
+            <hr />
+            <div class="calendar">
+                <div class="cal-info">
+                    <div class="icon">
+                        <i class="fa-solid fa-file"></i>
+                    </div>
+                    <div class="info-container">
+                        <h1>Legal documents</h1>
+                    </div>
+                </div>
+                <a
+                    href="https://www.inria.fr/sites/default/files/2021-12/LB_IoT_EN_WEB_HD_2.pdf"
+                    class="gallery"
+                    download="optional_filename"
+                    target="_blank"
+                    >Download File</a
+                >
+            </div>
+            <hr />
+            <div class="review-btn">
+                <button id="reject" class="reviewStatus-btn" type="button">
+                    <p class="review-option">Reject</p>
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <button id="accept" class="reviewStatus-btn" type="button">
+                    <p class="review-option">Accept</p>
+                    <i class="fa-solid fa-check"></i>
+                </button>
+            </div>
         </div>
     </div>
 </div>
@@ -172,8 +211,57 @@
 
     const leftBtn = document.getElementById("left-btn");
     const rightBtn = document.getElementById("right-btn");
+
+    const acceptBtn = document.getElementById("accept");
+    const rejectBtn = document.getElementById("reject");
+
     const pageNumber = document.getElementById("page-number");
     const imgPreview = document.getElementById("img-preview");
+
+    const overlay = document.getElementById("overlay");
+    const overlayContentHTML = document.getElementById("overlayContent");
+
+    const loadingHTML = `
+<div class="loading" id="loading">
+<div class="spinner"></div>
+<div class="loading-text" id="loadingText">Please Wait...</div>
+</div>
+`;
+
+    const commetDiv = `
+    <div style="display: flex; width: 80%; flex-direction: column;">
+    <input placeholder="Reason for the rejection" style="padding: 20px; margin-bottom: 20px;" type="text">
+    <button style="width: 100%; background-color: #800000; color: white" id="submit" >Submit</button>
+</div>
+    `
+
+    const registrationSuccess = ` Success! <br> You will be redirected to the reviews page shortly..`;
+
+    rejectBtn.addEventListener("click", () => {
+        overlay.style.display = "flex";
+        document.body.style.overflow = "hidden";
+        overlayContentHTML.innerHTML = commetDiv;
+
+        document.getElementById("submit").addEventListener("click", handleFormSubmission)
+    });
+
+    const handleFormSubmission = async (event) => {
+        event.preventDefault();
+
+        overlay.style.display = "flex";
+        document.body.style.overflow = "hidden";
+        overlayContentHTML.innerHTML = loadingHTML;
+
+        setTimeout(() => {
+            overlayContentHTML.innerHTML = registrationSuccess;
+            setTimeout(() => {
+                window.location.href =
+                    "http://localhost:5000/admin/page/review";
+            }, 3000);
+        }, 2000);
+    };
+
+    acceptBtn.addEventListener("click", handleFormSubmission);
 
     let images = [
         "/uploads/prop1.jpeg",

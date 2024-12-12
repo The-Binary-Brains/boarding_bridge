@@ -22,26 +22,10 @@ Cancel
 const deleteProperty = async (id) => {
     overlayContentHTML.innerHTML = loadingHTML;
 
-    try {
-
-        const response = await fetch(
-            `http://localhost:5000/admin/api/property/delete/${id}`,
-            {
-                method: "POST",
-            }
-        );
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const result = await response.json();
-        console.log("Reservation canceled successfully:", result);
+    setTimeout(() => {
         overlayContentHTML.innerHTML = deleteSuccess;
-    } catch (error) {
-        console.error("Error canceled reservation:", error);
-        overlayContentHTML.innerHTML = deleteFailed;
-    }
+    }, 3000);
+
 };
 
 
@@ -56,7 +40,7 @@ const closeOverlay = () => {
 }
 
 const refreshPage = () => {
-    window.location.href = "http://localhost:5000/admin/page/properties";
+    window.location.href = "http://localhost:5000/admin/page/owners";
 }
 
 const handlePropertyDelete = (id) => {

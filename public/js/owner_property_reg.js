@@ -10,6 +10,45 @@ const docSelectBtn = document.getElementById("docSelectBtn");
 const overlay = document.getElementById("overlay");
 const overlayContentHTML = document.getElementById("overlayContent");
 
+const paymentProcessing = `
+<div class="payment-container">
+<div class="header">Welcome to Boarding Bridge Payment Gateway</div>
+<div class="payment-content">
+    <!-- Payment Details -->
+    <div class="payment-details">
+        <h3>Payment Details</h3>
+        <div class="form-group card-type">
+            <label>Card Type</label>
+            <input type="radio" name="card-type" value="visa" id="visa">
+            <label for="visa"><img src="https://cdn.pixabay.com/photo/2021/12/06/13/48/visa-6850402_960_720.png" alt="Visa"></label>
+            <input type="radio" name="card-type" value="mastercard" id="mastercard">
+            <label for="mastercard"><img src="https://logos-world.net/wp-content/uploads/2020/09/Mastercard-Logo.png" alt="Mastercard"></label>
+        </div>
+        <div class="form-group">
+            <label for="card-number">Card Number</label>
+            <input type="text" id="card-number" maxlength="16" placeholder="XXXX XXXX XXXX XXXX">
+        </div>
+        <div class="form-group">
+            <label for="expiry">Expiration Date</label>
+            <input type="text" id="expiry" placeholder="MM/YY">
+        </div>
+        <div class="form-group">
+            <label for="cvv">CVV</label>
+            <input type="password" id="cvv" maxlength="3" placeholder="***">
+        </div>
+        <button class="btn-proceed" id="pay">Proceed</button>
+    </div>
+    <!-- Order Summary -->
+    <div class="order-summary">
+        <h3>Your Order</h3>
+        <div class="amount">Total amount: 1,000.00 Rs</div>
+        <div class="bank-logo">
+            <img src="https://static.brandirectory.com/logos/PEOK001_pple_bank_logo_sent_by_client_jpeg.jpeg" alt="People's Bank">
+        </div>
+    </div>
+</div>
+</div>`;
+
 const paymetGetaway = `
 <div class="payment_getaway">
                 <div class="container_title">Payment Getaway</div>
@@ -55,7 +94,14 @@ const paymentSuccess = `Payment success! <br> Finishing up registration... <br>`
 
 const registrationSuccess = `Payment success! <br> Registeration compleate! <br> You will be redirected to the properties page..`;
 
-const handlePaymet = (e) => {
+const processPayment = (e) => {
+    e.preventDefault();
+
+    overlayContentHTML.innerHTML = paymentProcessing;
+    document.getElementById("pay").addEventListener("click", handlePayment);
+};
+
+const handlePayment = (e) => {
     e.preventDefault();
 
     overlayContentHTML.innerHTML = loadingHTML;
@@ -182,19 +228,19 @@ const handleFormSubmission = (event) => {
     alert("Form submitted successfully!");*/
 
     overlay.style.display = "flex";
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
     overlayContentHTML.innerHTML = paymetGetaway;
 
     document
         .getElementById("cancelPaymentBtn")
         .addEventListener("click", () => {
             overlay.style.display = "none";
-            document.body.style.overflow = '';
+            document.body.style.overflow = "";
         });
 
     document
         .getElementById("paymentCaptcha")
-        .addEventListener("submit", handlePaymet);
+        .addEventListener("submit", processPayment);
 };
 
 profileSelectBtn.addEventListener("click", () => profilePhotoInput.click());

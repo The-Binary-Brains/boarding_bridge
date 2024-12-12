@@ -53,6 +53,45 @@ const paymetGetaway = `
             </div>
 `;
 
+const paymentProcessing = `
+<div class="payment-container">
+<div class="header">Welcome to Boarding Bridge Payment Gateway</div>
+<div class="payment-content">
+    <!-- Payment Details -->
+    <div class="payment-details">
+        <h3>Payment Details</h3>
+        <div class="form-group card-type">
+            <label>Card Type</label>
+            <input type="radio" name="card-type" value="visa" id="visa">
+            <label for="visa"><img src="https://cdn.pixabay.com/photo/2021/12/06/13/48/visa-6850402_960_720.png" alt="Visa"></label>
+            <input type="radio" name="card-type" value="mastercard" id="mastercard">
+            <label for="mastercard"><img src="https://logos-world.net/wp-content/uploads/2020/09/Mastercard-Logo.png" alt="Mastercard"></label>
+        </div>
+        <div class="form-group">
+            <label for="card-number">Card Number</label>
+            <input type="text" id="card-number" maxlength="16" placeholder="XXXX XXXX XXXX XXXX">
+        </div>
+        <div class="form-group">
+            <label for="expiry">Expiration Date</label>
+            <input type="text" id="expiry" placeholder="MM/YY">
+        </div>
+        <div class="form-group">
+            <label for="cvv">CVV</label>
+            <input type="password" id="cvv" maxlength="3" placeholder="***">
+        </div>
+        <button class="btn-proceed" id="pay">Proceed</button>
+    </div>
+    <!-- Order Summary -->
+    <div class="order-summary">
+        <h3>Your Order</h3>
+        <div class="amount">Total amount: 1,000.00 Rs</div>
+        <div class="bank-logo">
+            <img src="https://static.brandirectory.com/logos/PEOK001_pple_bank_logo_sent_by_client_jpeg.jpeg" alt="People's Bank">
+        </div>
+    </div>
+</div>
+</div>`
+
 const loadingHTML = `
 <div class="loading" id="loading">
 <div class="spinner"></div>
@@ -127,50 +166,28 @@ const validateForm = () => {
     return true;
 };
 
-
-const handlePaymet = async (e) => {
+const processPayment = (e) => {
     e.preventDefault();
 
+    overlayContentHTML.innerHTML = paymentProcessing;
+    document.getElementById("pay").addEventListener("click", handlePayment);
+};
+
+const handlePayment = async () => {
     overlayContentHTML.innerHTML = loadingHTML;
 
     const loadingText = document.getElementById("loadingText");
 
+    setTimeout(() => {
+        loadingText.innerHTML = paymentSuccess;
 
-    loadingText.innerHTML = paymentSuccess;
-
-    const formData = new FormData(document.getElementById("registrationForm"));
-
-    try {
-        const response = await fetch(
-            `http://localhost:5000/owner/api/register`,
-            {
-                method: "POST",
-                body: formData,
-            }
-        );
-
-        if (!response.ok) {
-            throw new Error("Network response was not ok");
-        }
-
-        const result = await response.json();
-
-        if (result.message == "success") {
-            overlayContentHTML.innerHTML = registrationSuccess;
+        setTimeout(() => {
+            loadingText.innerHTML = registrationSuccess;
             setTimeout(() => {
                 window.location.href = "http://localhost:5000/owner/page/login";
-            }, 5000);
-        }else {
-            overlayContentHTML.innerHTML =
-            "Error submitting data, please try again.";
-        }
-
-    } catch (error) {
-        overlayContentHTML.innerHTML =
-            "Error submitting data, please try again.";
-            document.body.style.overflow = "";
-        console.error("Error:", error);
-    }
+            }, 3000);
+        }, 2000);
+    }, 2000);
 };
 
 const handleFormSubmission = async (event) => {
@@ -191,7 +208,7 @@ const handleFormSubmission = async (event) => {
 
     document
         .getElementById("paymentCaptcha")
-        .addEventListener("submit", handlePaymet);
+        .addEventListener("submit", processPayment);
 };
 
 const triggerPhotoInput = () => {

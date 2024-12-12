@@ -1,0 +1,144 @@
+<div class="profile">
+    <div class="overlay" id="overlay">
+        <div class="content" id="overlayContent"></div>
+    </div>
+    <div class="top_container">
+        <div class="header">
+            <div class="container_title">Owner Details</div>
+        </div>
+        <div class="container_line"></div>
+        <div class="info_container">
+            <div class="img_container">
+                <img src="<%= profileData.image%>" alt="" />
+            </div>
+            <div class="account_info">
+                <div class="user_name"><%= profileData.userName%></div>
+                <div class="name"><%= profileData.name%></div>
+                <div class="about"><%= profileData.about%></div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom_container">
+        <div class="left">
+            <div class="header">
+                <div class="container_title">Contact Info</div>
+            </div>
+            <div class="container_line"></div>
+            <div class="info_container">
+                <div class="info">
+                    <div class="lable">Phone</div>
+                    <div class="value"><%= profileData.phone%></div>
+                </div>
+                <div class="info">
+                    <div class="lable">Email</div>
+                    <div class="value"><%= profileData.email%></div>
+                </div>
+            </div>
+        </div>
+        <div class="mid">
+            <div class="header">
+                <div class="container_title">Legal Info</div>
+            </div>
+            <div class="container_line"></div>
+            <div class="info_container">
+                <div class="info">
+                    <div class="lable">Legal Name</div>
+                    <div class="value"><%= profileData.legName%></div>
+                </div>
+                <div class="info">
+                    <div class="lable">Permenet Address</div>
+                    <div class="value"><%= profileData.address%></div>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="header">
+                <div class="container_title">Profile Status</div>
+            </div>
+            <div class="container_line"></div>
+            <div class="info_container">
+                <div class="info">
+                    <button
+                        id="accept"
+                        type="button"
+                        style="background-color: #800000; color: white"
+                    >
+                        Accept this Owner
+                    </button>
+                    <button
+                        id="reject"
+                        type="button"
+                        style="background-color: #800000; color: white"
+                    >
+                        Reject this Owner
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const overlay = document.getElementById("overlay");
+    const overlayContentHTML = document.getElementById("overlayContent");
+
+    const acceptBtn = document.getElementById("accept");
+    const rejectBtn = document.getElementById("reject");
+
+    const loadingHTML = `
+<div style="    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;" id="loading">
+<div style="    width: 40px;
+    height: 40px;
+    border: 5px solid white;
+    border-top: 5px solid #640000;
+    border-radius: 50%;
+    animation: spin 0.5s linear infinite;
+    margin-bottom: 50px;"></div>
+<div style="    color: rgb(49, 49, 49);
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;" id="loadingText">Please Wait...</div>
+</div>
+`;
+
+
+    const commetDiv = `
+    <div style="display: flex; width: 80%; flex-direction: column;">
+    <input placeholder="Reason for the rejection" style="padding: 20px; margin-bottom: 20px;" type="text">
+    <button style="width: 100%; background-color: #800000; color: white" id="submit" >Submit</button>
+</div>
+    `
+
+
+    const registrationSuccess = ` Success! <br> You will be redirected to the reviews page shortly..`;
+
+    const handleFormSubmission = async (event) => {
+        event.preventDefault();
+
+        overlay.style.display = "flex";
+        document.body.style.overflow = "hidden";
+        overlayContentHTML.innerHTML = loadingHTML;
+
+        setTimeout(() => {
+            overlayContentHTML.innerHTML = registrationSuccess;
+            setTimeout(() => {
+                window.location.href =
+                    "http://localhost:5000/admin/page/review";
+            }, 3000);
+        }, 2000);
+    };
+
+    acceptBtn.addEventListener("click", handleFormSubmission);
+    rejectBtn.addEventListener("click", () => {
+        overlay.style.display = "flex";
+        document.body.style.overflow = "hidden";
+        overlayContentHTML.innerHTML = commetDiv;
+
+        document.getElementById("submit").addEventListener("click", handleFormSubmission)
+    });
+</script>

@@ -42,7 +42,14 @@ ownerApi.get("/reserved_month/:month", async (req, res) => {
     const id = 1;
 
     try {
-        const reservedDatesOfMonth = await getReservedDatesOfMonth(id, parseInt(month)+ 1);
+        const reservedDatesOfMonth = {
+            availableDates: [
+                "2024-12-21",
+                "2024-12-02",
+                "2024-12-13",
+                "2024-12-24",
+            ],
+        };
         res.status(200).json(reservedDatesOfMonth);
     } catch (error) {
         res.status(500).json({ message: "An Error Occured:" + error });
@@ -52,10 +59,81 @@ ownerApi.get("/reserved_month/:month", async (req, res) => {
 ownerApi.get("/reserved/:date", async (req, res) => {
     const date = req.params.date;
     console.log(date);
-    const id = 1
+    const id = 1;
 
     try {
-        const reservedDate = await getReservationDetailsByDate(id, date);
+        let reservedDate = [];
+
+        if (date == "2024-12-21") {
+            reservedDate = [
+                {
+                    id: 1,
+                    property: "Best Room",
+                    image: "/uploads/prop1.jpeg",
+                    reservedBy: "John Doe",
+                    time: "2024-12-21 06:30 PM",
+                },
+                {
+                    id: 1,
+                    property: "Apartment",
+                    image: "/uploads/prop2.jpeg",
+                    reservedBy: "Michel Doe",
+                    time: "2024-12-21 06:30 PM",
+                },
+            ];
+        } else if (date == "2024-12-13") {
+            reservedDate = [
+                {
+                    id: 1,
+                    property: "Oakwood Manor",
+                    image: "/uploads/prop3.jpeg",
+                    reservedBy: "Isabella Morgan",
+                    time: "2024-12-21 09:30 AM",
+                },
+                {
+                    id: 1,
+                    property: "Golden Horizon Apartments",
+                    image: "/uploads/prop4.jpeg",
+                    reservedBy: "Jackson Cooper",
+                    time: "2024-12-21 01:30 PM",
+                },
+                {
+                    id: 1,
+                    property: "Sunnyvale Estates",
+                    image: "/uploads/prop5.jpg",
+                    reservedBy: "Lucas Brooks",
+                    time: "2024-12-21 04:30 PM",
+                },
+            ];
+        } else if (date == "2024-12-02") {
+            reservedDate = [
+                {
+                    id: 1,
+                    property: "Bluebell Villa",
+                    image: "/uploads/prop6.jpg",
+                    reservedBy: "Amelia Rivera",
+                    time: "2024-12-02 10:30 AM",
+                },
+                {
+                    id: 1,
+                    property: "Riverside Heights",
+                    image: "/uploads/prop7.jpg",
+                    reservedBy: "Benjamin Scott",
+                    time: "2024-12-02 08:30 AM",
+                },
+            ];
+        } else if (date == "2024-12-24") {
+            reservedDate = [
+                {
+                    id: 1,
+                    property: "Evergreen Residences",
+                    image: "/uploads/prop8.jpg",
+                    reservedBy: "Olivia Parker",
+                    time: "2024-12-24 02:30 PM",
+                }]
+        }
+
+        console.log(reservedDate);
         res.status(200).json(reservedDate);
     } catch (error) {
         res.status(500).json({ message: "An Error Occured:" + error });
@@ -240,7 +318,6 @@ ownerApi.post("/login", async (req, res) => {
         } else {
             res.status(200).json({ message: "failed" });
         }
-
     } catch (error) {
         res.status(200).json({ message: "failed" });
     }

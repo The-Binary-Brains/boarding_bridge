@@ -15,54 +15,35 @@ const deleteFailed = `Delete failed! <br> Something went wrong.. <br> <br>  <but
 Cancel
 </button>`;
 
-
-
 // ! Event Handlers
 
 const deleteProperty = async (id) => {
     overlayContentHTML.innerHTML = loadingHTML;
 
-    try {
-
-        const response = await fetch(
-            `http://localhost:5000/admin/api/owner/delete/${id}`,
-            {
-                method: "POST",
-            }
-        );
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const result = await response.json();
-        console.log("Reservation canceled successfully:", result);
+    setTimeout(() => {
         overlayContentHTML.innerHTML = deleteSuccess;
-    } catch (error) {
-        console.error("Error canceled reservation:", error);
-        overlayContentHTML.innerHTML = deleteFailed;
-    }
+    }, 3000);
 };
-
 
 const openOverlay = () => {
     overlay.style.display = "flex";
     document.body.style.overflow = "hidden";
-}
+};
 
 const closeOverlay = () => {
     overlay.style.display = "none";
     document.body.style.overflow = "";
-}
+};
 
 const refreshPage = () => {
-    window.location.href = "http://localhost:5000/admin/page/owners";
-}
+    window.location.href = "http://localhost:5000/admin/page/properties";
+};
 
 const handlePropertyDelete = (id) => {
-
-    console.log(id)
-    openOverlay()
-    document.getElementById("closeBtn").addEventListener("click", closeOverlay)
-    document.getElementById("deleteBtn").addEventListener("click", () => deleteProperty(id))
+    console.log(id);
+    openOverlay();
+    document.getElementById("closeBtn").addEventListener("click", closeOverlay);
+    document
+        .getElementById("deleteBtn")
+        .addEventListener("click", () => deleteProperty(id));
 };
