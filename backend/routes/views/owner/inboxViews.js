@@ -8,8 +8,11 @@ import {
 const inboxView = express.Router();
 
 inboxView.get("/", async (req, res) => {
+
+    const id = 1
+
     try {
-        const inboxData = await getInboxTable();
+        const inboxData = await getInboxTable(id);
         res.render("owner_boilerplate", {
             page: "inbox",
             inboxData: inboxData,
@@ -21,8 +24,11 @@ inboxView.get("/", async (req, res) => {
 });
 
 inboxView.get("/view/:id", async (req, res) => {
+
+    const id = req.params.id
+
     try {
-        const inboxData = await getInboxById();
+        const inboxData = await getInboxById(id);
         res.render("owner_boilerplate", {
             page: "inbox view",
             inboxData: inboxData,

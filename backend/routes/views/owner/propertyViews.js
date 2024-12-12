@@ -41,8 +41,9 @@ propertyView.get("/edit/:id", async (req, res) => {
 
 propertyView.get("/view/:id", async (req, res) => {
     const id = req.params.id;
+    console.log(id)
     try {
-        const propertyData = await getPropertyViewById(id);
+        const propertyData = await getPropertyViewById(parseInt(id));
         res.render("owner_boilerplate", {
             page: "view property",
             propertyData: propertyData,
