@@ -153,16 +153,22 @@ const handlePaymet = async (e) => {
             throw new Error("Network response was not ok");
         }
 
-        const data = await response.json();
+        const result = await response.json();
 
-        overlayContentHTML.innerHTML = registrationSuccess;
+        if (result.message == "success") {
+            overlayContentHTML.innerHTML = registrationSuccess;
+            setTimeout(() => {
+                window.location.href = "http://localhost:5000/owner/page/login";
+            }, 5000);
+        }else {
+            overlayContentHTML.innerHTML =
+            "Error submitting data, please try again.";
+        }
 
-        setTimeout(() => {
-            window.location.href = "http://localhost:5000/owner/page/login";
-        }, 5000);
     } catch (error) {
         overlayContentHTML.innerHTML =
             "Error submitting data, please try again.";
+            document.body.style.overflow = "";
         console.error("Error:", error);
     }
 };

@@ -30,6 +30,7 @@
                 </tr>
             </thead>
             <tbody>
+
                 <% if (propertiesData.length === 0) { %>
                     <tr>
                         <td colspan="6" class="span_row">
@@ -39,7 +40,7 @@
                 <% } else { %>
                     <% let i = 1 %>
                     <% propertiesData.forEach((property) => { %>
-                        <% if (property.status === "published") { %>
+                        <% if (property.status === "approved") { %>
                             <tr>
                                 <td><%= i++ %></td>
                                 <td>

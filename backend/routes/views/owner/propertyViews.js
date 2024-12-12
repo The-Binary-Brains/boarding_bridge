@@ -12,6 +12,7 @@ const propertyView = express.Router();
 propertyView.get("/", async (req, res) => {
     try {
         const propertiesData = await getPropertiesTable();
+        console.log(propertiesData)
         res.render("owner_boilerplate", {
             page: "properties",
             propertiesData: propertiesData,

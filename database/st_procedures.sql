@@ -205,7 +205,7 @@ CREATE PROCEDURE AddProperty (
   -------------------------------------------------------------------------------*/
 
 CREATE PROCEDURE AddStudent(
-    IN in_student_id INT,
+    IN in_student_id VARCHAR(15),
     IN in_student_email VARCHAR(255),
     IN in_student_password VARCHAR(255)
     )
@@ -243,6 +243,16 @@ CREATE PROCEDURE AddStudent(
         SELECT result_code AS status_code;
 
     END $$
+
+CREATE PROCEDURE GetStudent(
+    IN in_student_id VARCHAR(15)
+    )
+    BEGIN
+        SELECT *
+        FROM boardingbridge_students
+        WHERE student_id = in_student_id;
+    END$$
+
 
 
 
@@ -382,6 +392,15 @@ CREATE PROCEDURE AddOwner(
         );
 
         SELECT LAST_INSERT_ID() AS owner_id;
+
+CREATE PROCEDURE GetOwner(
+    IN in_user_name VARCHAR(15)
+    )
+    BEGIN
+        SELECT *
+        FROM owners
+        WHERE user_name = in_user_name;
+    END$$
 
 END $$
 

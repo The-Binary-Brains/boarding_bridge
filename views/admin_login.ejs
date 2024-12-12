@@ -26,13 +26,13 @@
             <form id="loginForm">
                 <div class="input">
                     <input
-                        id="userName"
-                        placeholder="User Name"
+                        id="staffId"
+                        placeholder="Staff ID"
                         type="text"
-                        name="userName"
+                        name="staffId"
                         required
                     />
-                    <label for="userName"
+                    <label for="staffId"
                         >User name is used for login process</label
                     >
                 </div>
@@ -102,14 +102,11 @@
                 }
             );
 
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
 
             const result = await response.json();
-            console.log("login success:", result);
-            if (result == "success") {
-
+            if (result.message == "success") {
+                window.localStorage.setItem("token", result.token);
+                 console.log(window.localStorage.getItem("token"))
             }else {
                 error.style.display = "block"
             }

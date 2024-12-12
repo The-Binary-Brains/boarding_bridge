@@ -28,5 +28,9 @@ studentView.get("/home", async (req, res) => {
         res.render("student_home", {accommodationData: accommodationData});
 });
 
+studentView.get("/profile", async (req, res) => {
+        res.render("student_profile");
+});
+
 
 export default studentView;

@@ -108,8 +108,8 @@ const handleUserFormSubmission = async (event) => {
         }
 
         const result = await response.json();
-        console.log("login success:", result);
-        if (result == "success") {
+        
+        if (result.message == "success") {
 
         }else {
             error.style.display = "block"
